@@ -12,6 +12,22 @@ public class Vector2 {
 		this.x = x;
 		this.y = y;
 	}
+
+	public float Magnitude() {
+		return (float)Math.sqrt(x * x + y * y);
+	}
+	
+	public Vector2 Normalized() {
+		Vector2 normalized = new Vector2(x,y);
+		normalized.Normalize();
+		return normalized;
+	}
+	
+	public void Normalize() {
+		float m = Magnitude();
+		this.x /= m;
+		this.y /= m;
+	}
 	
 	@Override
 	public String toString() {
