@@ -28,20 +28,6 @@ public class ConsoleSimulation implements IUpdater {
 		GameLoop loop = new GameLoop(this, renderer);
 		loop.Start();
 		System.out.println("end of main.");
-//		while (true) {
-//			// update
-//			Player player = world.GetPlayer();
-//			Vector2 pos = player.GetPosition();
-//			player.SetPosition(new Vector2(pos.x + 1, pos.y + 1));
-//			
-//			//render
-//			
-//			try {
-//				Thread.sleep(20);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
 	}
 	
 	private static void ListEnemyData(ArrayList<Enemy> enemies) {
