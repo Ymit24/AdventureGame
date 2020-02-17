@@ -52,6 +52,28 @@ public class ConsoleSimulation implements IUpdater {
 		float speed = 48;
 		player.SetPosition(new Vector2(pos.x + (speed * deltaTime), pos.y + (speed * deltaTime)));
 		
+		Vector2 direction = new Vector2();
+		
+		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_W)) {
+			direction.y -= 1;
+		}
+		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_S)) {
+			direction.y += 1;
+		}
+		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_A)) {
+			direction.x -= 1;
+		}
+		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_D)) {
+			direction.x += 1;
+		}
+		
+		direction.Normalize();
+		if (direction.Magnitude() > 0)
+		{
+			pos.Add(direction.Multiply(deltaTime));
+			player.SetPosition(pos);			
+		}
+		
 		if (timer > 1)
 		{
 			timer -= 1;
