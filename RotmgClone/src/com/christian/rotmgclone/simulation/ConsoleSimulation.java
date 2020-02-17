@@ -2,23 +2,24 @@ package com.christian.rotmgclone.simulation;
 
 import java.util.ArrayList;
 
+import com.christian.rotmgclone.data.world.Data;
+import com.christian.rotmgclone.data.world.Enemy;
+import com.christian.rotmgclone.data.world.Player;
+import com.christian.rotmgclone.data.world.Vector2;
+import com.christian.rotmgclone.data.world.World;
 import com.christian.rotmgclone.logic.GameLoop;
 import com.christian.rotmgclone.logic.IUpdater;
 import com.christian.rotmgclone.rendering.IRenderer;
 import com.christian.rotmgclone.rendering.cpu.CPURenderer;
-import com.christian.rotmgclone.world.Enemy;
-import com.christian.rotmgclone.world.Player;
-import com.christian.rotmgclone.world.Vector2;
-import com.christian.rotmgclone.world.World;
 
 public class ConsoleSimulation implements IUpdater {
 	public static void main(String[] args) {
 		new ConsoleSimulation();
 	}
 	
-	private World world;
 	public ConsoleSimulation() {
-		world = new World();
+		Data.world = new World();
+		World world = Data.world;
 		world.GetEnemies().add(new Enemy(new Vector2(10, 10)));
 		
 		IRenderer renderer = new CPURenderer();
@@ -57,9 +58,10 @@ public class ConsoleSimulation implements IUpdater {
 	public void OnUpdate(float deltaTime) {
 //		System.out.println("DT: " + deltaTime);
 		timer += deltaTime;
-		Player player = world.GetPlayer();
+		Player player = Data.world.GetPlayer();
 		Vector2 pos = player.GetPosition();
-		player.SetPosition(new Vector2(pos.x + deltaTime, pos.y + deltaTime));
+		float speed = 48;
+		player.SetPosition(new Vector2(pos.x + (speed * deltaTime), pos.y + (speed * deltaTime)));
 		
 		if (timer > 1)
 		{

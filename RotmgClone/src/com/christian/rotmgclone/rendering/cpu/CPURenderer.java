@@ -21,6 +21,22 @@ public class CPURenderer implements IRenderer {
 
 	@Override
 	public void OnRender() {
+=======
+		if (bufferStrategy == null) {
+			canvas.createBufferStrategy(2);
+			bufferStrategy = canvas.getBufferStrategy();
+		}
+		
+		Graphics g = bufferStrategy.getDrawGraphics();
+		
+		g.setColor(Color.black);
+		g.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+		
+		Vector2 position = Data.world.GetPlayer().GetPosition();
+		
+		g.setColor(Color.red);
+		g.fillRect((int)position.x, (int)position.y, 100, 100);
+>>>>>>> Stashed changes
 		
 	}
 }
