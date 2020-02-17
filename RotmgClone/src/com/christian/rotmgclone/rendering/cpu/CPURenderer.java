@@ -7,6 +7,8 @@ import java.awt.image.BufferStrategy;
 
 import com.christian.rotmgclone.data.world.Data;
 import com.christian.rotmgclone.data.world.Vector2;
+import com.christian.rotmgclone.input.Input;
+import com.christian.rotmgclone.input.KeyboardListener;
 import com.christian.rotmgclone.rendering.IRenderer;
 
 public class CPURenderer implements IRenderer {
@@ -18,13 +20,18 @@ public class CPURenderer implements IRenderer {
 	
 	private BufferStrategy bufferStrategy;
 	
-	
 	public CPURenderer() {
 	}
 	
 	public void Initialize() {
 		canvas = new Canvas();
 		window = new Window(DISPLAY_WIDTH, DISPLAY_HEIGHT, canvas);
+	}
+	
+	public void CreateInput() {
+		KeyboardListener keyboardListener = new KeyboardListener();
+		window.GetFrame().addKeyListener(keyboardListener);
+		Input.keyboardListener = keyboardListener;
 	}
 
 	@Override

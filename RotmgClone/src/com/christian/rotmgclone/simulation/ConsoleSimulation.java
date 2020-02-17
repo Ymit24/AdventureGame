@@ -1,5 +1,6 @@
 package com.christian.rotmgclone.simulation;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import com.christian.rotmgclone.data.world.Data;
@@ -7,6 +8,7 @@ import com.christian.rotmgclone.data.world.Enemy;
 import com.christian.rotmgclone.data.world.Player;
 import com.christian.rotmgclone.data.world.Vector2;
 import com.christian.rotmgclone.data.world.World;
+import com.christian.rotmgclone.input.Input;
 import com.christian.rotmgclone.logic.GameLoop;
 import com.christian.rotmgclone.logic.IUpdater;
 import com.christian.rotmgclone.rendering.IRenderer;
@@ -24,6 +26,7 @@ public class ConsoleSimulation implements IUpdater {
 		
 		IRenderer renderer = new CPURenderer();
 		renderer.Initialize();
+		renderer.CreateInput();
 		
 		GameLoop loop = new GameLoop(this, renderer);
 		loop.Start();
