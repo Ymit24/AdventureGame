@@ -29,6 +29,20 @@ public class Vector2 {
 		this.y /= m;
 	}
 	
+	public Vector2 Add(Vector2 other) {
+		this.x += other.x;
+		this.y += other.y;
+		return this;
+	}
+	
+	public Vector2 Multiply(float scalar) {
+		this.x *= scalar;
+		this.y *= scalar;
+		return this;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "<" + x + "," + y + ">";
