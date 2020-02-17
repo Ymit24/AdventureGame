@@ -1,7 +1,12 @@
 package com.christian.rotmgclone.rendering.cpu;
 
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
+import com.christian.rotmgclone.data.world.Data;
+import com.christian.rotmgclone.data.world.Vector2;
 import com.christian.rotmgclone.rendering.IRenderer;
 
 public class CPURenderer implements IRenderer {
@@ -10,6 +15,9 @@ public class CPURenderer implements IRenderer {
 	
 	private Window window;
 	private Canvas canvas;
+	
+	private BufferStrategy bufferStrategy;
+	
 	
 	public CPURenderer() {
 	}
@@ -21,7 +29,6 @@ public class CPURenderer implements IRenderer {
 
 	@Override
 	public void OnRender() {
-=======
 		if (bufferStrategy == null) {
 			canvas.createBufferStrategy(2);
 			bufferStrategy = canvas.getBufferStrategy();
@@ -36,7 +43,5 @@ public class CPURenderer implements IRenderer {
 		
 		g.setColor(Color.red);
 		g.fillRect((int)position.x, (int)position.y, 100, 100);
->>>>>>> Stashed changes
-		
 	}
 }

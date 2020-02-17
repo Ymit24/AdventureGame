@@ -1,4 +1,4 @@
-package com.christian.rotmgclone.world;
+package com.christian.rotmgclone.data.world;
 
 public class Enemy extends WorldObject {
 	private float health;
