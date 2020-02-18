@@ -26,6 +26,10 @@ public class ConsoleSimulation implements IUpdater {
 		IRenderer renderer = new CoreRenderer();
 		renderer.Initialize();
 		renderer.CreateInput();
+		renderer.CreateSpriteManager();
+		
+		PlayerView view = new PlayerView();
+		renderer.SetRootView(view);
 		
 		GameLoop loop = new GameLoop(this, renderer);
 		loop.Start();
