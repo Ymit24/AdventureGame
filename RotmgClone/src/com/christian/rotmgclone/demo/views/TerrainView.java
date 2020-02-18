@@ -22,9 +22,9 @@ public class TerrainView extends View {
 	
 	@Override
 	public void draw(IRenderer renderer) {
-		for (int x = 0; x < 64; x++) {
-			for (int y = 0; y < 64; y++) {
-				renderer.DrawSprite(terrainSprite, new Vector2(x * 64, y * 64));	
+		for (int x = 0; x < 20; x++) {
+			for (int y = 0; y < 10; y++) {
+				renderer.DrawSprite(terrainSprite, new Vector2(x, y));	
 			}
 		}
 	}

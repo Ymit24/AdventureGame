@@ -13,9 +13,9 @@ public class DemoController extends Controller {
 	public void Update(float deltaTime) {
 		Player player = Data.world.GetPlayer();
 		Vector2 pos = player.GetPosition();
-		float speed = 48;
+		float speed = 2;
 		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SHIFT)) {
-			speed = 640;
+			speed = 4;
 		}
 		
 		Vector2 direction = new Vector2();

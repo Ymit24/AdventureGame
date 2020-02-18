@@ -10,6 +10,7 @@ import com.christian.rotmgclone.data.Vector2;
 import com.christian.rotmgclone.input.Input;
 import com.christian.rotmgclone.input.core.KeyboardListener;
 import com.christian.rotmgclone.input.core.MouseListener;
+import com.christian.rotmgclone.rendering.Camera;
 import com.christian.rotmgclone.rendering.IRenderer;
 import com.christian.rotmgclone.rendering.sprites.Sprite;
 import com.christian.rotmgclone.rendering.sprites.Sprites;
@@ -29,6 +30,7 @@ public class CoreRenderer implements IRenderer {
 	private boolean canDraw;
 	
 	private Font defaultFont;
+	private Camera camera;
 	
 	public CoreRenderer() {
 		canDraw = false;
@@ -61,6 +63,17 @@ public class CoreRenderer implements IRenderer {
 	}
 
 	@Override
+	public void CreateCamera(Vector2 worldSpaceView) {
+		Vector2 pixelsPerWorldUnit = new Vector2(
+			DISPLAY_WIDTH  / worldSpaceView.x,
+			DISPLAY_HEIGHT / worldSpaceView.y
+		);
+		camera = new Camera(pixelsPerWorldUnit, worldSpaceView);
+		
+		System.out.println("Pixels per world unit: " + pixelsPerWorldUnit.toString());
+	}
+	
+	@Override
 	public void CreateSpriteManager() {
 		SpriteManager spriteManager = new SpriteManager();
 		Sprites.SetSpriteManager(spriteManager);
@@ -72,18 +85,27 @@ public class CoreRenderer implements IRenderer {
 	}
 
 	@Override
-	public void DrawSprite(Sprite sprite, Vector2 location) {
+	public void DrawSprite(Sprite sprite, Vector2 worldLocation) {
 		if (canDraw == false)
 			return;
-		graphics.drawImage(sprite.GetImage(), (int)location.x, (int)location.y, 64, 64, null);
+		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
+		graphics.drawImage(
+			sprite.GetImage(),
+			(int)pixelLocation.x,
+			(int)pixelLocation.y,
+			(int)camera.GetPixelsPerWorldUnit().x,
+			(int)camera.GetPixelsPerWorldUnit().y,
+			null
+		);
 	}
 	
 	@Override
-	public void DrawText(String message, Vector2 location) {
+	public void DrawText(String message, Vector2 worldLocation) {
 		if (canDraw == false)
 			return;
 		graphics.setColor(Color.white);
-		graphics.drawString(message, (int)location.x, (int)location.y);
+		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
+		graphics.drawString(message, (int)pixelLocation.x, (int)pixelLocation.y);
 	}
 	
 	@Override
