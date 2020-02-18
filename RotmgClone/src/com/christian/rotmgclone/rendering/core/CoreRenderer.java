@@ -2,10 +2,11 @@ package com.christian.rotmgclone.rendering.core;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import com.christian.rotmgclone.data.world.Vector2;
+import com.christian.rotmgclone.data.Vector2;
 import com.christian.rotmgclone.input.Input;
 import com.christian.rotmgclone.input.core.KeyboardListener;
 import com.christian.rotmgclone.rendering.IRenderer;
@@ -26,14 +27,24 @@ public class CoreRenderer implements IRenderer {
 	private Graphics graphics;
 	private boolean canDraw;
 	
+	private Font defaultFont;
+	
 	public CoreRenderer() {
 		canDraw = false;
+		defaultFont = new Font("Arial", Font.BOLD, 24);
 	}
 	
 	@Override
 	public void Initialize() {
 		canvas = new Canvas();
 		window = new Window(DISPLAY_WIDTH, DISPLAY_HEIGHT, canvas);
+		
+		if (bufferStrategy == null) {
+			canvas.createBufferStrategy(2);
+			bufferStrategy = canvas.getBufferStrategy();
+		}
+		
+		graphics = bufferStrategy.getDrawGraphics();
 	}
 
 	@Override
@@ -58,17 +69,22 @@ public class CoreRenderer implements IRenderer {
 	public void DrawSprite(Sprite sprite, Vector2 location) {
 		if (canDraw == false)
 			return;
-		graphics.drawImage(sprite.GetImage(), (int)location.x, (int)location.y, null);
+		graphics.drawImage(sprite.GetImage(), (int)location.x, (int)location.y, 64, 64, null);
+	}
+	
+	@Override
+	public void DrawText(String message, Vector2 location) {
+		if (canDraw == false)
+			return;
+		graphics.setColor(Color.white);
+		graphics.drawString(message, (int)location.x, (int)location.y);
 	}
 	
 	@Override
 	public void OnRender() {
-		if (bufferStrategy == null) {
-			canvas.createBufferStrategy(2);
-			bufferStrategy = canvas.getBufferStrategy();
-		}
-		
 		graphics = bufferStrategy.getDrawGraphics();
+		graphics.setFont(defaultFont);
+		
 		canDraw = true;
 		
 		graphics.setColor(Color.black);

@@ -3,38 +3,38 @@ package com.christian.rotmgclone.logic;
 import com.christian.rotmgclone.rendering.IRenderer;
 
 public class GameLoop {
-	public static final int TARGET_FPS = 60;
+	public static final int TARGET_FPS = 120;
 	
-	private Thread thread;
-	private boolean isRunning;
+	private static Thread thread;
+	private static boolean isRunning;
 	
 	private static final double ONE_BILLION = 1000000000.0;
-	private final int FRAME_SMOOTH_PERIODS = 12;
-	private int[] frameSmoothingBuffer;
-	private int frameIndex;
-	private int averageFPS;
+	private static final int FRAME_SMOOTH_PERIODS = 12;
+	private static int[] frameSmoothingBuffer;
+	private static int frameIndex;
+	private static int averageFPS;
 	
-	private InnerLoop innerLoop;
+	private static InnerLoop innerLoop;
 	
-	private IUpdater updater;
-	private IRenderer renderer;
+	private static IUpdater updater;
+	private static IRenderer renderer;
 	
-	public GameLoop(IUpdater updater, IRenderer renderer) {
+	public static void Initialize(IUpdater updater, IRenderer renderer) {
 		frameSmoothingBuffer = new int[FRAME_SMOOTH_PERIODS];
 		frameIndex = 0;
 		innerLoop = new InnerLoop();
 		
-		this.updater = updater;
-		this.renderer = renderer;
+		GameLoop.updater = updater;
+		GameLoop.renderer = renderer;
 	}
 	
-	public void Start() {
+	public static void Start() {
 		isRunning = true;
 		thread = new Thread(innerLoop);
 		thread.start();
 	}
 	
-	public void Stop() {
+	public static void Stop() {
 		isRunning = false;
 		try {
 			thread.join();	
@@ -43,7 +43,11 @@ public class GameLoop {
 		}
 	}
 	
-	public class InnerLoop implements Runnable {
+	public static int GetAverageFPS() {
+		return averageFPS;
+	}
+	
+	public static class InnerLoop implements Runnable {
 		public void run() {
 			double desiredTime = ONE_BILLION / (double)TARGET_FPS;
 			long currentTime = System.nanoTime();

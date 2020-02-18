@@ -1,6 +1,6 @@
-package com.christian.rotmgclone.simulation;
+package com.christian.rotmgclone.demo;
 
-import com.christian.rotmgclone.data.world.Data;
+import com.christian.rotmgclone.demo.data.Data;
 import com.christian.rotmgclone.rendering.IRenderer;
 import com.christian.rotmgclone.rendering.sprites.ISpriteType;
 import com.christian.rotmgclone.rendering.sprites.Sprite;

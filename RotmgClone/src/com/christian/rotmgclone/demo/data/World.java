@@ -1,6 +1,8 @@
-package com.christian.rotmgclone.data.world;
+package com.christian.rotmgclone.demo.data;
 
 import java.util.ArrayList;
+
+import com.christian.rotmgclone.data.Vector2;
 
 public class World {
 	private Player player;

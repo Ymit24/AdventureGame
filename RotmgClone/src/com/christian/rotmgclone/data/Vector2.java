@@ -1,4 +1,4 @@
-package com.christian.rotmgclone.data.world;
+package com.christian.rotmgclone.data;
 
 public class Vector2 {
 	public float x, y;

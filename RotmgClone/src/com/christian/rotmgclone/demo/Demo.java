@@ -1,24 +1,24 @@
-package com.christian.rotmgclone.simulation;
+package com.christian.rotmgclone.demo;
 
 import java.awt.event.KeyEvent;
 
-import com.christian.rotmgclone.data.world.Data;
-import com.christian.rotmgclone.data.world.Enemy;
-import com.christian.rotmgclone.data.world.Player;
-import com.christian.rotmgclone.data.world.Vector2;
-import com.christian.rotmgclone.data.world.World;
+import com.christian.rotmgclone.data.Vector2;
+import com.christian.rotmgclone.demo.data.Data;
+import com.christian.rotmgclone.demo.data.Enemy;
+import com.christian.rotmgclone.demo.data.Player;
+import com.christian.rotmgclone.demo.data.World;
 import com.christian.rotmgclone.input.Input;
 import com.christian.rotmgclone.logic.GameLoop;
 import com.christian.rotmgclone.logic.IUpdater;
 import com.christian.rotmgclone.rendering.IRenderer;
 import com.christian.rotmgclone.rendering.core.CoreRenderer;
 
-public class ConsoleSimulation implements IUpdater {
+public class Demo implements IUpdater {
 	public static void main(String[] args) {
-		new ConsoleSimulation();
+		new Demo();
 	}
 	
-	public ConsoleSimulation() {
+	public Demo() {
 		Data.world = new World();
 		World world = Data.world;
 		world.GetEnemies().add(new Enemy(new Vector2(10, 10)));
@@ -27,27 +27,12 @@ public class ConsoleSimulation implements IUpdater {
 		renderer.Initialize();
 		renderer.CreateInput();
 		renderer.CreateSpriteManager();
-		
-		PlayerView view = new PlayerView();
+
+		GameplayView view = new GameplayView();
 		renderer.SetRootView(view);
 		
-		GameLoop loop = new GameLoop(this, renderer);
-		loop.Start();
-		System.out.println("end of main.");
-//		while (true) {
-//			// update
-//			Player player = world.GetPlayer();
-//			Vector2 pos = player.GetPosition();
-//			player.SetPosition(new Vector2(pos.x + 1, pos.y + 1));
-//			
-//			//render
-//			
-//			try {
-//				Thread.sleep(20);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		GameLoop.Initialize(this, renderer);
+		GameLoop.Start();
 	}
 	
 	private float timer = 0;
@@ -61,7 +46,6 @@ public class ConsoleSimulation implements IUpdater {
 		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SHIFT)) {
 			speed = 640;
 		}
-//		player.SetPosition(new Vector2(pos.x + (speed * deltaTime), pos.y + (speed * deltaTime)));
 		
 		Vector2 direction = new Vector2();
 		

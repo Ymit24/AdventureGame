@@ -1,4 +1,4 @@
-package com.christian.rotmgclone.data.world;
+package com.christian.rotmgclone.demo.data;
 
 public class Data {
 	public static World world;
