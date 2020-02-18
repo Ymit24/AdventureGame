@@ -1,10 +1,13 @@
-package com.christian.rotmgclone.input;
+package com.christian.rotmgclone.input.core;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.christian.rotmgclone.input.IKeyListener;
+import com.christian.rotmgclone.input.IKeyboardListener;
 
 public class KeyboardListener implements IKeyboardListener, KeyListener {
 	private Map<Integer, Boolean> keyStates;

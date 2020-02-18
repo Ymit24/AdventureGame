@@ -12,7 +12,7 @@ import com.christian.rotmgclone.input.Input;
 import com.christian.rotmgclone.logic.GameLoop;
 import com.christian.rotmgclone.logic.IUpdater;
 import com.christian.rotmgclone.rendering.IRenderer;
-import com.christian.rotmgclone.rendering.cpu.CPURenderer;
+import com.christian.rotmgclone.rendering.cpu.CoreRenderer;
 
 public class ConsoleSimulation implements IUpdater {
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class ConsoleSimulation implements IUpdater {
 		World world = Data.world;
 		world.GetEnemies().add(new Enemy(new Vector2(10, 10)));
 		
-		IRenderer renderer = new CPURenderer();
+		IRenderer renderer = new CoreRenderer();
 		renderer.Initialize();
 		renderer.CreateInput();
 		
@@ -33,24 +33,15 @@ public class ConsoleSimulation implements IUpdater {
 		System.out.println("end of main.");
 	}
 	
-	private static void ListEnemyData(ArrayList<Enemy> enemies) {
-		System.out.println("There are " + enemies.size() + " enemies:");
-		for (int i = 0; i < enemies.size(); i++) {
-			Enemy e = enemies.get(i);
-			System.out.println("\tPosition <"+e.GetPosition().x + "," + e.GetPosition().y+">");
-		}
-	}
-
 	private float timer = 0;
 	
 	@Override
 	public void OnUpdate(float deltaTime) {
-//		System.out.println("DT: " + deltaTime);
 		timer += deltaTime;
 		Player player = Data.world.GetPlayer();
 		Vector2 pos = player.GetPosition();
 		float speed = 48;
-		player.SetPosition(new Vector2(pos.x + (speed * deltaTime), pos.y + (speed * deltaTime)));
+//		player.SetPosition(new Vector2(pos.x + (speed * deltaTime), pos.y + (speed * deltaTime)));
 		
 		Vector2 direction = new Vector2();
 		
@@ -68,6 +59,7 @@ public class ConsoleSimulation implements IUpdater {
 		}
 		
 		direction.Normalize();
+		direction.Multiply(speed);
 		if (direction.Magnitude() > 0)
 		{
 			pos.Add(direction.Multiply(deltaTime));
