@@ -1,4 +1,4 @@
-package com.christian.rotmgclone.rendering.cpu;
+package com.christian.rotmgclone.rendering.core;
 
 import java.awt.Canvas;
 import java.awt.Dimension;

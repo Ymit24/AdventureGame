@@ -1,4 +1,4 @@
-package com.christian.rotmgclone.rendering.cpu;
+package com.christian.rotmgclone.rendering.core;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -45,10 +45,13 @@ public class CoreRenderer implements IRenderer {
 		
 		g.setColor(Color.black);
 		g.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		
+
 		Vector2 position = Data.world.GetPlayer().GetPosition();
 		
 		g.setColor(Color.red);
 		g.fillRect((int)position.x, (int)position.y, 100, 100);
+		
+		bufferStrategy.show();
+		g.dispose();
 	}
 }
