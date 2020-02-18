@@ -9,6 +9,7 @@ import java.awt.image.BufferStrategy;
 import com.christian.rotmgclone.data.Vector2;
 import com.christian.rotmgclone.input.Input;
 import com.christian.rotmgclone.input.core.KeyboardListener;
+import com.christian.rotmgclone.input.core.MouseListener;
 import com.christian.rotmgclone.rendering.IRenderer;
 import com.christian.rotmgclone.rendering.sprites.Sprite;
 import com.christian.rotmgclone.rendering.sprites.Sprites;
@@ -50,8 +51,13 @@ public class CoreRenderer implements IRenderer {
 	@Override
 	public void CreateInput() {
 		KeyboardListener keyboardListener = new KeyboardListener();
+		MouseListener mouseListener = new MouseListener();
+		
 		canvas.addKeyListener(keyboardListener);
-		Input.keyboardListener = keyboardListener;
+		canvas.addMouseListener(mouseListener);
+		Input.SetKeyboardListener(keyboardListener);
+		Input.SetMouseListener(mouseListener);
+		canvas.addMouseMotionListener(mouseListener);
 	}
 
 	@Override

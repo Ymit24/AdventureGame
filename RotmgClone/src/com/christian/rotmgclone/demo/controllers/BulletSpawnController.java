@@ -10,8 +10,14 @@ import com.christian.rotmgclone.logic.Controller;
 public class BulletSpawnController extends Controller {
 	@Override
 	public void Update(float deltaTime) {
-		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SPACE)) {
-			Data.world.SpawnBullet(new Vector2(Data.world.GetPlayer().GetPosition()), new Vector2(1,0));
+		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SPACE) ||
+			Input.GetMouseListener().isMouseButtonDown(0)) {
+			
+			Vector2 mousePosition = Input.GetMouseListener().GetPosition();
+			Vector2 playerPos = new Vector2(Data.world.GetPlayer().GetPosition());
+			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
+			
+			Data.world.SpawnBullet(playerPos, direction);
 		}
 	}
 }
