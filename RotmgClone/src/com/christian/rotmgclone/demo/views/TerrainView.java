@@ -1,4 +1,4 @@
-package com.christian.rotmgclone.demo;
+package com.christian.rotmgclone.demo.views;
 
 import com.christian.rotmgclone.data.Vector2;
 import com.christian.rotmgclone.rendering.IRenderer;

@@ -26,4 +26,8 @@ public class World {
 	public ArrayList<Bullet> GetBullets() {
 		return bullets;
 	}
+	
+	public void SpawnBullet(Vector2 position, Vector2 direction) {
+		bullets.add(new Bullet(position, direction));
+	}
 }

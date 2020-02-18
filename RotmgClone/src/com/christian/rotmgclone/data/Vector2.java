@@ -13,6 +13,11 @@ public class Vector2 {
 		this.y = y;
 	}
 
+	public Vector2(Vector2 other) {
+		this.x = other.x;
+		this.y = other.y;
+	}
+
 	public float Magnitude() {
 		return (float)Math.sqrt(x * x + y * y);
 	}

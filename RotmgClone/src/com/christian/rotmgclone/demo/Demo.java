@@ -1,9 +1,13 @@
 package com.christian.rotmgclone.demo;
 
 import com.christian.rotmgclone.data.Vector2;
+import com.christian.rotmgclone.demo.controllers.BulletMovementController;
+import com.christian.rotmgclone.demo.controllers.BulletSpawnController;
+import com.christian.rotmgclone.demo.controllers.DemoController;
 import com.christian.rotmgclone.demo.data.Data;
 import com.christian.rotmgclone.demo.data.Enemy;
 import com.christian.rotmgclone.demo.data.World;
+import com.christian.rotmgclone.demo.views.GameplayView;
 import com.christian.rotmgclone.logic.ControllerManager;
 import com.christian.rotmgclone.logic.GameLoop;
 import com.christian.rotmgclone.rendering.IRenderer;
@@ -28,6 +32,8 @@ public class Demo {
 		renderer.SetRootView(view);
 		
 		ControllerManager.AddController(new DemoController());
+		ControllerManager.AddController(new BulletSpawnController());
+		ControllerManager.AddController(new BulletMovementController());
 		
 		GameLoop.Initialize(new ControllerManager(), renderer);
 		GameLoop.Start();

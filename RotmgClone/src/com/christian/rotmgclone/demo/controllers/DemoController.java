@@ -1,4 +1,4 @@
-package com.christian.rotmgclone.demo;
+package com.christian.rotmgclone.demo.controllers;
 
 import java.awt.event.KeyEvent;
 
