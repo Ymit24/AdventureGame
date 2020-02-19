@@ -14,10 +14,10 @@ public class BulletMovementController extends Controller {
 		for (int i = 0; i < bullets.size(); i++) {
 			Bullet bullet = bullets.get(i);
 			Vector2 position = bullet.GetPosition();
-			position.Add(bullet.GetDirection().Normalized().Multiply(3*deltaTime));
+			position = position.Add(bullet.GetDirection().Normalized().Mul(Bullet.SPEED*deltaTime));
 			bullet.SetPosition(position);
 			
-			if (new Vector2(Data.world.GetPlayer().GetPosition()).Sub(position).Magnitude() > 6) {
+			if (Data.world.GetPlayer().GetPosition().Sub(position).Magnitude() > 10) {
 				bullets.remove(i);
 			}
 		}

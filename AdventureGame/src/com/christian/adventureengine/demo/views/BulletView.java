@@ -17,7 +17,7 @@ public class BulletView extends View {
 	private Sprite sprite;
 	
 	public BulletView() {
-		Sprites.GetSpriteManager().RegisterSprite(BulletSprites.NORMAL, "bullet.png");
+		Sprites.GetSpriteManager().RegisterSprite(BulletSprites.NORMAL, "bullet.png", 0.25f);
 		sprite = Sprites.GetSpriteManager().GetSprite(BulletSprites.NORMAL);
 	}
 	

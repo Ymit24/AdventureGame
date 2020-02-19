@@ -4,7 +4,9 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.input.Input;
@@ -89,12 +91,13 @@ public class CoreRenderer implements IRenderer {
 		if (canDraw == false)
 			return;
 		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
+
 		graphics.drawImage(
 			sprite.GetImage(),
 			(int)pixelLocation.x,
 			(int)pixelLocation.y,
-			(int)camera.GetPixelsPerWorldUnit().x,
-			(int)camera.GetPixelsPerWorldUnit().y,
+			(int)((camera.GetPixelsPerWorldUnit().x / sprite.PixelsToWorld.x) * sprite.GetImage().getWidth()),
+			(int)((camera.GetPixelsPerWorldUnit().y / sprite.PixelsToWorld.y) * sprite.GetImage().getHeight()),
 			null
 		);
 	}

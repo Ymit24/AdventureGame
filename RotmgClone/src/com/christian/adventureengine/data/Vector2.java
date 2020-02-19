@@ -35,21 +35,19 @@ public class Vector2 {
 	}
 	
 	public Vector2 Add(Vector2 other) {
-		this.x += other.x;
-		this.y += other.y;
-		return this;
+		return new Vector2(x + other.x, y + other.y);
 	}
 	
 	public Vector2 Sub(Vector2 other) {
-		this.x -= other.x;
-		this.y -= other.y;
-		return this;
+		return new Vector2(x - other.x, y - other.y);
 	}
 	
-	public Vector2 Multiply(float scalar) {
-		this.x *= scalar;
-		this.y *= scalar;
-		return this;
+	public Vector2 Mul(float scalar) {
+		return new Vector2(x * scalar, y * scalar);
+	}
+	
+	public Vector2 Div(float scalar) {
+		return new Vector2(x / scalar, y / scalar);
 	}
 	
 	@Override

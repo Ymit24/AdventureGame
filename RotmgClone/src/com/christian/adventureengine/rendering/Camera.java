@@ -32,6 +32,10 @@ public class Camera {
 		return this.worldSpace;
 	}
 	
+	public Vector2 GetCenterPosition() {
+		return position.Add(worldSpace.Div(2));
+	}
+	
 	public void SetPosition(Vector2 position) {
 		this.position = position;
 	}
@@ -47,10 +51,10 @@ public class Camera {
 	
 	// might need to check
 	public Vector2 CalculateScreenToWorld(Vector2 pixelLocation) {
-		Vector2 worldLocation = new Vector2(pixelLocation).Add(position);
+		Vector2 worldLocation = new Vector2(pixelLocation);
 		worldLocation.x /= pixelsPerWorldUnit.x;
 		worldLocation.y /= pixelsPerWorldUnit.y;
 		
-		return worldLocation;
+		return worldLocation.Add(position);
 	}
 }

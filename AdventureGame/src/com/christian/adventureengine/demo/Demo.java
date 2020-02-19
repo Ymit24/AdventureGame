@@ -5,6 +5,7 @@ import com.christian.adventureengine.demo.controllers.BulletMovementController;
 import com.christian.adventureengine.demo.controllers.BulletSpawnController;
 import com.christian.adventureengine.demo.controllers.CameraController;
 import com.christian.adventureengine.demo.controllers.DemoController;
+import com.christian.adventureengine.demo.controllers.MousePickerController;
 import com.christian.adventureengine.demo.data.Data;
 import com.christian.adventureengine.demo.data.Enemy;
 import com.christian.adventureengine.demo.data.World;
@@ -37,6 +38,7 @@ public class Demo {
 		ControllerManager.AddController(new CameraController());
 		ControllerManager.AddController(new BulletSpawnController());
 		ControllerManager.AddController(new BulletMovementController());
+//		ControllerManager.AddController(new MousePickerController());
 		
 		GameLoop.Initialize(new ControllerManager(), renderer);
 		GameLoop.Start();

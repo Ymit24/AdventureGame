@@ -34,10 +34,10 @@ public class DemoController extends Controller {
 		}
 		
 		direction.Normalize();
-		direction.Multiply(speed);
+		direction = direction.Mul(speed);
 		if (direction.Magnitude() > 0)
 		{
-			pos.Add(direction.Multiply(deltaTime));
+			pos = pos.Add(direction.Mul(deltaTime));
 			player.SetPosition(pos);		
 		}
 	}

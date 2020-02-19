@@ -10,14 +10,16 @@ import com.christian.adventureengine.rendering.sprites.Sprites;
 public class TerrainView extends View {
 
 	private enum TerrainSpriteType implements ISpriteType {
-		GRASS
+		GRASS_0,
+		GRASS_1
 	}
 	
 	private Sprite terrainSprite;
 	
 	public TerrainView() {
-		Sprites.GetSpriteManager().RegisterSprite(TerrainSpriteType.GRASS, "grass_0.png");
-		terrainSprite = Sprites.GetSpriteManager().GetSprite(TerrainSpriteType.GRASS);
+		Sprites.GetSpriteManager().RegisterSprite(TerrainSpriteType.GRASS_0, "grass_0.png");
+		Sprites.GetSpriteManager().RegisterSprite(TerrainSpriteType.GRASS_1, "grass_1.png");
+		terrainSprite = Sprites.GetSpriteManager().GetSprite(TerrainSpriteType.GRASS_0);
 	}
 	
 	@Override
