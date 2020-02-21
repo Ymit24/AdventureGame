@@ -26,7 +26,7 @@ public class Demo {
 		world.GetEnemies().add(new Enemy(new Vector2(10, 10)));
 		
 		IRenderer renderer = new CoreRenderer();
-		renderer.Initialize("Adventure Game");
+		renderer.Initialize("Adventure Game", 1280, 720);
 		renderer.CreateInput();
 		renderer.CreateSpriteManager();
 		renderer.CreateCamera(new Vector2(20, 10));

@@ -19,8 +19,8 @@ import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
 
 public class CoreRenderer implements IRenderer {
-	public static final int DISPLAY_WIDTH = 1280;
-	public static final int DISPLAY_HEIGHT = 720;
+	private int displayWidth = 1280;
+	private int displayHeight = 720;
 	
 	private Window window;
 	private Canvas canvas;
@@ -40,9 +40,11 @@ public class CoreRenderer implements IRenderer {
 	}
 	
 	@Override
-	public void Initialize(String windowTitle) {
+	public void Initialize(String windowTitle, int width, int height) {
+		displayWidth = width;
+		displayHeight = height;
 		canvas = new Canvas();
-		window = new Window(windowTitle, DISPLAY_WIDTH, DISPLAY_HEIGHT, canvas);
+		window = new Window(windowTitle, displayWidth, displayHeight, canvas);
 		
 		if (bufferStrategy == null) {
 			canvas.createBufferStrategy(2);
@@ -67,8 +69,8 @@ public class CoreRenderer implements IRenderer {
 	@Override
 	public void CreateCamera(Vector2 worldSpaceView) {
 		Vector2 pixelsPerWorldUnit = new Vector2(
-			DISPLAY_WIDTH  / worldSpaceView.x,
-			DISPLAY_HEIGHT / worldSpaceView.y
+			displayWidth  / worldSpaceView.x,
+			displayHeight / worldSpaceView.y
 		);
 		camera = new Camera(pixelsPerWorldUnit, worldSpaceView);
 		
@@ -120,7 +122,7 @@ public class CoreRenderer implements IRenderer {
 		canDraw = true;
 		
 		graphics.setColor(Color.black);
-		graphics.fillRect(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+		graphics.fillRect(0, 0, displayWidth, displayHeight);
 
 		if (rootView != null) {
 			rootView.draw(this);

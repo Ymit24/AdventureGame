@@ -4,7 +4,7 @@ import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 
 public interface IRenderer {
-	public void Initialize(String windowTitle);
+	public void Initialize(String windowTitle, int width, int height);
 	public void OnRender();
 	
 	public void CreateInput();
