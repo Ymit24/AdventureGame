@@ -1,6 +1,8 @@
 package com.christian.adventureengine.data;
 
-public class Vector2 {
+import com.christian.adventureengine.utils.Serializer;
+
+public class Vector2 implements ISerializable {
 	public float x, y;
 	
 	public Vector2() {
@@ -53,5 +55,16 @@ public class Vector2 {
 	@Override
 	public String toString() {
 		return "<" + x + "," + y + ">";
+	}
+
+	@Override
+	public void Serialize(Serializer serializer) {
+		serializer.WriteFloat(x);
+		serializer.WriteFloat(y);
+	}
+
+	@Override
+	public ISerializable Deserialize(Serializer serializer) {
+		return new Vector2(serializer.ReadFloat(), serializer.ReadFloat());
 	}
 }
