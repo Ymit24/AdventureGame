@@ -106,6 +106,7 @@ public class CoreRenderer implements IRenderer {
 	public void DrawText(String message, Vector2 worldLocation) {
 		if (canDraw == false)
 			return;
+		
 		graphics.setColor(Color.white);
 		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
 		graphics.drawString(message, (int)pixelLocation.x, (int)pixelLocation.y);
