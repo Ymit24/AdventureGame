@@ -1,64 +1,59 @@
 package com.christian.adventureengine.utils;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class Serializer {
-	private String filepath;
-	private OutputStream outStream;
-	private InputStream inStream;
+	private ByteArrayOutputStream stream;
 	
-	public Serializer(String filepath) {
-		this.filepath = filepath;
-		
-		try {
-			outStream = new FileOutputStream(filepath);
-			inStream = new FileInputStream(filepath);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public Serializer() {
+		stream = new ByteArrayOutputStream();
+	}
+	
+	public byte[] getBytes() {
+		return stream.toByteArray();
 	}
 	
 	public void WriteInt(int val) {
 		try {
 			byte[] data = new byte[] {
-					(byte)(val >>> 24),
-					(byte)(val >>> 16),
-					(byte)(val >>> 8),
-					(byte)(val),
+					(byte)((val & 0xFF000000) >> 24),
+					(byte)((val & 0x00FF0000) >> 16),
+					(byte)((val & 0x0000FF00) >> 8),
+					(byte)((val & 0x000000FF)),
 			};
-			outStream.write(data);
+			stream.write(data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void WriteFloat(float val) {
+		int intBits = Float.floatToIntBits(val);
 		try {
-			outStream.write(Float.floatToIntBits(val));
+			stream.write(
+				new byte[] {
+					(byte)(intBits >> 24),
+					(byte)(intBits >> 16),
+					(byte)(intBits >> 8),
+					(byte)(intBits)
+				}
+			);
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public void WriteString(String val) {
 		try {
-			outStream.write(val.getBytes());
+			WriteInt(val.length());
+			stream.write(val.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public int ReadInt() {
-		return 0;
-	}
-	public float ReadFloat() {
-		return 0;
-	}
-	public String ReadString() {
-		return "";
+	public void WriteBoolean(boolean val) {
+		stream.write(val ? (byte)1 : (byte)0);
 	}
 }

@@ -1,5 +1,6 @@
 package com.christian.adventureengine.data;
 
+import com.christian.adventureengine.utils.Deserializer;
 import com.christian.adventureengine.utils.Serializer;
 
 public class Vector2 implements ISerializable {
@@ -64,7 +65,8 @@ public class Vector2 implements ISerializable {
 	}
 
 	@Override
-	public ISerializable Deserialize(Serializer serializer) {
-		return new Vector2(serializer.ReadFloat(), serializer.ReadFloat());
+	public void Deserialize(Deserializer deserializer) {
+		this.x = deserializer.ReadFloat();
+		this.y = deserializer.ReadFloat();
 	}
 }
