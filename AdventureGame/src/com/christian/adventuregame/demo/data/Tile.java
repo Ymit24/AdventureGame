@@ -1,4 +1,4 @@
-package com.christian.adventureeditor;
+package com.christian.adventuregame.demo.data;
 
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.data.WorldObject;

@@ -8,6 +8,7 @@ import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
+import com.christian.adventuregame.demo.data.Terrain;
 
 public class Boot {
 	public static void main(String[] args) {

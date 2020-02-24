@@ -13,29 +13,32 @@ import com.christian.adventuregame.demo.controllers.BulletMovementController;
 import com.christian.adventuregame.demo.controllers.BulletSpawnController;
 import com.christian.adventuregame.demo.controllers.CameraController;
 import com.christian.adventuregame.demo.controllers.DemoController;
-import com.christian.adventuregame.demo.data.Data;
 import com.christian.adventuregame.demo.data.Enemy;
+import com.christian.adventuregame.demo.data.State;
+import com.christian.adventuregame.demo.data.Terrain;
 import com.christian.adventuregame.demo.data.World;
 import com.christian.adventuregame.demo.views.GameplayView;
 
-public class Demo {
+public class Boot {
 	public static void main(String[] args) {
-		new Demo();
+		new Boot();
 	}
 	
-	public Demo() {
-		Data.world = new World();
-		World world = Data.world;
+	public Boot() {
+		State.world = new World();
+		World world = State.world;
 		world.GetEnemies().add(new Enemy(new Vector2(10, 10)));
 		
 		IRenderer renderer = new CoreRenderer();
 		renderer.Initialize("Adventure Game", 1280, 720);
 		renderer.CreateInput();
 		renderer.CreateSpriteManager();
-		renderer.CreateCamera(new Vector2(20, 10));
+		renderer.CreateCamera(new Vector2(20, 10), new Vector2(1000, 720));
 
 		GameplayView view = new GameplayView();
 		renderer.SetRootView(view);
+		
+		State.terrain = new Terrain(30,30);
 		
 		Serializer serializer = new Serializer();
 		Random random = new Random();

@@ -1,13 +1,13 @@
 package com.christian.adventureeditor.views;
 
 import com.christian.adventureeditor.EditorData;
-import com.christian.adventureeditor.Terrain;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.ISpriteType;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
+import com.christian.adventuregame.demo.data.Terrain;
 
 public class EditorView extends View {
 	

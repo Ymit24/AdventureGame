@@ -1,12 +1,12 @@
 package com.christian.adventureeditor.controllers;
 
 import com.christian.adventureeditor.EditorData;
-import com.christian.adventureeditor.Tile.TileType;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.input.IMouseClickListener;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.Camera;
+import com.christian.adventuregame.demo.data.Tile.TileType;
 
 public class TileChangeController extends Controller implements IMouseClickListener {
 	

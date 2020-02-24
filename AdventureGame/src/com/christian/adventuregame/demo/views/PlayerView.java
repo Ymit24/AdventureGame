@@ -5,7 +5,7 @@ import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.ISpriteType;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
-import com.christian.adventuregame.demo.data.Data;
+import com.christian.adventuregame.demo.data.State;
 
 public class PlayerView extends View {
 
@@ -25,7 +25,7 @@ public class PlayerView extends View {
 	
 	@Override
 	public void draw(IRenderer renderer) {
-		renderer.DrawScreenSprite(sprite, Data.world.GetPlayer().Position);
+		renderer.DrawWorldSprite(sprite, State.world.GetPlayer());
 	}
 
 }

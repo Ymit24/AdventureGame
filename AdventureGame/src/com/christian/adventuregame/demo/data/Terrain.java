@@ -1,7 +1,7 @@
-package com.christian.adventureeditor;
+package com.christian.adventuregame.demo.data;
 
-import com.christian.adventureeditor.Tile.TileType;
 import com.christian.adventureengine.data.Vector2;
+import com.christian.adventuregame.demo.data.Tile.TileType;
 
 public class Terrain {
 	public int width, height;

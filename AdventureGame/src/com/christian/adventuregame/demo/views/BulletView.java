@@ -6,7 +6,7 @@ import com.christian.adventureengine.rendering.sprites.ISpriteType;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventuregame.demo.data.Bullet;
-import com.christian.adventuregame.demo.data.Data;
+import com.christian.adventuregame.demo.data.State;
 
 public class BulletView extends View {
 
@@ -23,8 +23,8 @@ public class BulletView extends View {
 	
 	@Override
 	public void draw(IRenderer renderer) {
-		for (Bullet bullet : Data.world.GetBullets()) {
-			renderer.DrawScreenSprite(sprite, bullet.Position);
+		for (Bullet bullet : State.world.GetBullets()) {
+			renderer.DrawWorldSprite(sprite, bullet);
 		}
 	}
 

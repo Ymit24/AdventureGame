@@ -5,13 +5,13 @@ import java.awt.event.KeyEvent;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
-import com.christian.adventuregame.demo.data.Data;
+import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.Player;
 
 public class DemoController extends Controller {
 	@Override
 	public void Update(float deltaTime) {
-		Player player = Data.world.GetPlayer();
+		Player player = State.world.GetPlayer();
 		Vector2 pos = player.Position;
 		float speed = 2;
 		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SHIFT)) {

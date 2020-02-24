@@ -4,7 +4,7 @@ import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.Camera;
-import com.christian.adventuregame.demo.data.Data;
+import com.christian.adventuregame.demo.data.State;
 
 public class CameraController extends Controller {
 	@Override
@@ -15,7 +15,7 @@ public class CameraController extends Controller {
 			Vector2 mouseWorld = camera.CalculateScreenToWorld(Input.GetMouseListener().GetPosition());
 			mouseWorld = mouseWorld.Sub(camera.GetCenterPosition());
 			
-			mouseWorld = Data.world.GetPlayer().Position.Sub(Camera.GetCamera().GetWorldSpace().Div(2)).Add(new Vector2(0.5f,0.5f)).Add(mouseWorld);
+			mouseWorld = State.world.GetPlayer().Position.Sub(Camera.GetCamera().GetWorldSpace().Div(2)).Add(new Vector2(0.5f,0.5f)).Add(mouseWorld);
 			
 			camera.SetPosition(mouseWorld);
 		}
