@@ -1,4 +1,4 @@
-package com.christian.adventureengine.demo.data;
+package com.christian.adventuregame.demo.data;
 
 public class Data {
 	public static World world;

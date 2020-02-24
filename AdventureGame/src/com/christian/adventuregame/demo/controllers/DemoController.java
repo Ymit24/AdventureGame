@@ -1,12 +1,12 @@
-package com.christian.adventureengine.demo.controllers;
+package com.christian.adventuregame.demo.controllers;
 
 import java.awt.event.KeyEvent;
 
 import com.christian.adventureengine.data.Vector2;
-import com.christian.adventureengine.demo.data.Data;
-import com.christian.adventureengine.demo.data.Player;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
+import com.christian.adventuregame.demo.data.Data;
+import com.christian.adventuregame.demo.data.Player;
 
 public class DemoController extends Controller {
 	@Override

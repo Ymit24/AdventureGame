@@ -1,11 +1,11 @@
-package com.christian.adventureengine.demo.controllers;
+package com.christian.adventuregame.demo.controllers;
 
 import java.util.ArrayList;
 
 import com.christian.adventureengine.data.Vector2;
-import com.christian.adventureengine.demo.data.Bullet;
-import com.christian.adventureengine.demo.data.Data;
 import com.christian.adventureengine.logic.Controller;
+import com.christian.adventuregame.demo.data.Bullet;
+import com.christian.adventuregame.demo.data.Data;
 
 public class BulletMovementController extends Controller {
 	@Override

@@ -1,10 +1,10 @@
-package com.christian.adventureengine.demo.controllers;
+package com.christian.adventuregame.demo.controllers;
 
 import com.christian.adventureengine.data.Vector2;
-import com.christian.adventureengine.demo.data.Data;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.Camera;
+import com.christian.adventuregame.demo.data.Data;
 
 public class CameraController extends Controller {
 	@Override

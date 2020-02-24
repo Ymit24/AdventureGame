@@ -1,11 +1,11 @@
-package com.christian.adventureengine.demo.views;
+package com.christian.adventuregame.demo.views;
 
-import com.christian.adventureengine.demo.data.Data;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.ISpriteType;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
+import com.christian.adventuregame.demo.data.Data;
 
 public class PlayerView extends View {
 

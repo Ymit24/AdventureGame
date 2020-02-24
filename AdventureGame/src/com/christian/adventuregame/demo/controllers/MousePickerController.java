@@ -1,4 +1,4 @@
-package com.christian.adventureengine.demo.controllers;
+package com.christian.adventuregame.demo.controllers;
 
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;

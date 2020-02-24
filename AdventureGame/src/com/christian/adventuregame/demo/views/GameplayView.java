@@ -1,4 +1,4 @@
-package com.christian.adventureengine.demo.views;
+package com.christian.adventuregame.demo.views;
 
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.GameLoop;

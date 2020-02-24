@@ -1,22 +1,22 @@
-package com.christian.adventureengine.demo;
+package com.christian.adventuregame.demo;
 
 import java.util.Random;
 
 import com.christian.adventureengine.data.Vector2;
-import com.christian.adventureengine.demo.controllers.BulletMovementController;
-import com.christian.adventureengine.demo.controllers.BulletSpawnController;
-import com.christian.adventureengine.demo.controllers.CameraController;
-import com.christian.adventureengine.demo.controllers.DemoController;
-import com.christian.adventureengine.demo.data.Data;
-import com.christian.adventureengine.demo.data.Enemy;
-import com.christian.adventureengine.demo.data.World;
-import com.christian.adventureengine.demo.views.GameplayView;
 import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
 import com.christian.adventureengine.utils.Deserializer;
 import com.christian.adventureengine.utils.Serializer;
+import com.christian.adventuregame.demo.controllers.BulletMovementController;
+import com.christian.adventuregame.demo.controllers.BulletSpawnController;
+import com.christian.adventuregame.demo.controllers.CameraController;
+import com.christian.adventuregame.demo.controllers.DemoController;
+import com.christian.adventuregame.demo.data.Data;
+import com.christian.adventuregame.demo.data.Enemy;
+import com.christian.adventuregame.demo.data.World;
+import com.christian.adventuregame.demo.views.GameplayView;
 
 public class Demo {
 	public static void main(String[] args) {
