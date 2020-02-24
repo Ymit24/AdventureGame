@@ -14,10 +14,10 @@ public class Boot {
 		IRenderer renderer = new CoreRenderer();
 		renderer.Initialize("Adventure Editor", 800, 600);
 		renderer.CreateInput();
-		renderer.CreateCamera(new Vector2(10, 8));
+		renderer.CreateCamera(new Vector2(8, 8), new Vector2(600,600));
 		renderer.CreateSpriteManager();
 		
-		EditorData.terrain = new Terrain(10, 8);
+		EditorData.terrain = new Terrain(8, 8);
 		
 		renderer.SetRootView(new EditorView());
 		

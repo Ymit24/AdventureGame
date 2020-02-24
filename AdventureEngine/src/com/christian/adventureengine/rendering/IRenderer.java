@@ -10,6 +10,7 @@ public interface IRenderer {
 	public void CreateInput();
 	public void CreateSpriteManager();
 	public void CreateCamera(Vector2 worldSpaceView);
+	public void CreateCamera(Vector2 worldSpaceView, Vector2 screenSpace);
 	
 	public void SetRootView(View view);
 	
