@@ -20,7 +20,7 @@ public class BulletSpawnController extends Controller {
 			Vector2 mousePosition = Input.GetMouseListener().GetPosition();
 			mousePosition = Camera.GetCamera().CalculateScreenToWorld(mousePosition);
 			System.out.println(mousePosition);
-			Vector2 playerPos = Data.world.GetPlayer().GetPosition().Add(new Vector2(0.5f,0.5f));
+			Vector2 playerPos = Data.world.GetPlayer().Position.Add(new Vector2(0.5f,0.5f));
 			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
 			
 			Data.world.SpawnBullet(playerPos.Add(direction.Mul(0.75f)), direction);

@@ -24,7 +24,7 @@ public class BulletView extends View {
 	@Override
 	public void draw(IRenderer renderer) {
 		for (Bullet bullet : Data.world.GetBullets()) {
-			renderer.DrawSprite(sprite, bullet.GetPosition());
+			renderer.DrawSprite(sprite, bullet.Position);
 		}
 	}
 

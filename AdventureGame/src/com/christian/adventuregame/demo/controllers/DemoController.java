@@ -12,7 +12,7 @@ public class DemoController extends Controller {
 	@Override
 	public void Update(float deltaTime) {
 		Player player = Data.world.GetPlayer();
-		Vector2 pos = player.GetPosition();
+		Vector2 pos = player.Position;
 		float speed = 2;
 		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SHIFT)) {
 			speed = 4;
@@ -38,7 +38,7 @@ public class DemoController extends Controller {
 		if (direction.Magnitude() > 0)
 		{
 			pos = pos.Add(direction.Mul(deltaTime));
-			player.SetPosition(pos);		
+			player.Position = pos;		
 		}
 	}
 }
