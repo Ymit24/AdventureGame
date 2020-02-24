@@ -25,6 +25,7 @@ public class TileChangeController extends Controller implements IMouseClickListe
 		int tileY = (int) Math.floor(worldPosition.y);
 		System.out.println("Clicked at tile pos: " + tileX + ", " + tileY);
 		
+		// TODO: IMPLEMENT BOUNDS CHECKING
 		EditorData.terrain.tiles[tileX][tileY].type = TileType.water;
 	}
 	

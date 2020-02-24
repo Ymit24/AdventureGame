@@ -1,6 +1,7 @@
 package com.christian.adventureeditor;
 
 import com.christian.adventureeditor.controllers.CameraController;
+import com.christian.adventureeditor.controllers.TileChangeController;
 import com.christian.adventureeditor.views.EditorView;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.ControllerManager;
@@ -20,7 +21,7 @@ public class Boot {
 		
 		renderer.SetRootView(new EditorView());
 		
-//		ControllerManager.AddController(new TileChangeController());
+		ControllerManager.AddController(new TileChangeController());
 		ControllerManager.AddController(new CameraController());
 		
 		GameLoop.Initialize(new ControllerManager(), renderer);
