@@ -4,9 +4,10 @@ import java.awt.image.BufferedImage;
 
 import com.christian.adventureengine.data.Vector2;
 
+// TODO: Consider splitting image into a Texture class for seperating world space and screen space rendering
 public class Sprite {
 	private String filename;
-	private BufferedImage image;
+	public BufferedImage image;
 	public Vector2 PixelsToWorld;
 	
 	public Sprite(String filename, BufferedImage image) {

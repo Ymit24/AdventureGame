@@ -26,7 +26,7 @@ public class TerrainView extends View {
 	public void draw(IRenderer renderer) {
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 10; y++) {
-				renderer.DrawSprite(terrainSprite, new Vector2(x, y));	
+				renderer.DrawScreenSprite(terrainSprite, new Vector2(x, y));	
 			}
 		}
 	}

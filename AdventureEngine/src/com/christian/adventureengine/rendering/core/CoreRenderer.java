@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import com.christian.adventureengine.data.Vector2;
+import com.christian.adventureengine.data.WorldObject;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.input.core.KeyboardListener;
 import com.christian.adventureengine.input.core.MouseListener;
@@ -94,15 +96,34 @@ public class CoreRenderer implements IRenderer {
 	}
 
 	@Override
-	public void DrawSprite(Sprite sprite, Vector2 worldLocation) {
-		if (canDraw == false)
+	public void DrawWorldSprite(Sprite sprite, WorldObject object) {
+		if (canDraw == false || camera.isInCameraBounds(object.Position, object.Size) == false)
 			return;
-		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
-
+		Vector2 pixelLocation = camera.CalculateWorldToScreen(object.Position);
+		
+		Vector2 cameraEndCorner = camera.CalculateWorldToScreen(camera.GetPosition().Add(camera.GetWorldSpace()));
+		graphics.setClip(0, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
+		
 		graphics.drawImage(
 			sprite.GetImage(),
 			(int)pixelLocation.x,
 			(int)pixelLocation.y,
+			(int)((camera.GetPixelsPerWorldUnit().x / sprite.PixelsToWorld.x) * sprite.GetImage().getWidth()),
+			(int)((camera.GetPixelsPerWorldUnit().y / sprite.PixelsToWorld.y) * sprite.GetImage().getHeight()),
+			null
+		);
+	}
+	
+	@Override
+	public void DrawScreenSprite(Sprite sprite, Vector2 screenLocation) {
+		if (canDraw == false)
+			return;
+		
+		graphics.setClip(0, 0, displayWidth, displayHeight);
+		graphics.drawImage(
+			sprite.GetImage(),
+			(int)screenLocation.x,
+			(int)screenLocation.y,
 			(int)((camera.GetPixelsPerWorldUnit().x / sprite.PixelsToWorld.x) * sprite.GetImage().getWidth()),
 			(int)((camera.GetPixelsPerWorldUnit().y / sprite.PixelsToWorld.y) * sprite.GetImage().getHeight()),
 			null
@@ -129,6 +150,14 @@ public class CoreRenderer implements IRenderer {
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, displayWidth, displayHeight);
 
+		/// DEBUG CAMERA BOUNDS RENDERING
+		graphics.setColor(Color.yellow);
+		Vector2 cameraEndCorner = camera.CalculateWorldToScreen(camera.GetPosition().Add(camera.GetWorldSpace()));
+		graphics.fillRect(0, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
+		graphics.setColor(Color.PINK);
+		graphics.fillRect((int)cameraEndCorner.x, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
+		///
+		
 		if (rootView != null) {
 			rootView.draw(this);
 		}

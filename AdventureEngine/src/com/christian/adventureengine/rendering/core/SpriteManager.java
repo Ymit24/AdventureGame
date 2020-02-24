@@ -53,7 +53,6 @@ public class SpriteManager implements ISpriteManager {
 		Vector2 ptw = new Vector2(sprite.GetImage().getWidth() / worldSpace, sprite.GetImage().getHeight() /  worldSpace);
 		
 		sprite.PixelsToWorld = ptw;
-		System.out.println(ptw.toString() + " " + worldSpace);
 		RegisterSprite(type, sprite);
 	}
 	

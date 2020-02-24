@@ -1,6 +1,7 @@
 package com.christian.adventureengine.rendering;
 
 import com.christian.adventureengine.data.Vector2;
+import com.christian.adventureengine.data.WorldObject;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 
 public interface IRenderer {
@@ -13,7 +14,9 @@ public interface IRenderer {
 	public void CreateCamera(Vector2 worldSpaceView, Vector2 screenSpace);
 	
 	public void SetRootView(View view);
-	
-	public void DrawSprite(Sprite sprite, Vector2 location);
+
+	public void DrawWorldSprite(Sprite sprite, WorldObject object);
+
+	public void DrawScreenSprite(Sprite sprite, Vector2 pixelLocation);
 	public void DrawText(String message, Vector2 location);
 }

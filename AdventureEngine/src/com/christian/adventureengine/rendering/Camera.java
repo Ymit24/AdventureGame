@@ -1,6 +1,7 @@
 package com.christian.adventureengine.rendering;
 
 import com.christian.adventureengine.data.Vector2;
+import com.christian.adventureengine.utils.Collision;
 
 public class Camera {
 	private static Camera camera;
@@ -46,7 +47,6 @@ public class Camera {
 			(worldLocation.y-position.y) * pixelsPerWorldUnit.y
 		);
 		return pixelLocation;
-//		return pixelLocation.Sub(position);
 	}
 	
 	// might need to check
@@ -56,5 +56,9 @@ public class Camera {
 		worldLocation.y /= pixelsPerWorldUnit.y;
 		
 		return worldLocation.Add(position);
+	}
+	
+	public boolean isInCameraBounds(Vector2 worldLocation, Vector2 worldSize) {
+		return Collision.AABB(position, worldLocation, worldSpace, worldSize);
 	}
 }

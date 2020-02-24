@@ -27,6 +27,6 @@ public class CameraController extends Controller {
 			direction.x += 1;
 		}
 		
-		Camera.GetCamera().SetPosition(Camera.GetCamera().GetPosition().Add(direction.Mul(5*deltaTime)));
+		Camera.GetCamera().SetPosition(Camera.GetCamera().GetPosition().Add(direction.Mul(3*deltaTime)));
 	}
 }

@@ -34,10 +34,10 @@ public class EditorView extends View {
 				for (int y = 0; y < terrain.height; y++) {
 					switch (terrain.tiles[x][y].type) {
 					case grass:
-						renderer.DrawSprite(grassSprite, new Vector2(x,y));
+						renderer.DrawWorldSprite(grassSprite, terrain.tiles[x][y]);
 						break;
 					case water:
-						renderer.DrawSprite(waterSprite, new Vector2(x,y));
+						renderer.DrawWorldSprite(waterSprite, terrain.tiles[x][y]);
 						break;
 					}
 				}

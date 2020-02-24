@@ -1,17 +1,17 @@
 package com.christian.adventureeditor;
 
 import com.christian.adventureengine.data.Vector2;
+import com.christian.adventureengine.data.WorldObject;
 
-public class Tile {
+public class Tile extends WorldObject {
 	public enum TileType {
 		grass, water
 	}
 	
-	public Vector2 position;
 	public TileType type;
 	
 	public Tile(Vector2 position, TileType type) {
-		this.position = position;
+		super(position);
 		this.type = type;
 	}
 }
