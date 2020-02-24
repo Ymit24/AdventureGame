@@ -16,6 +16,14 @@ public class Vector2 implements ISerializable {
 		this.y = y;
 	}
 
+	public static Vector2 One() {
+		return new Vector2(1, 1);
+	}
+	
+	public static Vector2 Zero() {
+		return new Vector2(1, 1);
+	}
+	
 	public Vector2(Vector2 other) {
 		this.x = other.x;
 		this.y = other.y;
