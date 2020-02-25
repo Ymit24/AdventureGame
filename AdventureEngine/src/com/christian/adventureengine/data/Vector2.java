@@ -72,9 +72,10 @@ public class Vector2 implements ISerializable {
 		serializer.WriteFloat(y);
 	}
 
-	@Override
-	public void Deserialize(Deserializer deserializer) {
-		this.x = deserializer.ReadFloat();
-		this.y = deserializer.ReadFloat();
+	public static Vector2 Deserialize(Deserializer deserializer) {
+		Vector2 vector = new Vector2();
+		vector.x = deserializer.ReadFloat();
+		vector.y = deserializer.ReadFloat();
+		return vector;
 	}
 }

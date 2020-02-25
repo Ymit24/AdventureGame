@@ -149,14 +149,6 @@ public class CoreRenderer implements IRenderer {
 		
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, displayWidth, displayHeight);
-
-		/// DEBUG CAMERA BOUNDS RENDERING
-		graphics.setColor(Color.yellow);
-		Vector2 cameraEndCorner = camera.CalculateWorldToScreen(camera.GetPosition().Add(camera.GetWorldSpace()));
-		graphics.fillRect(0, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
-		graphics.setColor(Color.PINK);
-		graphics.fillRect((int)cameraEndCorner.x, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
-		///
 		
 		if (rootView != null) {
 			rootView.draw(this);

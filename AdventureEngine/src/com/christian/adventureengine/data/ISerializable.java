@@ -5,5 +5,5 @@ import com.christian.adventureengine.utils.Serializer;
 
 public interface ISerializable {
 	public void Serialize(Serializer serializer);
-	public void Deserialize(Deserializer deserializer);
+//	public void Deserialize(Deserializer deserializer);
 }
