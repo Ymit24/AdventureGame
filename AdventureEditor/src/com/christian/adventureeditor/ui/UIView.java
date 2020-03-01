@@ -2,6 +2,7 @@ package com.christian.adventureeditor.ui;
 
 import java.awt.Color;
 
+import com.christian.adventureeditor.EditorData;
 import com.christian.adventureeditor.ui.elements.Element;
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
@@ -20,8 +21,9 @@ public class UIView extends View {
 		
 		renderer.DrawScreenText("Mode", modeCenter);
 		renderer.DrawScreenText("File", fileCenter);
-		renderer.FillBox(UI.bounds, new Color(65, 34, 68));
-		for (Element el : UI.elements) {
+		
+		renderer.FillBox(EditorData.layout.bounds, new Color(65, 34, 68));
+		for (Element el : EditorData.layout.elements) {
 			el.draw(renderer);
 		}
 	}

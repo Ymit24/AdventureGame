@@ -17,6 +17,7 @@ public class Window {
 		
 		frame.pack();
 		frame.pack();
+		canvas.requestFocus();
 		
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
