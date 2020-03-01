@@ -3,9 +3,11 @@ package com.christian.adventureengine.rendering.core;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.data.WorldObject;
 import com.christian.adventureengine.input.Input;
@@ -30,12 +32,16 @@ public class CoreRenderer implements IRenderer {
 	private Graphics graphics;
 	private boolean canDraw;
 	
-	private Font defaultFont;
+	private static final int DEFAULT_FONTSIZE = 24;
+	private static final Color DEFAULT_COLOR = Color.white;
+	
+	private Font currentFont;
+	private Color currentColor;
+	
 	private Camera camera;
 	
 	public CoreRenderer() {
 		canDraw = false;
-		defaultFont = new Font("Arial", Font.BOLD, 24);
 	}
 	
 	@Override
@@ -51,6 +57,9 @@ public class CoreRenderer implements IRenderer {
 		}
 		
 		graphics = bufferStrategy.getDrawGraphics();
+		
+		SetFontSize(DEFAULT_FONTSIZE);
+		currentColor = DEFAULT_COLOR;
 	}
 
 	public int GetDisplayWidth() {
@@ -102,12 +111,30 @@ public class CoreRenderer implements IRenderer {
 	}
 	
 	@Override
+	public void SetFontSize(int size) {
+		currentFont = Fonts.GetFont(size);
+		graphics.setFont(currentFont);
+	}
+	
+	@Override
+	public void SetColor(Color color) {
+		currentColor = color;
+	}
+	
+	@Override
+	public int GetFontWidth(String message) {
+		return graphics.getFontMetrics().stringWidth(message);
+	}
+	
+	@Override
 	public void DrawWorldText(String message, Vector2 worldLocation) {
 		if (canDraw == false)
 			return;
 		
 		graphics.setColor(Color.white);
 		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
+		graphics.setFont(currentFont);
+		graphics.setColor(currentColor);
 		graphics.drawString(message, (int)pixelLocation.x, (int)pixelLocation.y);
 	}
 	
@@ -137,7 +164,10 @@ public class CoreRenderer implements IRenderer {
 		
 		graphics.setColor(Color.white);
 		graphics.setClip(0, 0, displayWidth, displayHeight);
-		graphics.drawString(message, (int)screenLocation.x, (int)screenLocation.y);
+		graphics.setFont(currentFont);
+		FontMetrics m = graphics.getFontMetrics(currentFont);
+		graphics.setColor(currentColor);
+		graphics.drawString(message, (int)screenLocation.x, (int)screenLocation.y + m.getAscent());
 	}
 	
 	@Override
@@ -157,9 +187,18 @@ public class CoreRenderer implements IRenderer {
 	}
 	
 	@Override
+	public void FillBox(Box box, Color color) {
+		if (canDraw == false)
+			return;
+		
+		graphics.setClip(0, 0, displayWidth, displayHeight);
+		graphics.setColor(color);
+		graphics.fillRect((int)box.position.x, (int)box.position.y, (int)box.size.x, (int)box.size.y);
+	}
+	
+	@Override
 	public void OnRender() {
 		graphics = bufferStrategy.getDrawGraphics();
-		graphics.setFont(defaultFont);
 		
 		canDraw = true;
 		

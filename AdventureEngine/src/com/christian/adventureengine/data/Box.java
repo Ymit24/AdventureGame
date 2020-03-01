@@ -9,6 +9,11 @@ public class Box {
 		size = Vector2.One();
 	}
 	
+	public Box(float x, float y, float w, float h) {
+		this.position = new Vector2(x,y);
+		this.size = new Vector2(w,h);
+	}
+	
 	public Box(Vector2 position, Vector2 size) {
 		this.position = position;
 		this.size = size;
@@ -28,5 +33,17 @@ public class Box {
 	
 	public float GetRight() {
 		return position.x + size.x;
+	}
+	
+	public static Vector2 Center(Box bounds, Vector2 content) {
+		return new Vector2(
+			bounds.position.x + (bounds.size.x / 2) - (content.x / 2),
+			bounds.position.y + (bounds.size.y / 2) - (content.y / 2)
+		);
+	}
+	
+	@Override
+	public String toString() {
+		return "{" + position + "," + size + "}";
 	}
 }

@@ -1,7 +1,7 @@
 package com.christian.adventureeditor.views;
 
 import com.christian.adventureeditor.EditorData;
-import com.christian.adventureengine.data.Vector2;
+import com.christian.adventureeditor.ui.UIView;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.ISpriteType;
@@ -19,11 +19,15 @@ public class EditorView extends View {
 	private Sprite grassSprite;
 	private Sprite waterSprite;
 	
+	private UIView uiView;
+	
 	public EditorView() {
-		Sprites.GetSpriteManager().RegisterSprite(EditorSpriteTypes.grass, "grass.png");
-		Sprites.GetSpriteManager().RegisterSprite(EditorSpriteTypes.water, "water.png");
+		Sprites.GetSpriteManager().RegisterSprite(EditorSpriteTypes.grass, "grass_0.png");
+		Sprites.GetSpriteManager().RegisterSprite(EditorSpriteTypes.water, "water_0.png");
 		grassSprite = Sprites.GetSpriteManager().GetSprite(EditorSpriteTypes.grass);
 		waterSprite = Sprites.GetSpriteManager().GetSprite(EditorSpriteTypes.water);
+		
+		uiView = new UIView();
 	}
 	
 	@Override
@@ -43,5 +47,6 @@ public class EditorView extends View {
 				}
 			}
 		}
+		uiView.draw(renderer);
 	}
 }

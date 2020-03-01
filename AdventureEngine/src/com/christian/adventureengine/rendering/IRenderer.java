@@ -1,5 +1,8 @@
 package com.christian.adventureengine.rendering;
 
+import java.awt.Color;
+
+import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.data.WorldObject;
 import com.christian.adventureengine.rendering.sprites.Sprite;
@@ -18,9 +21,16 @@ public interface IRenderer {
 	
 	public void SetRootView(View view);
 
+	public void SetFontSize(int size);
+	public void SetColor(Color color);
+	
+	public int GetFontWidth(String message);
+	
 	public void DrawWorldText(String message, Vector2 location);
 	public void DrawWorldSprite(Sprite sprite, WorldObject object);
 
 	public void DrawScreenText(String message, Vector2 screenLocation);
 	public void DrawScreenSprite(Sprite sprite, Vector2 screenLocation);
+	
+	public void FillBox(Box box, Color color);
 }
