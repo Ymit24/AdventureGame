@@ -25,7 +25,7 @@ public class PlayerView extends View {
 	
 	@Override
 	public void draw(IRenderer renderer) {
-		renderer.DrawWorldSprite(sprite, State.world.GetPlayer());
+		renderer.DrawWorldSprite(sprite, State.world.player);
 	}
 
 }

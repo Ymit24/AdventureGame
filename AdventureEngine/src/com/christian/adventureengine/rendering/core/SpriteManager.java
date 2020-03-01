@@ -32,35 +32,36 @@ public class SpriteManager implements ISpriteManager {
 		return new Sprite(filename, image);
 	}
 
-	private void RegisterSprite(ISpriteType type, Sprite sprite) {
+	private Sprite RegisterSprite(ISpriteType type, Sprite sprite) {
 		if (sprites.containsKey(type)) {
-			return;
+			return sprites.get(type);
 		}
 		
 		sprites.put(type, sprite);
+		return sprite;
 	}
 	
 	@Override
-	public void RegisterSprite(ISpriteType type, String filename) {
+	public Sprite RegisterSprite(ISpriteType type, String filename) {
 		Sprite sprite = LoadSpriteFromFile(filename);
 		sprite.PixelsToWorld = new Vector2(sprite.GetImage().getWidth(), sprite.GetImage().getHeight());
-		RegisterSprite(type, sprite);
+		return RegisterSprite(type, sprite);
 	}
 	
 	@Override
-	public void RegisterSprite(ISpriteType type, String filename, float worldSpace) {
+	public Sprite RegisterSprite(ISpriteType type, String filename, float worldSpace) {
 		Sprite sprite = LoadSpriteFromFile(filename);
 		Vector2 ptw = new Vector2(sprite.GetImage().getWidth() / worldSpace, sprite.GetImage().getHeight() /  worldSpace);
 		
 		sprite.PixelsToWorld = ptw;
-		RegisterSprite(type, sprite);
+		return RegisterSprite(type, sprite);
 	}
 	
 	@Override
-	public void RegisterSprite(ISpriteType type, String filename, Vector2 pixelsToWorld) {
+	public Sprite RegisterSprite(ISpriteType type, String filename, Vector2 pixelsToWorld) {
 		Sprite sprite = LoadSpriteFromFile(filename);
 		sprite.PixelsToWorld = pixelsToWorld;
-		RegisterSprite(type,sprite);
+		return RegisterSprite(type,sprite);
 	}
 
 	@Override

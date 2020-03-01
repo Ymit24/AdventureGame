@@ -23,7 +23,7 @@ public class BulletView extends View {
 	
 	@Override
 	public void draw(IRenderer renderer) {
-		for (Bullet bullet : State.world.GetBullets()) {
+		for (Bullet bullet : State.world.bullets) {
 			renderer.DrawWorldSprite(sprite, bullet);
 		}
 	}

@@ -73,7 +73,7 @@ public class GameLoop {
 						
 						if (goodPeriods > 0) {
 							averageFPS = (int)((double)totalFPS / (double)goodPeriods);
-							System.out.println("Average FPS: " + averageFPS + " delta: " + delta);
+//							System.out.println("Average FPS: " + averageFPS + " delta: " + delta);
 						}
 						frames = 0;
 						delta = 0;

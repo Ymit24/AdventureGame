@@ -11,7 +11,7 @@ import com.christian.adventuregame.demo.data.Player;
 public class DemoController extends Controller {
 	@Override
 	public void Update(float deltaTime) {
-		Player player = State.world.GetPlayer();
+		Player player = State.world.player;
 		Vector2 pos = player.Position;
 		float speed = 2;
 		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SHIFT)) {
