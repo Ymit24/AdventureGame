@@ -23,7 +23,7 @@ public class GameplayView extends View {
 		playerView.draw(renderer);
 		bulletView.draw(renderer);
 		
-		renderer.DrawText("FPS: " + GameLoop.GetAverageFPS(), new Vector2(0.25f,1));
+		renderer.DrawWorldText("FPS: " + GameLoop.GetAverageFPS(), new Vector2(0.25f,1));
 	}
 	
 }

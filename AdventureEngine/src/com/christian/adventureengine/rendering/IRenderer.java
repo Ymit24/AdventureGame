@@ -7,6 +7,11 @@ import com.christian.adventureengine.rendering.sprites.Sprite;
 public interface IRenderer {
 	public void Initialize(String windowTitle, int width, int height);
 	public void OnRender();
+
+	public void SetFontSize(int fontSize);
+	
+	public int GetDisplayWidth();
+	public int GetDisplayHeight();
 	
 	public void CreateInput();
 	public void CreateSpriteManager();
@@ -16,7 +21,8 @@ public interface IRenderer {
 	public void SetRootView(View view);
 
 	public void DrawWorldSprite(Sprite sprite, WorldObject object);
+	public void DrawWorldText(String message, Vector2 location);
 
-	public void DrawScreenSprite(Sprite sprite, Vector2 pixelLocation);
-	public void DrawText(String message, Vector2 location);
+	public void DrawScreenSprite(Sprite sprite, Vector2 screenLocation);
+	public void DrawScreenText(String message, Vector2 screenLocation);
 }

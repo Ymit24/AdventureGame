@@ -55,6 +55,17 @@ public class CoreRenderer implements IRenderer {
 	}
 
 	@Override
+	public void SetFontSize(int fontSize) {
+		defaultFont = new Font("Arial", Font.BOLD, fontSize);
+	}
+	
+	@Override
+	public int GetDisplayWidth() { return displayWidth; }
+	
+	@Override
+	public int GetDisplayHeight() { return displayHeight; }
+	
+	@Override
 	public void CreateInput() {
 		KeyboardListener keyboardListener = new KeyboardListener();
 		MouseListener mouseListener = new MouseListener();
@@ -124,20 +135,37 @@ public class CoreRenderer implements IRenderer {
 			sprite.GetImage(),
 			(int)screenLocation.x,
 			(int)screenLocation.y,
-			(int)((camera.GetPixelsPerWorldUnit().x / sprite.PixelsToWorld.x) * sprite.GetImage().getWidth()),
-			(int)((camera.GetPixelsPerWorldUnit().y / sprite.PixelsToWorld.y) * sprite.GetImage().getHeight()),
+			(int)sprite.GetImage().getWidth()*4,
+			(int)sprite.GetImage().getHeight()*4,
 			null
 		);
+//		graphics.drawImage(
+//			sprite.GetImage(),
+//			(int)screenLocation.x,
+//			(int)screenLocation.y,
+//			(int)((camera.GetPixelsPerWorldUnit().x / sprite.PixelsToWorld.x) * sprite.GetImage().getWidth()),
+//			(int)((camera.GetPixelsPerWorldUnit().y / sprite.PixelsToWorld.y) * sprite.GetImage().getHeight()),
+//			null
+//		);
 	}
 	
 	@Override
-	public void DrawText(String message, Vector2 worldLocation) {
+	public void DrawWorldText(String message, Vector2 worldLocation) {
 		if (canDraw == false)
 			return;
 		
 		graphics.setColor(Color.white);
 		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
 		graphics.drawString(message, (int)pixelLocation.x, (int)pixelLocation.y);
+	}
+	
+	@Override
+	public void DrawScreenText(String message, Vector2 screenLocation) {
+		if (canDraw == false)
+			return;
+		
+		graphics.setColor(Color.white);
+		graphics.drawString(message, (int)screenLocation.x, (int)screenLocation.y + defaultFont.getSize());
 	}
 	
 	@Override
@@ -150,13 +178,6 @@ public class CoreRenderer implements IRenderer {
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, displayWidth, displayHeight);
 
-		/// DEBUG CAMERA BOUNDS RENDERING
-		graphics.setColor(Color.yellow);
-		Vector2 cameraEndCorner = camera.CalculateWorldToScreen(camera.GetPosition().Add(camera.GetWorldSpace()));
-		graphics.fillRect(0, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
-		graphics.setColor(Color.PINK);
-		graphics.fillRect((int)cameraEndCorner.x, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
-		///
 		
 		if (rootView != null) {
 			rootView.draw(this);
