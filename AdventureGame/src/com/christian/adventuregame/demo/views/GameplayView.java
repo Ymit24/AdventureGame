@@ -10,16 +10,19 @@ public class GameplayView extends View {
 	private PlayerView playerView;
 	private TerrainView terrainView;
 	private BulletView bulletView;
+	private EnemyView enemyView;
 	
 	public GameplayView() {
 		playerView = new PlayerView();
 		terrainView = new TerrainView();
 		bulletView = new BulletView();
+		enemyView = new EnemyView();
 	}
 	
 	@Override
 	public void draw(IRenderer renderer) {
 		terrainView.draw(renderer);
+		enemyView.draw(renderer);
 		playerView.draw(renderer);
 		bulletView.draw(renderer);
 		

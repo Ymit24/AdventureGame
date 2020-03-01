@@ -15,7 +15,7 @@ public class CameraController extends Controller {
 			Vector2 mouseWorld = camera.CalculateScreenToWorld(Input.GetMouseListener().GetPosition());
 			mouseWorld = mouseWorld.Sub(camera.GetCenterPosition());
 			
-			mouseWorld = State.world.GetPlayer().Position.Sub(Camera.GetCamera().GetWorldSpace().Div(2)).Add(new Vector2(0.5f,0.5f)).Add(mouseWorld);
+			mouseWorld = State.world.player.Position.Sub(Camera.GetCamera().GetWorldSpace().Div(2)).Add(new Vector2(0.5f,0.5f)).Add(mouseWorld);
 			
 			camera.SetPosition(mouseWorld);
 		}

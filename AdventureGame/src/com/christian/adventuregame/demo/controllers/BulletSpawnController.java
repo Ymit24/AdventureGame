@@ -12,7 +12,7 @@ import com.christian.adventuregame.demo.data.Player;
 public class BulletSpawnController extends Controller {
 	@Override
 	public void Update(float deltaTime) {
-		Player player = State.world.GetPlayer();
+		Player player = State.world.player;
 		player.ShootingTimer -= deltaTime;
 		if ((Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SPACE) ||
 			Input.GetMouseListener().isMouseButtonDown(0)) && player.ShootingTimer <= 0) {
@@ -20,7 +20,7 @@ public class BulletSpawnController extends Controller {
 			Vector2 mousePosition = Input.GetMouseListener().GetPosition();
 			mousePosition = Camera.GetCamera().CalculateScreenToWorld(mousePosition);
 			System.out.println(mousePosition);
-			Vector2 playerPos = State.world.GetPlayer().Position.Add(new Vector2(0.5f,0.5f));
+			Vector2 playerPos = State.world.player.Position.Add(new Vector2(0.5f,0.5f));
 			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
 			
 			State.world.SpawnBullet(playerPos.Add(direction.Mul(0.75f)), direction);

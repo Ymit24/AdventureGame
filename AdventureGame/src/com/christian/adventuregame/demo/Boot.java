@@ -1,18 +1,17 @@
 package com.christian.adventuregame.demo;
 
-import java.util.Random;
-
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
-import com.christian.adventureengine.utils.Deserializer;
-import com.christian.adventureengine.utils.Serializer;
 import com.christian.adventuregame.demo.controllers.BulletMovementController;
 import com.christian.adventuregame.demo.controllers.BulletSpawnController;
 import com.christian.adventuregame.demo.controllers.CameraController;
 import com.christian.adventuregame.demo.controllers.DemoController;
+import com.christian.adventuregame.demo.controllers.EnemyMovement;
+import com.christian.adventuregame.demo.controllers.EnemySpawner;
+import com.christian.adventuregame.demo.controllers.EnemyWanderController;
 import com.christian.adventuregame.demo.data.Enemy;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.Terrain;
@@ -27,7 +26,7 @@ public class Boot {
 	public Boot() {
 		State.world = new World();
 		World world = State.world;
-		world.GetEnemies().add(new Enemy(new Vector2(10, 10)));
+		world.enemies.add(new Enemy(new Vector2(10, 10)));
 		
 		IRenderer renderer = new CoreRenderer();
 		renderer.Initialize("Adventure Game", 1280, 720);
@@ -39,8 +38,11 @@ public class Boot {
 		renderer.SetRootView(view);
 		
 		State.terrain = new Terrain(30,30);
-		
+
 		ControllerManager.AddController(new DemoController());
+		ControllerManager.AddController(new EnemySpawner());
+		ControllerManager.AddController(new EnemyWanderController());
+		ControllerManager.AddController(new EnemyMovement());
 		ControllerManager.AddController(new CameraController());
 		ControllerManager.AddController(new BulletSpawnController());
 		ControllerManager.AddController(new BulletMovementController());

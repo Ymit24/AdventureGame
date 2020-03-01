@@ -1,5 +1,6 @@
 package com.christian.adventureengine.rendering;
 
+import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.utils.Collision;
 
@@ -31,6 +32,10 @@ public class Camera {
 	
 	public Vector2 GetWorldSpace() {
 		return this.worldSpace;
+	}
+	
+	public Box GetCameraBounds() {
+		return new Box(position, worldSpace); // probably cache this or actually store position/size with this.
 	}
 	
 	public Vector2 GetCenterPosition() {

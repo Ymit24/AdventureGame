@@ -5,27 +5,25 @@ import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.ISpriteType;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
+import com.christian.adventuregame.demo.data.Enemy;
 import com.christian.adventuregame.demo.data.State;
 
-public class PlayerView extends View {
-
-	private enum PlayerSprites implements ISpriteType {
-		IDLE,
-		WALK_0,
-		WALK_1
+public class EnemyView extends View {
+	
+	enum EnemySpriteType implements ISpriteType {
+		blob
 	}
 	
-	private Sprite sprite;
+	private Sprite enemySprite;
 	
-	public PlayerView() {
-		Sprites.GetSpriteManager().RegisterSprite(PlayerSprites.IDLE, "player_idle.png");
-		
-		sprite = Sprites.GetSpriteManager().GetSprite(PlayerSprites.IDLE);
+	public EnemyView() {
+		enemySprite = Sprites.GetSpriteManager().RegisterSprite(EnemySpriteType.blob, "blob.png");
 	}
 	
 	@Override
 	public void draw(IRenderer renderer) {
-		renderer.DrawWorldSprite(sprite, State.world.player);
+		for (Enemy enemy : State.world.enemies) {
+			renderer.DrawWorldSprite(enemySprite, enemy);
+		}
 	}
-
 }
