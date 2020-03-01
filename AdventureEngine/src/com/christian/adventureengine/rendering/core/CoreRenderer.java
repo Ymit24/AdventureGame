@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.data.WorldObject;
@@ -54,6 +53,13 @@ public class CoreRenderer implements IRenderer {
 		graphics = bufferStrategy.getDrawGraphics();
 	}
 
+	public int GetDisplayWidth() {
+		return displayWidth;
+	}
+	public int GetDisplayHeight() {
+		return displayHeight;
+	}
+
 	@Override
 	public void CreateInput() {
 		KeyboardListener keyboardListener = new KeyboardListener();
@@ -94,7 +100,17 @@ public class CoreRenderer implements IRenderer {
 	public void SetRootView(View view) {
 		this.rootView = view;
 	}
-
+	
+	@Override
+	public void DrawWorldText(String message, Vector2 worldLocation) {
+		if (canDraw == false)
+			return;
+		
+		graphics.setColor(Color.white);
+		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
+		graphics.drawString(message, (int)pixelLocation.x, (int)pixelLocation.y);
+	}
+	
 	@Override
 	public void DrawWorldSprite(Sprite sprite, WorldObject object) {
 		if (canDraw == false || camera.isInCameraBounds(object.Position, object.Size) == false)
@@ -115,6 +131,16 @@ public class CoreRenderer implements IRenderer {
 	}
 	
 	@Override
+	public void DrawScreenText(String message, Vector2 screenLocation) {
+		if (canDraw == false)
+			return;
+		
+		graphics.setColor(Color.white);
+		graphics.setClip(0, 0, displayWidth, displayHeight);
+		graphics.drawString(message, (int)screenLocation.x, (int)screenLocation.y);
+	}
+	
+	@Override
 	public void DrawScreenSprite(Sprite sprite, Vector2 screenLocation) {
 		if (canDraw == false)
 			return;
@@ -131,16 +157,6 @@ public class CoreRenderer implements IRenderer {
 	}
 	
 	@Override
-	public void DrawText(String message, Vector2 worldLocation) {
-		if (canDraw == false)
-			return;
-		
-		graphics.setColor(Color.white);
-		Vector2 pixelLocation = camera.CalculateWorldToScreen(worldLocation);
-		graphics.drawString(message, (int)pixelLocation.x, (int)pixelLocation.y);
-	}
-	
-	@Override
 	public void OnRender() {
 		graphics = bufferStrategy.getDrawGraphics();
 		graphics.setFont(defaultFont);
@@ -149,14 +165,6 @@ public class CoreRenderer implements IRenderer {
 		
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, displayWidth, displayHeight);
-
-		/// DEBUG CAMERA BOUNDS RENDERING
-		graphics.setColor(Color.yellow);
-		Vector2 cameraEndCorner = camera.CalculateWorldToScreen(camera.GetPosition().Add(camera.GetWorldSpace()));
-		graphics.fillRect(0, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
-		graphics.setColor(Color.PINK);
-		graphics.fillRect((int)cameraEndCorner.x, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);
-		///
 		
 		if (rootView != null) {
 			rootView.draw(this);

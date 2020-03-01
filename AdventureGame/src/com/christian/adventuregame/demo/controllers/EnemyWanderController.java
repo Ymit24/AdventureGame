@@ -1,9 +1,5 @@
 package com.christian.adventuregame.demo.controllers;
 
-import java.util.Random;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
-
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.Camera;
@@ -24,24 +20,32 @@ public class EnemyWanderController extends Controller {
 				}
 			}
 			
-			Random random = Randomizer.random;
 			float wanderRange = 5;
 			
-			// between(max (camera left, x - wanderRange), min(camera right, x + wanderRange))
 			float wanderX = Randomizer.Between(
 				Math.max(
 					Camera.GetCamera().GetCameraBounds().GetLeft(),
 					enemy.Position.x - wanderRange
 				),
 				Math.min(
-					Camera.GetCamera().GetCameraBounds().GetRight(),
+					Camera.GetCamera().GetCameraBounds().GetRight() - 1,
 					enemy.Position.x + wanderRange
 				)
 			);
 			
-			enemy.wanderingTarget = new Vector2(wanderX, enemy.Position.y);
+			float wanderY = Randomizer.Between(
+					Math.max(
+						Camera.GetCamera().GetCameraBounds().GetTop(),
+						enemy.Position.y - wanderRange
+					),
+					Math.min(
+						Camera.GetCamera().GetCameraBounds().GetBottom() - 1,
+						enemy.Position.y + wanderRange
+					)
+				);
+			
+			enemy.wanderingTarget = new Vector2(wanderX, wanderY);
 			enemy.isWandering = true;
-			System.out.println("Enemy now wandering to: " + enemy.wanderingTarget);
 		}
 	}
 }

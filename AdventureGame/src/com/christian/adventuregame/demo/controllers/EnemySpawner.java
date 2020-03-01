@@ -1,7 +1,5 @@
 package com.christian.adventuregame.demo.controllers;
 
-import java.util.Random;
-
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.Controller;
@@ -17,11 +15,9 @@ public class EnemySpawner extends Controller {
 		{
 			State.enemySpawnTimer = State.secondsBetweenEnemySpawn;
 			
-			System.out.println("Enemy count: " + State.world.enemies.size());
 			if (State.world.enemies.size() >= State.maxEnemiesToSpawn)
 				return;
 			
-			// spawn enemy here if not over max
 			Camera c = Camera.GetCamera();
 			Box bounds = c.GetCameraBounds();
 			
@@ -30,8 +26,6 @@ public class EnemySpawner extends Controller {
 				Randomizer.random.nextFloat() * (bounds.GetBottom()-1)
 			);
 			State.world.SpawnEnemy(position);
-			
-			System.out.println("Spawning enemy at: " + position);
 		}
 	}
 }

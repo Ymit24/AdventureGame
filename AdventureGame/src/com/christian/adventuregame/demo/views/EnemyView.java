@@ -1,5 +1,6 @@
 package com.christian.adventuregame.demo.views;
 
+import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.ISpriteType;
@@ -24,6 +25,7 @@ public class EnemyView extends View {
 	public void draw(IRenderer renderer) {
 		for (Enemy enemy : State.world.enemies) {
 			renderer.DrawWorldSprite(enemySprite, enemy);
+			renderer.DrawWorldText(enemy.health + "/10", enemy.Position.Add(new Vector2(-.3f, .25f)));
 		}
 	}
 }

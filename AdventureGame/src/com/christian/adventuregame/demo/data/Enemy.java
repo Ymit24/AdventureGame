@@ -6,12 +6,14 @@ import com.christian.adventureengine.data.WorldObject;
 public class Enemy extends WorldObject {
 	public float health;
 	
-	public static final float MOVE_SPEED = 1.25f;
+	public static final float MOVE_SPEED = 1.75f;
 	
 	public Vector2 wanderingTarget;
 	public boolean isWandering;
 	
 	public Enemy(Vector2 position) {
 		super(position);
+		
+		health = 10;
 	}
 }
