@@ -8,7 +8,7 @@ import java.nio.file.Files;
 
 import com.christian.adventureeditor.EditorData;
 import com.christian.adventureeditor.ui.elements.Button;
-import com.christian.adventureeditor.ui.elements.InputTextFieldAndLabel;
+import com.christian.adventureeditor.ui.elements.SplitContainer;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;

@@ -1,5 +1,7 @@
 package com.christian.adventureengine.data;
 
+import com.christian.adventureengine.utils.Collision;
+
 public class Box {
 	public Vector2 position;
 	public Vector2 size;
@@ -40,6 +42,10 @@ public class Box {
 			bounds.position.x + (bounds.size.x / 2) - (content.x / 2),
 			bounds.position.y + (bounds.size.y / 2) - (content.y / 2)
 		);
+	}
+	
+	public boolean Includes(Vector2 point) {
+		return point.x <= GetRight() && point.x >= GetLeft() && point.y <= GetBottom() && point.y >= GetTop();
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package com.christian.adventureeditor.ui.elements;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 import com.christian.adventureeditor.ui.VerticalPushLayout;
 import com.christian.adventureengine.data.Box;
@@ -27,6 +28,17 @@ public class InputTextField extends Element {
 		this.backgroundColor = Color.black;
 		
 		text.bounds = innerContent;
+	}
+	
+	@Override
+	public void HandleKey(int keycode) {
+		if (KeyEvent.VK_BACK_SPACE == keycode) {
+			if (text.text.length() > 0) {
+				text.text = text.text.substring(0, text.text.length()-1);				
+			}			
+		} else {
+			text.text += KeyEvent.getKeyText(keycode);	
+		}
 	}
 	
 	public InputTextField SetPadding(Vector2 padding) {

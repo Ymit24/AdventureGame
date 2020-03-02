@@ -1,7 +1,6 @@
 package com.christian.adventureeditor.views;
 
 import com.christian.adventureeditor.EditorData;
-import com.christian.adventureeditor.ui.UIView;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.ISpriteType;

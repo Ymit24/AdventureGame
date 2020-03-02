@@ -12,15 +12,45 @@ public abstract class Element {
 	public Box bounds;
 	public String id;
 	
+	public Element[] children;
+	public boolean isActive;
+	
 	public Element(VerticalPushLayout layout, String id) {
 		this.layout = layout;
 		this.id = id;
 		bounds = new Box(0,0,0,0);
 		padding = Vector2.Zero();
+		isActive = false;
+	}
+	
+	public boolean HitTest(Vector2 screenLocation) {
+		return bounds.Includes(screenLocation);
+	}
+	
+	public void HandleKey(int keycode) {
+		if (children != null) {
+			for (Element child : children) {
+				child.HandleKey(keycode);
+			}
+		}
 	}
 	
 	public abstract void UpdateBounds(Box bounds);
-	public abstract int CalculateHeight();
+	public int CalculateHeight() {
+		int maxHeight = 0;
+		for (Element child : children) {
+			int height = child.CalculateHeight();
+			if (height > maxHeight)
+				maxHeight = height;
+		}
+		return maxHeight;
+	}
 	
-	public abstract void draw(IRenderer renderer);
+	public void draw(IRenderer renderer) {
+		if (children != null) {
+			for (Element child : children) {
+				child.draw(renderer);
+			}
+		}
+	}
 }
