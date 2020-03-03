@@ -11,7 +11,7 @@ public class DataLoader {
 	}
 	
 	public static Block[] LoadFile(String filename) {
-		String[] lines = FileLoader.LoadFile("res/data/" + filename);
+		String[] lines = FileLoader.LoadFile("C:\\Dev\\Git\\AdventureGame\\resources\\data\\" + filename);
 
 		ArrayList<Block> blocks = new ArrayList<>();
 		

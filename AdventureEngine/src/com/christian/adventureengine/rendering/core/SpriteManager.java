@@ -13,7 +13,7 @@ import com.christian.adventureengine.rendering.sprites.ISpriteType;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 
 public class SpriteManager implements ISpriteManager {
-	private static final String ROOT_SPRITE_PATH = "res/sprites/";
+	private static final String ROOT_SPRITE_PATH = "C:\\Dev\\Git\\AdventureGame\\resources\\sprites\\";
 	private HashMap<ISpriteType,Sprite> sprites;
 	private HashMap<String, Sprite> fileSprites;
 	
