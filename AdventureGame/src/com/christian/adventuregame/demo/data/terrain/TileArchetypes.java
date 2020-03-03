@@ -16,4 +16,13 @@ public class TileArchetypes {
 		}
 		return null;
 	}
+	
+	public static TileType[] GetAll() {
+		System.out.println("Types: " +types.size());
+		TileType[] tileTypes = new TileType[types.size()];
+		for (int i = 0; i < tileTypes.length; i++) {
+			tileTypes[i] = types.get(i);
+		}
+		return tileTypes;
+	}
 }

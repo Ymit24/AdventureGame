@@ -11,9 +11,12 @@ import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.ui.IButtonCallback;
 import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventureengine.ui.elements.Button;
-import com.christian.adventureengine.ui.elements.Element;
 import com.christian.adventureengine.ui.elements.Label;
 import com.christian.adventureengine.ui.elements.LineBreak;
+import com.christian.adventuregame.demo.data.terrain.Terrain;
+import com.christian.adventuregame.demo.data.terrain.TileArchetypes;
+import com.christian.adventuregame.demo.data.terrain.TileType;
+import com.christian.adventuregame.demo.utils.TerrainUtil;
 
 public class UIView extends View implements IButtonCallback {
 	
@@ -45,8 +48,19 @@ public class UIView extends View implements IButtonCallback {
 		
 		mainLayout.PushElement(UISkin.CreateInputWithLabel(mainLayout, "name", "Name", "OVERWORLD_V1"));
 
-		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "update_meta", "Update"));
+		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "new", "New").SetCallback(this));
 		
+		mainLayout.PushElement(
+			UISkin.CreateSplitContainer(
+				mainLayout,
+				"save_and_load",
+				UISkin.CreateButton(mainLayout, "save", "Save").SetCallback(this),
+				UISkin.CreateButton(mainLayout, "load", "Load").SetCallback(this)
+			)
+		);
+//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "save", "Save"));
+//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "load", "Load"));
+
 		mainLayout.PushElement(
 			new LineBreak(mainLayout, "lineBreak_3", 4)
 			.SetColor(uiForeground)
@@ -54,12 +68,19 @@ public class UIView extends View implements IButtonCallback {
 		
 		mainLayout.PushElement(UISkin.CreateSubHeader(mainLayout, "terrainTools_label", "Terrain Tools"));
 		
-		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "grass", "Grass"));
-		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "water", "Water"));
+		TileType[] tileTypes = TileArchetypes.GetAll();
+		for (TileType type : tileTypes) {
+			Button button = UISkin.CreateButton(mainLayout, type.id, type.id);
+			button.SetCallback(this);
+			mainLayout.PushElement(button);
+		}
+		
+//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "grass", "Grass"));
+//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "water", "Water"));
 		
 		mainLayout.RecalculateHeights();
 		
-		((Button)mainLayout.FindElementById("update_meta_button")).SetCallback(this);
+//		((Button)mainLayout.FindElementById("update_meta_button")).SetCallback(this);
 	}
 	
 	@Override
@@ -78,10 +99,23 @@ public class UIView extends View implements IButtonCallback {
 	}
 
 	@Override
-	public void OnButtonClicked() {
+	public void OnButtonClicked(String id) {
 		VerticalPushLayout layout = EditorData.layout;
-		String widthText = ((Label)layout.FindElementById("width_inputfield_label")).text;
-		String heightText = ((Label)layout.FindElementById("height_inputfield_label")).text;
-		System.out.println("Dimensions: <" + widthText + ", " + heightText + ">");
+		
+		if (id.equals("new_button")) {
+			String widthText = ((Label)layout.FindElementById("width_inputfield_label")).text;
+			String heightText = ((Label)layout.FindElementById("height_inputfield_label")).text;
+			System.out.println("Dimensions: <" + widthText + ", " + heightText + ">");
+			
+			EditorData.terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText));
+			
+		} else if (id.equals("save_button")) {
+			TerrainUtil.SaveToFile(EditorData.terrain);
+		} else if (id.equals("load_button")) {
+			EditorData.terrain = TerrainUtil.LoadFromFile();
+		} else {
+			System.out.println("Clicked button: " + id.split("_")[0]);
+			EditorData.paintingTileType = id.split("_")[0];
+		}
 	}
 }

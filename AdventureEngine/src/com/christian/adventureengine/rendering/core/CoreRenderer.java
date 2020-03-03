@@ -99,7 +99,7 @@ public class CoreRenderer implements IRenderer {
 			screenSpace.x / worldSpaceView.x,
 			screenSpace.y / worldSpaceView.y
 		);
-		camera = new Camera(pixelsPerWorldUnit, worldSpaceView);
+		camera = new Camera(pixelsPerWorldUnit, worldSpaceView, screenSpace);
 		
 		System.out.println("Pixels per world unit: " + pixelsPerWorldUnit.toString());
 	}

@@ -6,4 +6,6 @@ import com.christian.adventuregame.demo.data.terrain.Terrain;
 public class EditorData {
 	public static Terrain terrain;
 	public static VerticalPushLayout layout;
+	
+	public static String paintingTileType = "grass";
 }
