@@ -76,7 +76,8 @@ public class MouseListener implements IMouseListener, MouseInputListener {
 		states[mappedButton] = true;
 		
 		for (IMouseClickListener listener : mouseClickListeners) {
-			listener.OnClick(position, mappedButton);
+			if (listener.OnClick(position, mappedButton))
+				break;
 		}
 	}
 

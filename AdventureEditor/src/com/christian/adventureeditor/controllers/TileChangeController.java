@@ -15,9 +15,9 @@ public class TileChangeController extends Controller implements IMouseClickListe
 	}
 	
 	@Override
-	public void OnClick(Vector2 screenLocation, int button) {
+	public boolean OnClick(Vector2 screenLocation, int button) {
 		if (button != 0) {
-			return;
+			return false;
 		}
 		
 		Vector2 worldPosition = Camera.GetCamera().CalculateScreenToWorld(screenLocation);
@@ -26,8 +26,9 @@ public class TileChangeController extends Controller implements IMouseClickListe
 		System.out.println("Clicked at tile pos: " + tileX + ", " + tileY);
 		
 		if (tileX < 0 || tileX >= EditorData.terrain.width || tileY < 0 || tileY >= EditorData.terrain.height)
-			return;
+			return false;
 		EditorData.terrain.tiles[tileX][tileY].type = TileType.water;
+		return true;
 	}
 	
 	@Override

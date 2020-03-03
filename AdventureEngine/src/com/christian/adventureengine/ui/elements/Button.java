@@ -1,15 +1,14 @@
-package com.christian.adventureeditor.ui.elements;
+package com.christian.adventureengine.ui.elements;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 
-import com.christian.adventureeditor.ui.VerticalPushLayout;
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.rendering.IRenderer;
+import com.christian.adventureengine.ui.IButtonCallback;
+import com.christian.adventureengine.ui.VerticalPushLayout;
 
-public class InputTextField extends Element {
-	public static final int DEFAULT_BORDER_THICKNESS = 4;
+public class Button extends Element {
 	public Label text;
 	private Color borderColor;
 	private Color backgroundColor;
@@ -18,55 +17,55 @@ public class InputTextField extends Element {
 	
 	private Box outerContent;
 	private Box innerContent;
-
-	public InputTextField(VerticalPushLayout layout, String id, Label text) {
+	
+	private IButtonCallback callback;
+	
+	public Button(VerticalPushLayout layout, String id, Label text) {
 		super(layout, id);
-
+		
 		this.text = text;
-		this.borderThickness = DEFAULT_BORDER_THICKNESS;
 		this.borderColor = Color.white;
 		this.backgroundColor = Color.black;
-		
-		text.bounds = innerContent;
+		this.borderThickness = 4;
 	}
 	
-	@Override
-	public void HandleKey(int keycode) {
-		if (KeyEvent.VK_BACK_SPACE == keycode) {
-			if (text.text.length() > 0) {
-				text.text = text.text.substring(0, text.text.length()-1);				
-			}			
-		} else {
-			text.text += KeyEvent.getKeyText(keycode);	
-		}
-	}
-	
-	public InputTextField SetPadding(Vector2 padding) {
+	public Button SetPadding(Vector2 padding) {
 		this.padding = padding;
 		layout.RecalculateHeights();
 		return this;
 	}
 	
-	public InputTextField SetBorderColor(Color color) {
+	public Button SetBorderColor(Color color) {
 		this.borderColor = color;
 		return this;
 	}
 	
-	public InputTextField SetBackgroundColor(Color color) {
+	public Button SetBackgroundColor(Color color) {
 		this.backgroundColor = color;
 		return this;
 	}
 	
-	public InputTextField SetBorderThickness(int thickness) {
+	public Button SetBorderThickness(int thickness) {
 		this.borderThickness = thickness;
 		layout.RecalculateHeights();
 		return this;
+	}
+	
+	public Button SetCallback(IButtonCallback callback) {
+		this.callback = callback;
+		return this;
+	}
+	
+	@Override
+	public void HandleClick() {
+		if (callback != null) {
+			callback.OnButtonClicked();
+		}
 	}
 
 	@Override
 	public void UpdateBounds(Box bounds) {
 		this.bounds = bounds;
-		
 		outerContent = new Box(
 			bounds.position.Add(new Vector2(padding.x/2,padding.y/2)),
 			bounds.size.Sub(new Vector2(padding.x, padding.y))
@@ -77,10 +76,10 @@ public class InputTextField extends Element {
 		);
 		text.UpdateBounds(innerContent);
 	}
-
+	
 	@Override
 	public int CalculateHeight() {
-		return (int)text.CalculateHeight() + (int)padding.y*2 + borderThickness*2;
+		return (int)(text.CalculateHeight() + padding.y*2);
 	}
 	
 	@Override

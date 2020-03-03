@@ -1,8 +1,7 @@
-package com.christian.adventureeditor.ui.elements;
+package com.christian.adventureengine.ui.elements;
 
-import com.christian.adventureeditor.ui.VerticalPushLayout;
 import com.christian.adventureengine.data.Box;
-import com.christian.adventureengine.rendering.IRenderer;
+import com.christian.adventureengine.ui.VerticalPushLayout;
 
 public class SplitContainer extends Element {
 	private float splitPercent;

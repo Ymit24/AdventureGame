@@ -39,7 +39,8 @@ public class KeyboardListener implements IKeyboardListener, KeyListener {
 		keyStates.put(e.getKeyCode(), true);
 		
 		for (IKeyListener listener : keyListeners) {
-			listener.OnKey(e.getKeyCode(), true);
+			if (listener.OnKey(e.getKeyCode(), true))
+				break;
 		}
 	}
 
@@ -48,7 +49,8 @@ public class KeyboardListener implements IKeyboardListener, KeyListener {
 		keyStates.put(e.getKeyCode(), false);
 		
 		for (IKeyListener listener : keyListeners) {
-			listener.OnKey(e.getKeyCode(), false);
+			if (listener.OnKey(e.getKeyCode(), false))
+				break;
 		}
 	}
 

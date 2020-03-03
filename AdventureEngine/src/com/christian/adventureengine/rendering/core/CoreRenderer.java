@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
@@ -18,6 +19,8 @@ import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
+import com.christian.adventureengine.ui.VerticalPushLayout;
+import com.christian.adventureengine.ui.elements.Element;
 
 public class CoreRenderer implements IRenderer {
 	private int displayWidth = 1280;
@@ -40,6 +43,8 @@ public class CoreRenderer implements IRenderer {
 	
 	private Camera camera;
 	
+	private ArrayList<VerticalPushLayout> uiLayouts;
+	
 	public CoreRenderer() {
 		canDraw = false;
 	}
@@ -60,6 +65,7 @@ public class CoreRenderer implements IRenderer {
 		
 		SetFontSize(DEFAULT_FONTSIZE);
 		currentColor = DEFAULT_COLOR;
+		uiLayouts = new ArrayList<VerticalPushLayout>();
 	}
 
 	public int GetDisplayWidth() {
@@ -97,7 +103,16 @@ public class CoreRenderer implements IRenderer {
 		
 		System.out.println("Pixels per world unit: " + pixelsPerWorldUnit.toString());
 	}
-	
+
+	@Override
+	public VerticalPushLayout CreateUILayout(Box bounds) {
+		VerticalPushLayout layout = VerticalPushLayout.Create(bounds);
+		uiLayouts.add(layout);
+		
+		Input.GetMouseListener().AddMouseClickListener(layout);
+		Input.GetKeyboardListener().AddKeyListener(layout);
+		return layout;
+	}
 	
 	@Override
 	public void CreateSpriteManager() {
@@ -207,6 +222,12 @@ public class CoreRenderer implements IRenderer {
 		
 		if (rootView != null) {
 			rootView.draw(this);
+		}
+		
+		for (VerticalPushLayout layout : uiLayouts) {
+			for (Element el : layout.elements) {
+				el.draw(this);
+			}
 		}
 		
 		canDraw = false;

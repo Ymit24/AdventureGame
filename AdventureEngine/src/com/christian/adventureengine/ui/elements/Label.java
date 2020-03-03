@@ -1,11 +1,11 @@
-package com.christian.adventureeditor.ui.elements;
+package com.christian.adventureengine.ui.elements;
 
 import java.awt.Color;
 
-import com.christian.adventureeditor.ui.VerticalPushLayout;
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.rendering.IRenderer;
+import com.christian.adventureengine.ui.VerticalPushLayout;
 
 public class Label extends Element {
 	public enum Alignment {

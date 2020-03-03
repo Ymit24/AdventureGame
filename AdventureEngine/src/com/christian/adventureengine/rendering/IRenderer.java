@@ -6,6 +6,7 @@ import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.data.WorldObject;
 import com.christian.adventureengine.rendering.sprites.Sprite;
+import com.christian.adventureengine.ui.VerticalPushLayout;
 
 public interface IRenderer {
 	public void Initialize(String windowTitle, int width, int height);
@@ -18,6 +19,7 @@ public interface IRenderer {
 	public void CreateSpriteManager();
 	public void CreateCamera(Vector2 worldSpaceView);
 	public void CreateCamera(Vector2 worldSpaceView, Vector2 screenSpace);
+	public VerticalPushLayout CreateUILayout(Box bounds);
 	
 	public void SetRootView(View view);
 

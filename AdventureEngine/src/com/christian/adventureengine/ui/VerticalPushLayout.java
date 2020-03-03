@@ -1,16 +1,14 @@
-package com.christian.adventureeditor.ui;
+package com.christian.adventureengine.ui;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.christian.adventureeditor.ui.elements.Element;
-import com.christian.adventureeditor.ui.elements.InputTextField;
-import com.christian.adventureeditor.ui.elements.SplitContainer;
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.input.IKeyListener;
 import com.christian.adventureengine.input.IMouseClickListener;
-
+import com.christian.adventureengine.ui.elements.Element;
+	
 public class VerticalPushLayout implements IMouseClickListener, IKeyListener {
 	public Box bounds;
 	
@@ -49,38 +47,42 @@ public class VerticalPushLayout implements IMouseClickListener, IKeyListener {
 	
 	public Element FindElementById(String id) {
 		for (Element el : elements) {
-			if (el.id == id) {
-				return el;
+			Element found = el.FindId(id);
+			if (found != null) {
+				return found;
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public void OnClick(Vector2 screenLocation, int button) {
+	public boolean OnClick(Vector2 screenLocation, int button) {
 		if (bounds.Includes(screenLocation)) {
-			System.out.println("Clicked on ui");
-			
 			for (Element el : elements) {
-				if (el.HitTest(screenLocation)) {
+				Element hit = el.HitTest(screenLocation);
+				if (hit != null) {
 					if (active != null) {
 						active.isActive = false;						
 					}
-					active = el;
-					el.isActive = true;
+					active = hit;
+					hit.isActive = true;
 					
+					hit.HandleClick();
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 
 	@Override
-	public void OnKey(int keycode, boolean isDown) {
+	public boolean OnKey(int keycode, boolean isDown) {
 		if (!isDown)
-			return;
-		System.out.println(KeyEvent.getKeyText(keycode));
+			return false;
 		if (active != null) {
 			active.HandleKey(keycode);
+			return true;
 		}
+		return false;
 	}
 }

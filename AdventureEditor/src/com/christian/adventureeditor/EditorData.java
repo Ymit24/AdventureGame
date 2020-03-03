@@ -1,6 +1,6 @@
 package com.christian.adventureeditor;
 
-import com.christian.adventureeditor.ui.VerticalPushLayout;
+import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventuregame.demo.data.Terrain;
 
 public class EditorData {
