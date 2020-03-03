@@ -13,7 +13,7 @@ import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
 import com.christian.adventureengine.utils.Deserializer;
-import com.christian.adventuregame.demo.data.Terrain;
+import com.christian.adventuregame.demo.data.terrain.Terrain;
 
 public class Boot {
 	public static void main(String[] args) throws IOException {

@@ -1,4 +1,4 @@
-package com.christian.adventuregame.demo.data;
+package com.christian.adventuregame.demo.data.terrain;
 
 import com.christian.adventureengine.data.ISerializable;
 import com.christian.adventureengine.data.Vector2;
@@ -7,13 +7,9 @@ import com.christian.adventureengine.utils.Deserializer;
 import com.christian.adventureengine.utils.Serializer;
 
 public class Tile extends WorldObject implements ISerializable {
-	public enum TileType {
-		grass, water
-	}
+	public String type;
 	
-	public TileType type;
-	
-	public Tile(Vector2 position, TileType type) {
+	public Tile(Vector2 position, String type) {
 		super(position);
 		this.type = type;
 	}
@@ -25,12 +21,12 @@ public class Tile extends WorldObject implements ISerializable {
 	@Override
 	public void Serialize(Serializer serializer) {
 		super.Serialize(serializer);
-		serializer.WriteString(type.name());
+		serializer.WriteString(type);
 	}
 
 	public static Tile Deserialize(Deserializer deserializer) {
 		Tile tile = new Tile(WorldObject.Deserialize(deserializer));
-		tile.type = TileType.valueOf(deserializer.ReadString());
+		tile.type = deserializer.ReadString();
 		return tile;
 	}
 }

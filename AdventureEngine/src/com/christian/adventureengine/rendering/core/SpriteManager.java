@@ -15,9 +15,11 @@ import com.christian.adventureengine.rendering.sprites.Sprite;
 public class SpriteManager implements ISpriteManager {
 	private static final String ROOT_SPRITE_PATH = "res/sprites/";
 	private HashMap<ISpriteType,Sprite> sprites;
+	private HashMap<String, Sprite> fileSprites;
 	
 	public SpriteManager() {
 		sprites = new HashMap<ISpriteType, Sprite>();
+		fileSprites = new HashMap<String, Sprite>();
 	}
 	
 	private Sprite LoadSpriteFromFile(String filename) {
@@ -28,7 +30,6 @@ public class SpriteManager implements ISpriteManager {
 			e.printStackTrace();
 			return null;
 		}
-		
 		return new Sprite(filename, image);
 	}
 
@@ -38,6 +39,19 @@ public class SpriteManager implements ISpriteManager {
 		}
 		
 		sprites.put(type, sprite);
+		return sprite;
+	}
+
+	@Override
+	public Sprite RegisterSprite(String filename) {
+		Sprite sprite = LoadSpriteFromFile(filename);
+		sprite.PixelsToWorld = new Vector2(sprite.GetImage().getWidth(), sprite.GetImage().getHeight());
+		
+		if (fileSprites.containsKey(filename)) {
+			return fileSprites.get(filename);
+		}
+		
+		fileSprites.put(filename, sprite);
 		return sprite;
 	}
 	
@@ -71,4 +85,14 @@ public class SpriteManager implements ISpriteManager {
 		return sprites.get(type);
 	}
 
+	@Override
+	public Sprite GetSprite(String filename) {
+		for (ISpriteType type : sprites.keySet()) {
+			if (sprites.get(type).GetFilename().equals(filename))
+				return sprites.get(type);
+		}
+		if (fileSprites.containsKey(filename))
+			return fileSprites.get(filename);
+		return null;
+	}
 }

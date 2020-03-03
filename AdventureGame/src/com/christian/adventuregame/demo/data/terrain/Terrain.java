@@ -1,10 +1,9 @@
-package com.christian.adventuregame.demo.data;
+package com.christian.adventuregame.demo.data.terrain;
 
 import com.christian.adventureengine.data.ISerializable;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.utils.Deserializer;
 import com.christian.adventureengine.utils.Serializer;
-import com.christian.adventuregame.demo.data.Tile.TileType;
 
 public class Terrain implements ISerializable {
 	public int width, height;
@@ -22,7 +21,7 @@ public class Terrain implements ISerializable {
 		tiles = new Tile[width][height];
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				tiles[x][y] = new Tile(new Vector2(x,y), TileType.grass);
+				tiles[x][y] = new Tile(new Vector2(x,y), "grass");
 			}
 		}
 	}

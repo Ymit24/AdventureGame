@@ -1,0 +1,7 @@
+[Grass]
+id=grass
+textureFilename=grass_0.png
+
+[Water]
+id=water
+textureFilename=water_0.png

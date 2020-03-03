@@ -6,7 +6,6 @@ import com.christian.adventureengine.input.IMouseClickListener;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.Camera;
-import com.christian.adventuregame.demo.data.Tile.TileType;
 
 public class TileChangeController extends Controller implements IMouseClickListener {
 	
@@ -27,7 +26,7 @@ public class TileChangeController extends Controller implements IMouseClickListe
 		
 		if (tileX < 0 || tileX >= EditorData.terrain.width || tileY < 0 || tileY >= EditorData.terrain.height)
 			return false;
-		EditorData.terrain.tiles[tileX][tileY].type = TileType.water;
+		EditorData.terrain.tiles[tileX][tileY].type = "water";
 		return true;
 	}
 	

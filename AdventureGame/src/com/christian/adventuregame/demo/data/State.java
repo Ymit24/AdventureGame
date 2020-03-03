@@ -1,5 +1,7 @@
 package com.christian.adventuregame.demo.data;
 
+import com.christian.adventuregame.demo.data.terrain.Terrain;
+
 public class State {
 	public static World world;
 	public static Terrain terrain;
