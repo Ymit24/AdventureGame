@@ -19,7 +19,7 @@ public class TileLoaderUtil {
 			
 			Sprites.GetSpriteManager().RegisterSprite(type.textureFilename);
 			
-			System.out.println("Registered " + type.id + " with texture " + type.textureFilename);
+			System.out.println("Registered tile " + type.id + " with texture " + type.textureFilename);
 		}
 	}
 }

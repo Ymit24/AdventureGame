@@ -19,7 +19,7 @@ public class World {
 		bullets.add(new Bullet(position, direction));
 	}
 	
-	public void SpawnEnemy(Vector2 position) {
-		enemies.add(new Enemy(position));
+	public void SpawnEnemy(Vector2 position, String id) {
+		enemies.add(new Enemy(position, id));
 	}
 }

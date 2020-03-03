@@ -1,0 +1,10 @@
+[Blob]
+id=blob
+moveSpeed=0.55
+health=15
+textureFilename=blob.png
+[HauntedPlayer]
+id=haunted
+moveSpeed=3
+health=8
+textureFilename=player_idle.png

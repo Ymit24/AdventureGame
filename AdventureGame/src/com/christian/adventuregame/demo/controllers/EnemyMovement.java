@@ -13,7 +13,7 @@ public class EnemyMovement extends Controller {
 				continue;
 			
 			Vector2 direction = enemy.wanderingTarget.Sub(enemy.Position).Normalized();
-			enemy.Position = enemy.Position.Add(direction.Mul(Enemy.MOVE_SPEED * deltaTime));
+			enemy.Position = enemy.Position.Add(direction.Mul(enemy.moveSpeed * deltaTime));
 		}
 	}
 }

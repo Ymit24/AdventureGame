@@ -16,6 +16,7 @@ import com.christian.adventuregame.demo.controllers.EnemyWanderController;
 import com.christian.adventuregame.demo.controllers.MousePickerController;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.World;
+import com.christian.adventuregame.demo.utils.EnemyLoaderUtil;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
 import com.christian.adventuregame.demo.utils.TileLoaderUtil;
 import com.christian.adventuregame.demo.views.GameplayView;
@@ -36,6 +37,7 @@ public class Boot {
 		renderer.CreateCamera(new Vector2(20, 10), new Vector2(1000, 720));
 
 		TileLoaderUtil.LoadTileTypes();
+		EnemyLoaderUtil.LoadEnemyTypes();
 		State.terrain = TerrainUtil.LoadFromFile();
 		
 		GameplayView view = new GameplayView();
