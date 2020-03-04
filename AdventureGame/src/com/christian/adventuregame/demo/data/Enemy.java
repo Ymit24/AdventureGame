@@ -4,16 +4,21 @@ import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.data.WorldObject;
 
 public class Enemy extends WorldObject {
+	public String id;
 	public float health;
-	
-	public static final float MOVE_SPEED = 1.75f;
+	public float moveSpeed;
 	
 	public Vector2 wanderingTarget;
 	public boolean isWandering;
 	
-	public Enemy(Vector2 position) {
+	public Enemy(Vector2 position, String id) {
 		super(position);
 		
-		health = 10;
+		EnemyType type = EnemyArchetypes.Get(id);
+		System.out.println(type);
+		
+		this.id = id;
+		this.health = type.InitialHealth;
+		this.moveSpeed = type.MoveSpeed;
 	}
 }

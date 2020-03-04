@@ -1,5 +1,6 @@
 package com.christian.adventuregame.demo.views;
 
+import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
@@ -26,7 +27,9 @@ public class GameplayView extends View {
 		playerView.draw(renderer);
 		bulletView.draw(renderer);
 
-		renderer.DrawScreenText("FPS: " + GameLoop.GetAverageFPS(), new Vector2(renderer.GetDisplayWidth() - 100, 20));
+		String fpsText = "FPS: " + GameLoop.GetAverageFPS();
+		renderer.SetFontSize(24);
+		renderer.DrawScreenText(fpsText, new Vector2(renderer.GetDisplayWidth() - renderer.GetFontWidth(fpsText), 0));
 	}
 
 }

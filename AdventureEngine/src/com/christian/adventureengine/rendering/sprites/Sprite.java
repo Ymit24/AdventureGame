@@ -13,6 +13,7 @@ public class Sprite {
 	public Sprite(String filename, BufferedImage image) {
 		this.filename = filename;
 		this.image = image;
+		PixelsToWorld = Vector2.Zero();
 	}
 	
 	public String GetFilename() {

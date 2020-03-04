@@ -13,9 +13,12 @@ import com.christian.adventuregame.demo.controllers.DemoController;
 import com.christian.adventuregame.demo.controllers.EnemyMovement;
 import com.christian.adventuregame.demo.controllers.EnemySpawner;
 import com.christian.adventuregame.demo.controllers.EnemyWanderController;
+import com.christian.adventuregame.demo.controllers.MousePickerController;
 import com.christian.adventuregame.demo.data.State;
-import com.christian.adventuregame.demo.data.Terrain;
 import com.christian.adventuregame.demo.data.World;
+import com.christian.adventuregame.demo.utils.EnemyLoaderUtil;
+import com.christian.adventuregame.demo.utils.TerrainUtil;
+import com.christian.adventuregame.demo.utils.TileLoaderUtil;
 import com.christian.adventuregame.demo.views.GameplayView;
 
 public class Boot {
@@ -33,11 +36,13 @@ public class Boot {
 		renderer.CreateSpriteManager();
 		renderer.CreateCamera(new Vector2(20, 10), new Vector2(1000, 720));
 
+		TileLoaderUtil.LoadTileTypes();
+		EnemyLoaderUtil.LoadEnemyTypes();
+		State.terrain = TerrainUtil.LoadFromFile();
+		
 		GameplayView view = new GameplayView();
 		renderer.SetRootView(view);
 		
-		State.terrain = new Terrain(30,30);
-
 		ControllerManager.AddController(new DemoController());
 		ControllerManager.AddController(new EnemySpawner());
 		ControllerManager.AddController(new EnemyWanderController());
@@ -46,7 +51,7 @@ public class Boot {
 		ControllerManager.AddController(new BulletSpawnController());
 		ControllerManager.AddController(new BulletMovementController());
 		ControllerManager.AddController(new BulletEnemyCollisionController());
-//		ControllerManager.AddController(new MousePickerController());
+		ControllerManager.AddController(new MousePickerController());
 		
 		GameLoop.Initialize(new ControllerManager(), renderer);
 		GameLoop.Start();

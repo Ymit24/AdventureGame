@@ -59,7 +59,7 @@ public class Button extends Element {
 	@Override
 	public void HandleClick() {
 		if (callback != null) {
-			callback.OnButtonClicked();
+			callback.OnButtonClicked(id);
 		}
 	}
 

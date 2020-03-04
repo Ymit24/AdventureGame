@@ -5,10 +5,11 @@ import java.awt.Color;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventureengine.ui.elements.Button;
+import com.christian.adventureengine.ui.elements.Element;
 import com.christian.adventureengine.ui.elements.InputTextField;
 import com.christian.adventureengine.ui.elements.Label;
-import com.christian.adventureengine.ui.elements.SplitContainer;
 import com.christian.adventureengine.ui.elements.Label.Alignment;
+import com.christian.adventureengine.ui.elements.SplitContainer;
 
 public class UISkin {
 	private static Color uiBackground = new Color(65, 34, 68);
@@ -18,10 +19,21 @@ public class UISkin {
 			.SetFontSize(16).SetPadding(Vector2.One().Mul(12))
 			.SetFontColor(uiForeground); 
 	}
+
+	public static SplitContainer CreateSplitContainer(VerticalPushLayout layout, String baseId, Element left, Element right) {
+		SplitContainer container = new SplitContainer(
+			layout,
+			baseId + "_splitcontainer",
+			left,
+			right,
+			0.5f
+		);
+		return container;
+	}
 	
 	public static SplitContainer CreateInputWithLabel(VerticalPushLayout layout, String baseId, String labelText, String placeholderText) {
 		SplitContainer container = new SplitContainer(
-				layout,
+			layout,
 			baseId + "_inputlabel",
 			new Label(
 					layout,

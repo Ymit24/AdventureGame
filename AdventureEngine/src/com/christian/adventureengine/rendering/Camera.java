@@ -6,6 +6,7 @@ import com.christian.adventureengine.utils.Collision;
 
 public class Camera {
 	private static Camera camera;
+	private Vector2 screenSpace;
 	private Vector2 pixelsPerWorldUnit;
 	private Vector2 worldSpace;
 	private Vector2 position;
@@ -14,10 +15,11 @@ public class Camera {
 		return camera;
 	}
 	
-	public Camera(Vector2 pixelsPerWorldUnit, Vector2 worldSpace) {
+	public Camera(Vector2 pixelsPerWorldUnit, Vector2 worldSpace, Vector2 screenSpace) {
 		this.pixelsPerWorldUnit = pixelsPerWorldUnit;
 		this.position = new Vector2();
 		this.worldSpace = worldSpace;
+		this.screenSpace = screenSpace;
 		
 		Camera.camera = this;
 	}
@@ -52,6 +54,14 @@ public class Camera {
 			(worldLocation.y-position.y) * pixelsPerWorldUnit.y
 		);
 		return pixelLocation;
+	}
+	
+	public void UpdateBounds(Vector2 worldSpaceView) {
+		pixelsPerWorldUnit = new Vector2(
+			screenSpace.x / worldSpaceView.x,
+			screenSpace.y / worldSpaceView.y
+		);
+		this.worldSpace = worldSpaceView;
 	}
 	
 	// might need to check

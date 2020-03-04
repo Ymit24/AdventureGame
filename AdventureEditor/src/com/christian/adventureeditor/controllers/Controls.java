@@ -13,21 +13,14 @@ import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.ui.elements.Button;
 import com.christian.adventureengine.ui.elements.SplitContainer;
 import com.christian.adventureengine.utils.Serializer;
+import com.christian.adventuregame.demo.utils.TerrainUtil;
 
 public class Controls extends Controller {
 
 	@Override
 	public void Update(float deltaTime) {
 		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_I)) {
-			Serializer serializer = new Serializer();
-			EditorData.terrain.Serialize(serializer);
-			
-			File file = new File("terrain.txt");
-			try {
-				Files.write(file.toPath(), serializer.getBytes());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			TerrainUtil.SaveToFile(EditorData.terrain);
 		}
 	}
 }
