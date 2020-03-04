@@ -1,5 +1,6 @@
 package com.christian.adventuregame.demo.controllers;
 
+import com.christian.adventureengine.audio.AudioPlayer;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.utils.Collision;
 import com.christian.adventuregame.demo.data.Bullet;
@@ -15,6 +16,7 @@ public class BulletEnemyCollisionController extends Controller {
 				Bullet bullet = State.world.bullets.get(bulletIndex);
 				if (Collision.AABB(enemy.Position, bullet.Position, enemy.Size, bullet.Size)) {
 					State.world.bullets.remove(bullet);
+					AudioPlayer.Play("hit.wav");
 					enemy.health -= 1;
 					
 					if (enemy.health <= 0)

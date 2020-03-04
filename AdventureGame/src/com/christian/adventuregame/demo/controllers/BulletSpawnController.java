@@ -2,6 +2,7 @@ package com.christian.adventuregame.demo.controllers;
 
 import java.awt.event.KeyEvent;
 
+import com.christian.adventureengine.audio.AudioPlayer;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
@@ -24,6 +25,7 @@ public class BulletSpawnController extends Controller {
 			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
 			
 			State.world.SpawnBullet(playerPos.Add(direction.Mul(0.75f)), direction);
+			AudioPlayer.Play("shoot.wav");
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package com.christian.adventuregame.demo;
 
+import com.christian.adventureengine.audio.AudioPlayer;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
@@ -42,6 +43,8 @@ public class Boot {
 		
 		GameplayView view = new GameplayView();
 		renderer.SetRootView(view);
+
+		AudioPlayer.Play("background.wav");
 		
 		ControllerManager.AddController(new DemoController());
 		ControllerManager.AddController(new EnemySpawner());
