@@ -85,7 +85,7 @@ public class UIView extends View implements IButtonCallback {
 	
 	@Override
 	public void draw(IRenderer renderer) {
-		renderer.FillBox(new Box(0,0,800,30), new Color(250, 224, 255));
+		renderer.FillBox(new Box(0,0,1280,30), new Color(250, 224, 255));
 		renderer.SetColor(Color.black);
 		renderer.SetFontSize(16);
 		

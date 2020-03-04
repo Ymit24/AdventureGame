@@ -6,7 +6,7 @@ import com.christian.adventureengine.utils.Collision;
 
 public class Camera {
 	private static Camera camera;
-	private Vector2 screenSpace;
+	private Box screenSpace;
 	private Vector2 pixelsPerWorldUnit;
 	private Vector2 worldSpace;
 	private Vector2 position;
@@ -15,7 +15,7 @@ public class Camera {
 		return camera;
 	}
 	
-	public Camera(Vector2 pixelsPerWorldUnit, Vector2 worldSpace, Vector2 screenSpace) {
+	public Camera(Vector2 pixelsPerWorldUnit, Vector2 worldSpace, Box screenSpace) {
 		this.pixelsPerWorldUnit = pixelsPerWorldUnit;
 		this.position = new Vector2();
 		this.worldSpace = worldSpace;
@@ -47,26 +47,43 @@ public class Camera {
 	public void SetPosition(Vector2 position) {
 		this.position = position;
 	}
+	
+	public void Move(Vector2 delta) {
+		position = position.Add(delta);
+	}
 
 	public Vector2 CalculateWorldToScreen(Vector2 worldLocation) {
 		Vector2 pixelLocation = new Vector2(
-			(worldLocation.x-position.x) * pixelsPerWorldUnit.x,
-			(worldLocation.y-position.y) * pixelsPerWorldUnit.y
+			screenSpace.position.x + (worldLocation.x-position.x) * pixelsPerWorldUnit.x,
+			screenSpace.position.y + (worldLocation.y-position.y) * pixelsPerWorldUnit.y
 		);
 		return pixelLocation;
 	}
 	
 	public void UpdateBounds(Vector2 worldSpaceView) {
 		pixelsPerWorldUnit = new Vector2(
-			screenSpace.x / worldSpaceView.x,
-			screenSpace.y / worldSpaceView.y
+			screenSpace.size.x / worldSpaceView.x,
+			screenSpace.size.y / worldSpaceView.y
 		);
 		this.worldSpace = worldSpaceView;
 	}
 	
+	public void CenterZoom(float worldUnitSize) {
+		float diff = worldSpace.x - worldUnitSize;
+		UpdateBounds(Vector2.One().Mul(worldUnitSize));
+		position = position.Add(Vector2.One().Mul(diff/2));
+	}
+	
+	public Vector2 ConvertPixelToWorldUnit(Vector2 pixelUnits) {
+		return new Vector2(
+			pixelUnits.x / pixelsPerWorldUnit.x,
+			pixelUnits.y / pixelsPerWorldUnit.y
+		);
+	}
+	
 	// might need to check
 	public Vector2 CalculateScreenToWorld(Vector2 pixelLocation) {
-		Vector2 worldLocation = new Vector2(pixelLocation);
+		Vector2 worldLocation = new Vector2(pixelLocation).Sub(screenSpace.position);
 		worldLocation.x /= pixelsPerWorldUnit.x;
 		worldLocation.y /= pixelsPerWorldUnit.y;
 		

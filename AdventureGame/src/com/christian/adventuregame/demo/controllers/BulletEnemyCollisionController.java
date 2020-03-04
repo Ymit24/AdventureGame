@@ -1,10 +1,12 @@
 package com.christian.adventuregame.demo.controllers;
 
 import com.christian.adventureengine.audio.AudioPlayer;
+import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.utils.Collision;
 import com.christian.adventuregame.demo.data.Bullet;
 import com.christian.adventuregame.demo.data.Enemy;
+import com.christian.adventuregame.demo.data.HitEffect;
 import com.christian.adventuregame.demo.data.State;
 
 public class BulletEnemyCollisionController extends Controller {
@@ -16,6 +18,7 @@ public class BulletEnemyCollisionController extends Controller {
 				Bullet bullet = State.world.bullets.get(bulletIndex);
 				if (Collision.AABB(enemy.Position, bullet.Position, enemy.Size, bullet.Size)) {
 					State.world.bullets.remove(bullet);
+					State.hitEffects.add(new HitEffect("-1", new Vector2(enemy.Position), 0.3f));
 					AudioPlayer.Play("hit.wav");
 					enemy.health -= 1;
 					

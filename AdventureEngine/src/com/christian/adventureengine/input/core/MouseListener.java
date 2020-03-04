@@ -1,6 +1,8 @@
 package com.christian.adventureengine.input.core;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 
 import javax.swing.event.MouseInputListener;
@@ -8,8 +10,9 @@ import javax.swing.event.MouseInputListener;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.input.IMouseClickListener;
 import com.christian.adventureengine.input.IMouseListener;
+import com.christian.adventureengine.input.IMouseScrollListener;
 
-public class MouseListener implements IMouseListener, MouseInputListener {
+public class MouseListener implements IMouseListener, MouseInputListener, MouseWheelListener {
 
 	public static final int LEFT = 0;
 	public static final int RIGHT = 1;
@@ -18,12 +21,16 @@ public class MouseListener implements IMouseListener, MouseInputListener {
 	private Vector2 position;
 	private boolean[] states;
 	
+	private int scrollDelta = 0;
+	
 	private ArrayList<IMouseClickListener> mouseClickListeners;
+	private ArrayList<IMouseScrollListener> mouseScrollListeners;
 	
 	public MouseListener() {
 		states = new boolean[3];
 		position = new Vector2();
-		mouseClickListeners = new ArrayList<IMouseClickListener>();
+		mouseClickListeners = new ArrayList<>();
+		mouseScrollListeners = new ArrayList<>();
 	}
 	
 	public int getX() {
@@ -53,7 +60,17 @@ public class MouseListener implements IMouseListener, MouseInputListener {
 
 	@Override
 	public void RemoveMouseClickListener(IMouseClickListener listener) {
-		mouseClickListeners.add(listener);	
+		mouseClickListeners.add(listener);
+	}
+
+	@Override
+	public void AddMouseScrollListener(IMouseScrollListener listener) {
+		mouseScrollListeners.add(listener);
+	}
+
+	@Override
+	public void RemoveMouseScrollListener(IMouseScrollListener listener) {
+		mouseScrollListeners.add(listener);
 	}
 	
 	@Override
@@ -112,6 +129,15 @@ public class MouseListener implements IMouseListener, MouseInputListener {
 	}
 	
 	@Override
+	public  void mouseWheelMoved(MouseWheelEvent e) {
+		System.out.println("Scrolled: " + e.getWheelRotation());
+
+		for (IMouseScrollListener listener : mouseScrollListeners) {
+			listener.OnScroll(e.getWheelRotation());
+		}
+	}
+
+	@Override
 	public void mouseClicked(MouseEvent arg0) {}
 
 	@Override
@@ -119,4 +145,5 @@ public class MouseListener implements IMouseListener, MouseInputListener {
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {}
+
 }

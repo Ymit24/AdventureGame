@@ -3,42 +3,46 @@ package com.christian.adventureeditor.controllers;
 import java.awt.event.KeyEvent;
 
 import com.christian.adventureengine.data.Vector2;
+import com.christian.adventureengine.input.IMouseClickListener;
+import com.christian.adventureengine.input.IMouseScrollListener;
 import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.Camera;
 
-public class CameraController extends Controller {
+public class CameraController extends Controller implements IMouseScrollListener, IMouseClickListener {
 	private float size = 14;
+	private Vector2 lastMousePos = Vector2.Zero();
+	
+	public CameraController() {
+		Input.GetMouseListener().AddMouseScrollListener(this);
+		Input.GetMouseListener().AddMouseClickListener(this);
+	}
+	
+	@Override
+	public void OnScroll(int delta) {
+		size += delta;
+		Camera.GetCamera().CenterZoom(size);
+	}
+
+	@Override
+	public boolean OnClick(Vector2 screenLocation, int button) {
+		if (button != 1)
+			return false;
+		
+		lastMousePos = new Vector2(screenLocation);
+		System.out.println("sl " + lastMousePos);
+		return false;
+	}
+	
 	@Override
 	public void Update(float deltaTime) {
 		Vector2 direction = new Vector2();
 		
-		// TODO: Program middle mouse drag based movement
-		
-		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_W)) {
-			direction.y -= 1;
+		if (Input.GetMouseListener().isMouseButtonDown(1)) {
+			Vector2 moveBy = Input.GetMouseListener().GetPosition().Sub(lastMousePos);
+			
+			Camera.GetCamera().Move(Camera.GetCamera().ConvertPixelToWorldUnit(moveBy).Mul(-1));
+			lastMousePos = new Vector2(Input.GetMouseListener().GetPosition());
 		}
-		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_S)) {
-			direction.y += 1;
-		}
-		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_A)) {
-			direction.x -= 1;
-		}
-		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_D)) {
-			direction.x += 1;
-		}
-		if (direction.Magnitude() != 0)
-			direction.Normalize();
-		
-		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_Q)) {
-			size -= 8 * deltaTime;
-			Camera.GetCamera().UpdateBounds(Vector2.One().Mul(size));
-		}
-		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_E)) {
-			size += 8 * deltaTime;
-			Camera.GetCamera().UpdateBounds(Vector2.One().Mul(size));
-		}
-		
-		Camera.GetCamera().SetPosition(Camera.GetCamera().GetPosition().Add(direction.Mul(5*deltaTime)));
 	}
 }

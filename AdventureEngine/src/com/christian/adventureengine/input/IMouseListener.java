@@ -8,4 +8,7 @@ public interface IMouseListener {
 	
 	public void AddMouseClickListener(IMouseClickListener listener);
 	public void RemoveMouseClickListener(IMouseClickListener listener);
+
+	public void AddMouseScrollListener(IMouseScrollListener listener);
+	public void RemoveMouseScrollListener(IMouseScrollListener listener);
 }

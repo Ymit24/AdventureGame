@@ -1,5 +1,7 @@
 package com.christian.adventuregame.demo.views;
 
+import java.awt.Color;
+
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
@@ -17,6 +19,7 @@ public class EnemyView extends View {
 		for (Enemy enemy : State.world.enemies) {
 			EnemyType type = EnemyArchetypes.Get(enemy.id);
 			renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite(type.textureFilename), enemy);
+			renderer.SetColor(Color.white);
 			renderer.DrawWorldText(enemy.health + "/" + type.InitialHealth, enemy.Position.Add(new Vector2(-.3f, .25f)));
 		}
 	}

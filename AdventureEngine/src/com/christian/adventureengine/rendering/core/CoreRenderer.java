@@ -85,19 +85,20 @@ public class CoreRenderer implements IRenderer {
 		Input.SetKeyboardListener(keyboardListener);
 		Input.SetMouseListener(mouseListener);
 		canvas.addMouseMotionListener(mouseListener);
+		canvas.addMouseWheelListener(mouseListener);
 	}
 
 	@Override
 	public void CreateCamera(Vector2 worldSpaceView) {
-		CreateCamera(worldSpaceView, new Vector2(displayWidth, displayHeight));
+		CreateCamera(worldSpaceView, new Box(0, 0, displayWidth, displayHeight));
 	}
 	
 	@Override
-	public void CreateCamera(Vector2 worldSpaceView, Vector2 screenSpace) {
-		assert(screenSpace.x > 0 && screenSpace.x <= displayWidth && screenSpace.y > 0 && screenSpace.y <= displayHeight);
+	public void CreateCamera(Vector2 worldSpaceView, Box screenSpace) {
+		assert(screenSpace.position.x >= 0 && screenSpace.position.x + screenSpace.size.x <= displayWidth && screenSpace.position.y >= 0 && screenSpace.position.y  + screenSpace.size.y <= displayHeight);
 		Vector2 pixelsPerWorldUnit = new Vector2(
-			screenSpace.x / worldSpaceView.x,
-			screenSpace.y / worldSpaceView.y
+			screenSpace.size.x / worldSpaceView.x,
+			screenSpace.size.y / worldSpaceView.y
 		);
 		camera = new Camera(pixelsPerWorldUnit, worldSpaceView, screenSpace);
 		

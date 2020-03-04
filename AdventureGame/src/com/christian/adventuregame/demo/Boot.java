@@ -1,6 +1,7 @@
 package com.christian.adventuregame.demo;
 
 import com.christian.adventureengine.audio.AudioPlayer;
+import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
@@ -14,6 +15,7 @@ import com.christian.adventuregame.demo.controllers.DemoController;
 import com.christian.adventuregame.demo.controllers.EnemyMovement;
 import com.christian.adventuregame.demo.controllers.EnemySpawner;
 import com.christian.adventuregame.demo.controllers.EnemyWanderController;
+import com.christian.adventuregame.demo.controllers.HitEffectController;
 import com.christian.adventuregame.demo.controllers.MousePickerController;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.World;
@@ -35,7 +37,7 @@ public class Boot {
 		renderer.Initialize("Adventure Game", 1280, 720);
 		renderer.CreateInput();
 		renderer.CreateSpriteManager();
-		renderer.CreateCamera(new Vector2(20, 10), new Vector2(1000, 720));
+		renderer.CreateCamera(new Vector2(12,10), new Box(0, 0, 1000, 720));
 
 		TileLoaderUtil.LoadTileTypes();
 		EnemyLoaderUtil.LoadEnemyTypes();
@@ -47,6 +49,7 @@ public class Boot {
 		AudioPlayer.Play("background.wav");
 		
 		ControllerManager.AddController(new DemoController());
+		ControllerManager.AddController(new HitEffectController());
 		ControllerManager.AddController(new EnemySpawner());
 		ControllerManager.AddController(new EnemyWanderController());
 		ControllerManager.AddController(new EnemyMovement());

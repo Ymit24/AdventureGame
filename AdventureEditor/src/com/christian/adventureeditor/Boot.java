@@ -17,13 +17,13 @@ import com.christian.adventuregame.demo.utils.TileLoaderUtil;
 public class Boot {
 	public static void main(String[] args) throws IOException {
 		IRenderer renderer = new CoreRenderer();
-		renderer.Initialize("Adventure Editor", 800, 600);
+		renderer.Initialize("Adventure Editor", 1280, 720);
 		renderer.CreateInput();
-		renderer.CreateCamera(new Vector2(14, 14), new Vector2(800,600));
+		renderer.CreateCamera(new Vector2(14, 14), new Box(300, 0, 980, 720));
 		renderer.CreateSpriteManager();
 		
 		TileLoaderUtil.LoadTileTypes();
-		EditorData.layout = renderer.CreateUILayout(new Box(0, 30, 300, 600));
+		EditorData.layout = renderer.CreateUILayout(new Box(0, 30, 300, 720));
 		
 		renderer.SetRootView(new EditorView());
 		
