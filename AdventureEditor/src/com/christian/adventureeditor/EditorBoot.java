@@ -14,7 +14,7 @@ import com.christian.adventureengine.rendering.core.CoreRenderer;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
 import com.christian.adventuregame.demo.utils.TileLoaderUtil;
 
-public class Boot {
+public class EditorBoot {
 	public static void main(String[] args) throws IOException {
 		IRenderer renderer = new CoreRenderer();
 		renderer.Initialize("Adventure Editor", 1280, 720);

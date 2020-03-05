@@ -9,6 +9,7 @@ import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.Camera;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.Player;
+import com.christian.adventuregame.demo.utils.ProjectileEmitterUtil;
 
 public class BulletSpawnController extends Controller {
 	@Override
@@ -23,8 +24,9 @@ public class BulletSpawnController extends Controller {
 
 			Vector2 playerPos = State.world.player.Position.Add(new Vector2(0.5f,0.5f));
 			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
-			
-			State.world.SpawnBullet(playerPos.Add(direction.Mul(0.75f)), direction);
+
+			ProjectileEmitterUtil.CircleShot(playerPos);
+
 			AudioPlayer.Play("shoot.wav");
 		}
 	}

@@ -29,6 +29,11 @@ public class Vector2 implements ISerializable {
 		this.y = other.y;
 	}
 
+	public Vector2(float angle) {
+		this.x = (float)(Math.cos(angle));
+		this.y = (float)(Math.sin(angle));
+	}
+
 	public float Magnitude() {
 		return (float)Math.sqrt(x * x + y * y);
 	}
@@ -44,7 +49,17 @@ public class Vector2 implements ISerializable {
 		this.x /= m;
 		this.y /= m;
 	}
-	
+
+	public Vector2 GetNormal() {
+		float angle = (float)(Math.atan2(y, x));
+		float norm = (float)(angle + Math.PI / 2.0);
+
+		return new Vector2(
+			(float)Math.cos(norm),
+			(float)Math.sin(norm)
+		);
+	}
+
 	public Vector2 Add(Vector2 other) {
 		return new Vector2(x + other.x, y + other.y);
 	}

@@ -24,12 +24,12 @@ import com.christian.adventuregame.demo.utils.TerrainUtil;
 import com.christian.adventuregame.demo.utils.TileLoaderUtil;
 import com.christian.adventuregame.demo.views.GameplayView;
 
-public class Boot {
+public class GameBoot {
 	public static void main(String[] args) {
-		new Boot();
+		new GameBoot();
 	}
 	
-	public Boot() {
+	public GameBoot() {
 		State.world = new World();
 		World world = State.world;
 		
