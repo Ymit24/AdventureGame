@@ -9,18 +9,6 @@ import com.christian.adventuregame.demo.data.State;
 public class CameraController extends Controller {
 	@Override
 	public void Update(float deltaTime) {
-		
 		Camera.GetCamera().SetPosition(State.world.player.Position.Sub(Camera.GetCamera().GetWorldSpace().Div(2)));
-		
-//		if (Input.GetMouseListener().isMouseButtonDown(1)) {
-//			Camera camera = Camera.GetCamera();
-//
-//			Vector2 mouseWorld = camera.CalculateScreenToWorld(Input.GetMouseListener().GetPosition());
-//			mouseWorld = mouseWorld.Sub(camera.GetCenterPosition());
-//			
-//			mouseWorld = State.world.player.Position.Sub(Camera.GetCamera().GetWorldSpace().Div(2)).Add(new Vector2(0.5f,0.5f)).Add(mouseWorld);
-//			
-//			camera.SetPosition(mouseWorld);
-//		}
 	}
 }

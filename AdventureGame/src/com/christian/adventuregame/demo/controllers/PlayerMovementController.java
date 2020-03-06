@@ -8,15 +8,15 @@ import com.christian.adventureengine.logic.Controller;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.Player;
 
-public class DemoController extends Controller {
+public class PlayerMovementController extends Controller {
 	@Override
 	public void Update(float deltaTime) {
 		Player player = State.world.player;
 		Vector2 pos = player.Position;
-		float speed = 4;
-		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SHIFT)) {
-			speed = 8;
-		}
+//		float speed = 4;
+//		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SHIFT)) {
+//			speed = 8;
+//		}
 		
 		Vector2 direction = new Vector2();
 		
@@ -34,7 +34,7 @@ public class DemoController extends Controller {
 		}
 		
 		direction.Normalize();
-		direction = direction.Mul(speed);
+		direction = direction.Mul(player.stats.moveSpeed);
 		if (direction.Magnitude() > 0)
 		{
 			pos = pos.Add(direction.Mul(deltaTime));

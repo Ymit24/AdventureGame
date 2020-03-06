@@ -29,7 +29,7 @@ public class BulletSpawnController extends Controller {
 			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
 
 			WeaponType[] allTypes = WeaponArchetypes.GetAll();
-			ProjectileEmitterUtil.Emit("circle", playerPos, direction, allTypes[Randomizer.random.nextInt(allTypes.length)]);
+			ProjectileEmitterUtil.Emit(allTypes[Randomizer.random.nextInt(allTypes.length)], playerPos, direction);
 
 			AudioPlayer.Play("shoot.wav");
 		}
@@ -42,7 +42,7 @@ public class BulletSpawnController extends Controller {
 			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
 
 			WeaponType[] allTypes = WeaponArchetypes.GetAll();
-			ProjectileEmitterUtil.Emit("double", playerPos, direction, allTypes[Randomizer.random.nextInt(allTypes.length)]);
+			ProjectileEmitterUtil.Emit(player.weaponType, playerPos, direction);
 
 			AudioPlayer.Play("shoot.wav");
 		}

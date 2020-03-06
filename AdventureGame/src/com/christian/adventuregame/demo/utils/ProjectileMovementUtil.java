@@ -4,6 +4,19 @@ import com.christian.adventureengine.data.Vector2;
 import com.christian.adventuregame.demo.data.Bullet;
 
 public class ProjectileMovementUtil {
+    public static Vector2 Move(Bullet bullet) {
+        switch (bullet.type.projectileBehavior) {
+            case "straight": {
+                return MoveStraight(bullet);
+            }
+            case "sine": {
+                return MoveSine(bullet);
+            }
+        }
+
+        return null;
+    }
+
     public static Vector2 MoveStraight(Bullet bullet) {
         return bullet.GetDirection().Normalized().Mul(Bullet.SPEED);
     }

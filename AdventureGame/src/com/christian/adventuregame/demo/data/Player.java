@@ -8,11 +8,14 @@ public class Player extends WorldObject {
 	public static final float SECONDS_PER_SHOT = 0.1f;
 	public float ShootingTimer;
 
+	public Stats stats;
 	public WeaponType weaponType;
 
 	public Player(Vector2 position) {
 		super(position);
 		ShootingTimer = 0;
+
+		stats = new Stats();
 	}
 	
 }

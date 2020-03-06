@@ -11,13 +11,13 @@ import com.christian.adventuregame.demo.controllers.BulletEnemyCollisionControll
 import com.christian.adventuregame.demo.controllers.BulletMovementController;
 import com.christian.adventuregame.demo.controllers.BulletSpawnController;
 import com.christian.adventuregame.demo.controllers.CameraController;
-import com.christian.adventuregame.demo.controllers.DemoController;
+import com.christian.adventuregame.demo.controllers.PlayerMovementController;
 import com.christian.adventuregame.demo.controllers.EnemyMovement;
 import com.christian.adventuregame.demo.controllers.EnemySpawner;
 import com.christian.adventuregame.demo.controllers.EnemyWanderController;
-import com.christian.adventuregame.demo.controllers.HitEffectController;
-import com.christian.adventuregame.demo.controllers.MousePickerController;
+import com.christian.adventuregame.demo.controllers.FloatTextEffectController;
 import com.christian.adventuregame.demo.data.State;
+import com.christian.adventuregame.demo.data.WeaponArchetypes;
 import com.christian.adventuregame.demo.data.World;
 import com.christian.adventuregame.demo.utils.loaders.EnemyLoaderUtil;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
@@ -32,7 +32,6 @@ public class GameBoot {
 	
 	public GameBoot() {
 		State.world = new World();
-		World world = State.world;
 		
 		IRenderer renderer = new CoreRenderer();
 		renderer.Initialize("Adventure Game", 1280, 720);
@@ -44,6 +43,8 @@ public class GameBoot {
 		EnemyLoaderUtil.LoadEnemyTypes();
 		WeaponLoader.LoadWeapons();
 
+		State.world.player.weaponType = WeaponArchetypes.Get("simple_wand");
+
 		State.terrain = TerrainUtil.LoadFromFile();
 		
 		GameplayView view = new GameplayView();
@@ -51,8 +52,8 @@ public class GameBoot {
 
 		AudioPlayer.Play("background.wav");
 		
-		ControllerManager.AddController(new DemoController());
-		ControllerManager.AddController(new HitEffectController());
+		ControllerManager.AddController(new PlayerMovementController());
+		ControllerManager.AddController(new FloatTextEffectController());
 		ControllerManager.AddController(new EnemySpawner());
 		ControllerManager.AddController(new EnemyWanderController());
 		ControllerManager.AddController(new EnemyMovement());
@@ -60,8 +61,7 @@ public class GameBoot {
 		ControllerManager.AddController(new BulletSpawnController());
 		ControllerManager.AddController(new BulletMovementController());
 		ControllerManager.AddController(new BulletEnemyCollisionController());
-		ControllerManager.AddController(new MousePickerController());
-		
+
 		GameLoop.Initialize(new ControllerManager(), renderer);
 		GameLoop.Start();
 	}

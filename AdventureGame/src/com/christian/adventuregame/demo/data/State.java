@@ -8,9 +8,9 @@ public class State {
 	public static World world;
 	public static Terrain terrain;
 	
-	public static final int maxEnemiesToSpawn = 4;
+	public static final int maxEnemiesToSpawn = 12;
 	public static final float secondsBetweenEnemySpawn = 1.5f;
 	public static float enemySpawnTimer = 0;
 	
-	public static ArrayList<HitEffect> hitEffects = new ArrayList<>();
+	public static ArrayList<FloatTextEffect> floatTextEffects = new ArrayList<>();
 }

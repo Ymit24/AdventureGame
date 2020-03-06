@@ -7,8 +7,8 @@ import com.christian.adventuregame.demo.data.WeaponArchetypes;
 import com.christian.adventuregame.demo.data.WeaponType;
 
 public class ProjectileEmitterUtil {
-    public static void Emit(String emitterId, Vector2 basePosition, Vector2 direction, WeaponType type) {
-        switch (emitterId) {
+    public static void Emit(WeaponType type, Vector2 basePosition, Vector2 direction) {
+        switch (type.projectileEmitter) {
             case "single":
             {
                 Single(basePosition, direction, type);

@@ -13,10 +13,11 @@ public class EnemyLoaderUtil {
 			Block block = blocks[i];
 			
 			EnemyType type = new EnemyType();
-			type.id = block.values[0];
-			type.MoveSpeed = Float.parseFloat(block.values[1]);
-			type.InitialHealth = Float.parseFloat(block.values[2]);
-			type.textureFilename = block.values[3];
+			type.id = block.GetString("id");
+			type.MoveSpeed = block.GetNumber("moveSpeed");
+			type.InitialHealth = block.GetNumber("health");
+			type.textureFilename = block.GetString("textureFilename");
+			type.xpDrop = (int)block.GetNumber("xpDrop");
 			EnemyArchetypes.RegisterArchetype(type);
 			
 			Sprites.GetSpriteManager().RegisterSprite(type.textureFilename);

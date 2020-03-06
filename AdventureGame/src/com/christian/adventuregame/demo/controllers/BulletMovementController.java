@@ -16,7 +16,7 @@ public class BulletMovementController extends Controller {
 			Bullet bullet = bullets.get(i);
 
 			bullet.timer += deltaTime;
-			Vector2 direction = ProjectileMovementUtil.MoveStraight(bullet);
+			Vector2 direction = ProjectileMovementUtil.Move(bullet);
 			bullet.Position = bullet.Position.Add(direction.Mul(deltaTime));
 
 			if (State.world.player.Position.Sub(bullet.Position).Magnitude() > 10) {
