@@ -1,4 +1,4 @@
-package com.christian.adventuregame.demo.utils;
+package com.christian.adventuregame.demo.utils.loaders;
 
 import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventureengine.utils.DataLoader;
@@ -13,8 +13,8 @@ public class TileLoaderUtil {
 			Block block = blocks[i];
 			
 			TileType type = new TileType();
-			type.id = block.values[0];
-			type.textureFilename = block.values[1];
+			type.id = block.GetString("id");
+			type.textureFilename = block.GetString("textureFilename");
 			TileArchetypes.RegisterArchetype(type);
 			
 			Sprites.GetSpriteManager().RegisterSprite(type.textureFilename);

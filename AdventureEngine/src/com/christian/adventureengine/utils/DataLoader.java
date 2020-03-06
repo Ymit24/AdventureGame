@@ -8,6 +8,25 @@ public class DataLoader {
 		public String header;
 		public String[] keys;
 		public String[] values;
+
+		public String GetString(String key) {
+			for (int i = 0; i < keys.length; i++) {
+				if (keys[i].equals(key)) {
+					return values[i];
+				}
+			}
+			return null;
+		}
+
+		public float GetNumber(String key) {
+			for (int i = 0; i < keys.length; i++) {
+				if (keys[i].equals(key)) {
+					return Float.parseFloat(values[i]);
+				}
+			}
+			System.out.println("FAILED TO FIND VALUE FOR KEY " + key + "!");
+			return 0;
+		}
 	}
 	
 	public static Block[] LoadFile(String filename) {

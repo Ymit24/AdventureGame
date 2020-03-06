@@ -19,9 +19,10 @@ import com.christian.adventuregame.demo.controllers.HitEffectController;
 import com.christian.adventuregame.demo.controllers.MousePickerController;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.World;
-import com.christian.adventuregame.demo.utils.EnemyLoaderUtil;
+import com.christian.adventuregame.demo.utils.loaders.EnemyLoaderUtil;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
-import com.christian.adventuregame.demo.utils.TileLoaderUtil;
+import com.christian.adventuregame.demo.utils.loaders.TileLoaderUtil;
+import com.christian.adventuregame.demo.utils.loaders.WeaponLoader;
 import com.christian.adventuregame.demo.views.GameplayView;
 
 public class GameBoot {
@@ -41,6 +42,8 @@ public class GameBoot {
 
 		TileLoaderUtil.LoadTileTypes();
 		EnemyLoaderUtil.LoadEnemyTypes();
+		WeaponLoader.LoadWeapons();
+
 		State.terrain = TerrainUtil.LoadFromFile();
 		
 		GameplayView view = new GameplayView();

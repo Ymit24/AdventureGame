@@ -1,0 +1,23 @@
+[Simple Wand]
+id=simple_wand
+textureFilename=bullet_0.png
+projectileBehavior=straight
+projectileEmitter=single
+firingRate=0.5
+damage=13
+
+[Special Staff]
+id=spec_staff
+textureFilename=bullet_1.png
+projectileBehavior=sine
+projectileEmitter=double_together
+firingRate=0.5
+damage=13
+
+[Thing]
+id=some_weapon
+textureFilename=bullet_2.png
+projectileBehavior=straight
+projectileEmitter=triple
+firingRate=0.5
+damage=13

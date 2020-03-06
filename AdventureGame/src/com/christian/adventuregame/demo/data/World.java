@@ -15,8 +15,8 @@ public class World {
 		bullets = new ArrayList<Bullet>();
 	}
 	
-	public void SpawnBullet(Vector2 position, Vector2 direction) {
-		bullets.add(new Bullet(position, direction));
+	public void SpawnBullet(Vector2 position, Vector2 direction, WeaponType type) {
+		bullets.add(new Bullet(position, direction, type));
 	}
 	
 	public void SpawnEnemy(Vector2 position, String id) {

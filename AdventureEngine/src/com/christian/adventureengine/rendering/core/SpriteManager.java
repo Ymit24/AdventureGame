@@ -54,7 +54,18 @@ public class SpriteManager implements ISpriteManager {
 		fileSprites.put(filename, sprite);
 		return sprite;
 	}
-	
+
+	public Sprite RegisterSprite(String filename, float worldSpace) {
+		Sprite sprite = LoadSpriteFromFile(filename);
+		sprite.PixelsToWorld = new Vector2(sprite.GetImage().getWidth() / worldSpace, sprite.GetImage().getHeight() /  worldSpace);
+
+		if (fileSprites.containsKey(filename)) {
+			return fileSprites.get(filename);
+		}
+
+		fileSprites.put(filename, sprite);
+		return sprite;
+	}
 	@Override
 	public Sprite RegisterSprite(ISpriteType type, String filename) {
 		Sprite sprite = LoadSpriteFromFile(filename);

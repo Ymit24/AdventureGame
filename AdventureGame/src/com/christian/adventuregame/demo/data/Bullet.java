@@ -12,9 +12,12 @@ public class Bullet extends WorldObject {
 	public Vector2 straightPos;
 	public float timer;
 
-	public Bullet(Vector2 position, Vector2 direction) {
+	public WeaponType type;
+
+	public Bullet(Vector2 position, Vector2 direction, WeaponType type) {
 		super(position, new Vector2(0.25f, 0.25f));
 		this.direction = direction;
+		this.type = type;
 
 		straightPos = new Vector2(position);
 

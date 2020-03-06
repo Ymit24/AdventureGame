@@ -1,4 +1,4 @@
-package com.christian.adventuregame.demo.utils;
+package com.christian.adventuregame.demo.utils.loaders;
 
 import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventureengine.utils.DataLoader;
