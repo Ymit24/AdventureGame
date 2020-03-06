@@ -1,4 +1,4 @@
-[Simple Wand]
+[SimpleWand]
 id=simple_wand
 textureFilename=bullet_0.png
 projectileBehavior=straight
@@ -6,7 +6,7 @@ projectileEmitter=single
 firingRate=0.5
 damage=13
 
-[Special Staff]
+[SpecialStaff]
 id=spec_staff
 textureFilename=bullet_1.png
 projectileBehavior=sine
