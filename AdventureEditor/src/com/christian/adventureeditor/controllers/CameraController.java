@@ -25,12 +25,11 @@ public class CameraController extends Controller implements IMouseScrollListener
 	}
 
 	@Override
-	public boolean OnClick(Vector2 screenLocation, int button) {
-		if (button != 1)
+	public boolean OnClick(Vector2 screenLocation, int button, boolean isDown) {
+		if (button != 1 || !isDown)
 			return false;
 		
 		lastMousePos = new Vector2(screenLocation);
-		System.out.println("sl " + lastMousePos);
 		return false;
 	}
 	

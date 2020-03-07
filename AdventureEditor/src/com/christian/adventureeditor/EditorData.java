@@ -16,4 +16,5 @@ public class EditorData {
 	public static EditorState state = EditorState.MetaData;
 
 	public static String paintingTileType = "grass";
+	public static String paintingRegionType = "grass_land";
 }

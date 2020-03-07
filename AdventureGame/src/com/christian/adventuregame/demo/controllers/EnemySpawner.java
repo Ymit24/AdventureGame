@@ -24,19 +24,20 @@ public class EnemySpawner extends Controller {
 			Camera c = Camera.GetCamera();
 			Box bounds = c.GetCameraBounds();
 
-			Vector2 tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(4);
+			Vector2 tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
 			tileRingPosition = new Vector2((int)tileRingPosition.x, (int)tileRingPosition.y);
 
 			Terrain terrain = State.terrain;
 			while ( (int)tileRingPosition.x < 0 || (int)tileRingPosition.x >= terrain.width ||
 					(int)tileRingPosition.y < 0 || (int)tileRingPosition.y >= terrain.height) {
-				tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(4);
+				tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
 				tileRingPosition = new Vector2((int)tileRingPosition.x, (int)tileRingPosition.y);
 			}
 
 			String regionId = terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].regionId;
 			RegionType type = Archetypes.Regions.Get(regionId);
 
+			System.out.println("region id : " + regionId + " enemies: ");
 			State.world.SpawnEnemy(tileRingPosition, type.enemyIds[Randomizer.random.nextInt(type.enemyIds.length)]);
 		}
 	}

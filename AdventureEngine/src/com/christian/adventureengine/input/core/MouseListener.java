@@ -93,7 +93,7 @@ public class MouseListener implements IMouseListener, MouseInputListener, MouseW
 		states[mappedButton] = true;
 		
 		for (IMouseClickListener listener : mouseClickListeners) {
-			if (listener.OnClick(position, mappedButton))
+			if (listener.OnClick(position, mappedButton, true))
 				break;
 		}
 	}
@@ -103,16 +103,25 @@ public class MouseListener implements IMouseListener, MouseInputListener, MouseW
 		position.x = event.getX();
 		position.y = event.getY();
 
+		int mappedButton = 0;
 		switch (event.getButton()) {
 		case MouseEvent.BUTTON1:
 			states[LEFT] = false;
+			mappedButton = LEFT;
 			break;
 		case MouseEvent.BUTTON2:
 			states[RIGHT] = false;
+			mappedButton = RIGHT;
 			break;
 		case MouseEvent.BUTTON3:
 			states[MIDDLE] = false;
+			mappedButton = MIDDLE;
 			break;
+		}
+
+		for (IMouseClickListener listener : mouseClickListeners) {
+			if (listener.OnClick(position, mappedButton, false))
+				break;
 		}
 	}
 
@@ -130,8 +139,6 @@ public class MouseListener implements IMouseListener, MouseInputListener, MouseW
 	
 	@Override
 	public  void mouseWheelMoved(MouseWheelEvent e) {
-		System.out.println("Scrolled: " + e.getWheelRotation());
-
 		for (IMouseScrollListener listener : mouseScrollListeners) {
 			listener.OnScroll(e.getWheelRotation());
 		}

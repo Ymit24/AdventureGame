@@ -14,10 +14,14 @@ public class RegionLoaderUtil {
             RegionType type = new RegionType();
             type.id = block.GetString("id");
             type.name = block.GetString("name");
+            type.editorHexColor = block.GetString("editorHexColor");
             type.enemyIds = block.GetString("enemies").split(",");
+            for (String id : type.enemyIds) {
+                System.out.println("\tLoaded enemy type: " + id);
+            }
             Archetypes.Regions.RegisterArchetype(type);
 
-            System.out.println("Registered region " + type.id + ".");
+            System.out.println("Registered region " + type.id + " color: " + type.editorHexColor);
         }
     }
 }

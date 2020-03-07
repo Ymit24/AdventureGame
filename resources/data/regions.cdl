@@ -2,13 +2,16 @@
 id=grass_land
 name=Grass Land
 enemies=blob_easy,impersonator_easy
+editorHexColor=00ff00
 
 [MidLands]
 id=mid_lands
 name=Mid Lands
 enemies=blob_easy,blob_med,impersonator_med
+editorHexColor=0000ff
 
 [HighLands]
 id=high_lands
 name=High Lands
 enemies=blob_med,blob_hard,impersonator_med,impersonator_hard
+editorHexColor=ff0000
