@@ -14,7 +14,7 @@ public class Stats {
         level = 0;
         xp = 0;
         xpNext = 10;
-        moveSpeed = 1;
+        moveSpeed = 3;
     }
 
     public void GainXp(int xp) {

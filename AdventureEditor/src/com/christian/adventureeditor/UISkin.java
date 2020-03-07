@@ -12,8 +12,8 @@ import com.christian.adventureengine.ui.elements.Label.Alignment;
 import com.christian.adventureengine.ui.elements.SplitContainer;
 
 public class UISkin {
-	private static Color uiBackground = new Color(65, 34, 68);
-	private static Color uiForeground = new Color(233, 189, 239);
+	public static Color uiBackground = new Color(65, 34, 68);
+	public static Color uiForeground = new Color(233, 189, 239);
 	public static Label CreateSubHeader(VerticalPushLayout layout, String id, String text) {
 		return new Label(layout, id, text)
 			.SetFontSize(16).SetPadding(Vector2.One().Mul(12))
@@ -55,7 +55,14 @@ public class UISkin {
 		((InputTextField)container.children[1]).SetPadding(new Vector2(8,8)).SetBorderColor(uiForeground).SetBackgroundColor(uiBackground).text.SetAlignment(Alignment.LEFT).SetFontSize(12).SetFontColor(Color.white);
 		return container;
 	}
-	
+
+	public static Button CreateStateButton(VerticalPushLayout layout, String baseId, String text) {
+		Button button = CreateButton(layout, baseId, text);
+		button.SetPadding(new Vector2(12,12));
+		button.text.SetFontSize(12);
+		return button;
+	}
+
 	public static Button CreateButton(VerticalPushLayout layout, String baseId, String text) {
 		Button button = new Button(
 			layout,

@@ -26,7 +26,7 @@ public class EditorBoot {
 		EditorData.layout = renderer.CreateUILayout(new Box(0, 30, 300, 720));
 		
 		renderer.SetRootView(new EditorView());
-		
+
 		EditorData.terrain = TerrainUtil.LoadFromFile();
 		
 //		ControllerManager.AddController(new Controls());

@@ -1,6 +1,10 @@
 package com.christian.adventureengine.data;
 
 import com.christian.adventureengine.utils.Collision;
+import com.christian.adventureengine.utils.Randomizer;
+import com.sun.org.apache.xalan.internal.xsltc.cmdline.getopt.GetOpt;
+
+import java.util.Random;
 
 public class Box {
 	public Vector2 position;
@@ -46,6 +50,13 @@ public class Box {
 	
 	public boolean Includes(Vector2 point) {
 		return point.x <= GetRight() && point.x >= GetLeft() && point.y <= GetBottom() && point.y >= GetTop();
+	}
+
+	public Vector2 RingTile(int ringThickness) {
+		return new Vector2(
+			Randomizer.random.nextBoolean() ? GetLeft() - Randomizer.random.nextInt(ringThickness) : GetRight() + Randomizer.random.nextInt((ringThickness)),
+			Randomizer.random.nextBoolean() ? GetTop() - Randomizer.random.nextInt(ringThickness) : GetBottom() + Randomizer.random.nextInt((ringThickness))
+		);
 	}
 	
 	@Override

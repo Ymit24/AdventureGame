@@ -19,69 +19,59 @@ import com.christian.adventuregame.demo.data.terrain.Terrain;
 import com.christian.adventuregame.demo.data.archetypes.TileType;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
 
-public class UIView extends View implements IButtonCallback {
+public class UIView extends View {
 	
 	public UIView() {
 		VerticalPushLayout mainLayout = EditorData.layout;
-		Color uiBackground = new Color(65, 34, 68);
-		Color uiForeground = new Color(233, 189, 239);
-		
+
 		mainLayout.PushElement(
 			new Label(mainLayout, "terrainEditorTitle_label", "Terrain Editor")
 			.SetFontSize(24).SetPadding(Vector2.One().Mul(16))
-			.SetFontColor(uiForeground)
+			.SetFontColor(UISkin.uiForeground)
 		);
 		
 		mainLayout.PushElement(
 			new LineBreak(mainLayout, "lineBreak_1", 6)
-			.SetColor(uiForeground)
+			.SetColor(UISkin.uiForeground)
 		);
-		
-		mainLayout.PushElement(UISkin.CreateSubHeader(mainLayout, "terrainMetaData_label", "Terrain Meta Data"));
-		
-		mainLayout.PushElement(UISkin.CreateInputWithLabel(mainLayout, "width", "Width", "30"));
-		mainLayout.PushElement(UISkin.CreateInputWithLabel(mainLayout, "height", "Height", "30"));
-		
-		mainLayout.PushElement(
-			new LineBreak(mainLayout, "lineBreak_2", 2)
-			.SetColor(uiForeground)
-		);
-		
-		mainLayout.PushElement(UISkin.CreateInputWithLabel(mainLayout, "name", "Name", "OVERWORLD_V1"));
+//
+//		mainLayout.PushElement(UISkin.CreateSubHeader(mainLayout, "terrainMetaData_label", "Terrain Meta Data"));
+//
+//		mainLayout.PushElement(UISkin.CreateInputWithLabel(mainLayout, "width", "Width", "30"));
+//		mainLayout.PushElement(UISkin.CreateInputWithLabel(mainLayout, "height", "Height", "30"));
+//
+//		mainLayout.PushElement(
+//			new LineBreak(mainLayout, "lineBreak_2", 2)
+//			.SetColor(UISkin.uiForeground)
+//		);
+//
+//		mainLayout.PushElement(UISkin.CreateInputWithLabel(mainLayout, "name", "Name", "OVERWORLD_V1"));
+//
+//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "new", "New").SetCallback(this));
+//
+//		mainLayout.PushElement(
+//			UISkin.CreateSplitContainer(
+//				mainLayout,
+//				"save_and_load",
+//				UISkin.CreateButton(mainLayout, "save", "Save").SetCallback(this),
+//				UISkin.CreateButton(mainLayout, "load", "Load").SetCallback(this)
+//			)
+//		);
+//		mainLayout.PushElement(
+//			new LineBreak(mainLayout, "lineBreak_3", 4)
+//			.SetColor(UISkin.uiForeground)
+//		);
+//
+//		mainLayout.PushElement(UISkin.CreateSubHeader(mainLayout, "terrainTools_label", "Terrain Tools"));
+//
+//		ArrayList<TileType> tileTypes = Archetypes.Tiles.GetAll();
+//		for (TileType type : tileTypes) {
+//			Button button = UISkin.CreateButton(mainLayout, type.id, type.id);
+//			button.SetCallback(this);
+//			mainLayout.PushElement(button);
+//		}
 
-		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "new", "New").SetCallback(this));
-		
-		mainLayout.PushElement(
-			UISkin.CreateSplitContainer(
-				mainLayout,
-				"save_and_load",
-				UISkin.CreateButton(mainLayout, "save", "Save").SetCallback(this),
-				UISkin.CreateButton(mainLayout, "load", "Load").SetCallback(this)
-			)
-		);
-//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "save", "Save"));
-//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "load", "Load"));
-
-		mainLayout.PushElement(
-			new LineBreak(mainLayout, "lineBreak_3", 4)
-			.SetColor(uiForeground)
-		);
-		
-		mainLayout.PushElement(UISkin.CreateSubHeader(mainLayout, "terrainTools_label", "Terrain Tools"));
-		
-		ArrayList<TileType> tileTypes = Archetypes.Tiles.GetAll();
-		for (TileType type : tileTypes) {
-			Button button = UISkin.CreateButton(mainLayout, type.id, type.id);
-			button.SetCallback(this);
-			mainLayout.PushElement(button);
-		}
-		
-//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "grass", "Grass"));
-//		mainLayout.PushElement(UISkin.CreateButton(mainLayout, "water", "Water"));
-		
 		mainLayout.RecalculateHeights();
-		
-//		((Button)mainLayout.FindElementById("update_meta_button")).SetCallback(this);
 	}
 	
 	@Override
@@ -99,24 +89,24 @@ public class UIView extends View implements IButtonCallback {
 		renderer.FillBox(EditorData.layout.bounds, new Color(65, 34, 68));
 	}
 
-	@Override
-	public void OnButtonClicked(String id) {
-		VerticalPushLayout layout = EditorData.layout;
-		
-		if (id.equals("new_button")) {
-			String widthText = ((Label)layout.FindElementById("width_inputfield_label")).text;
-			String heightText = ((Label)layout.FindElementById("height_inputfield_label")).text;
-			System.out.println("Dimensions: <" + widthText + ", " + heightText + ">");
-			
-			EditorData.terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText));
-			
-		} else if (id.equals("save_button")) {
-			TerrainUtil.SaveToFile(EditorData.terrain);
-		} else if (id.equals("load_button")) {
-			EditorData.terrain = TerrainUtil.LoadFromFile();
-		} else {
-			System.out.println("Clicked button: " + id.split("_")[0]);
-			EditorData.paintingTileType = id.split("_")[0];
-		}
-	}
+//	@Override
+//	public void OnButtonClicked(String id) {
+//		VerticalPushLayout layout = EditorData.layout;
+//
+//		if (id.equals("new_button")) {
+//			String widthText = ((Label)layout.FindElementById("width_inputfield_label")).text;
+//			String heightText = ((Label)layout.FindElementById("height_inputfield_label")).text;
+//			System.out.println("Dimensions: <" + widthText + ", " + heightText + ">");
+//
+//			EditorData.terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText));
+//
+//		} else if (id.equals("save_button")) {
+//			TerrainUtil.SaveToFile(EditorData.terrain);
+//		} else if (id.equals("load_button")) {
+//			EditorData.terrain = TerrainUtil.LoadFromFile();
+//		} else {
+//			System.out.println("Clicked button: " + id.split("_")[0]);
+//			EditorData.paintingTileType = id.split("_")[0];
+//		}
+//	}
 }

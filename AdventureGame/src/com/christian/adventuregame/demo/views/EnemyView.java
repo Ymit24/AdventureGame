@@ -17,6 +17,7 @@ public class EnemyView extends View {
 		for (Enemy enemy : State.world.enemies) {
 			EnemyType type = Archetypes.Enemies.Get(enemy.id);
 			renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite(type.textureFilename), enemy);
+			renderer.SetFontSize(24);
 			renderer.SetColor(Color.white);
 			renderer.DrawWorldText(enemy.health + "/" + type.InitialHealth, enemy.Position.Add(new Vector2(-.3f, .25f)));
 		}

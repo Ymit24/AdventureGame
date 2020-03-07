@@ -21,7 +21,7 @@ public class Terrain implements ISerializable {
 		tiles = new Tile[width][height];
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				tiles[x][y] = new Tile(new Vector2(x,y), "grass");
+				tiles[x][y] = new Tile(new Vector2(x,y), "grass", "grass_land");
 			}
 		}
 	}

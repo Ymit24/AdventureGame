@@ -2,6 +2,7 @@ package com.christian.adventuregame.demo.utils.loaders;
 
 import com.christian.adventureengine.utils.DataLoader;
 import com.christian.adventureengine.utils.DataLoader.Block;
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
 import com.christian.adventuregame.demo.data.archetypes.RegionType;
 
 public class RegionLoaderUtil {
@@ -14,6 +15,7 @@ public class RegionLoaderUtil {
             type.id = block.GetString("id");
             type.name = block.GetString("name");
             type.enemyIds = block.GetString("enemies").split(",");
+            Archetypes.Regions.RegisterArchetype(type);
 
             System.out.println("Registered region " + type.id + ".");
         }
