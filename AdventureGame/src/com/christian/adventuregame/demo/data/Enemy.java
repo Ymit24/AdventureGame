@@ -2,6 +2,8 @@ package com.christian.adventuregame.demo.data;
 
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.data.WorldObject;
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
+import com.christian.adventuregame.demo.data.archetypes.EnemyType;
 
 public class Enemy extends WorldObject {
 	public String id;
@@ -14,9 +16,8 @@ public class Enemy extends WorldObject {
 	public Enemy(Vector2 position, String id) {
 		super(position);
 		
-		EnemyType type = EnemyArchetypes.Get(id);
-		System.out.println(type);
-		
+		EnemyType type = Archetypes.Enemies.Get(id);
+
 		this.id = id;
 		this.health = type.InitialHealth;
 		this.moveSpeed = type.MoveSpeed;

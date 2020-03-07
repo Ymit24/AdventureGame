@@ -1,5 +1,7 @@
 package com.christian.adventuregame.demo.data;
 
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
+
 // TODO: Make this serializeable using ISerializable
 public class Stats {
     public int level;
@@ -30,7 +32,7 @@ public class Stats {
         level++;
 
         if (level == 2) {
-            State.world.player.weaponType = WeaponArchetypes.Get("spec_staff");
+            State.world.player.weaponType = Archetypes.Weapons.Get("spec_staff");
         }
     }
 }

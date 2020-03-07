@@ -5,8 +5,8 @@ import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.Camera;
 import com.christian.adventureengine.utils.Randomizer;
-import com.christian.adventuregame.demo.data.EnemyArchetypes;
 import com.christian.adventuregame.demo.data.State;
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
 
 public class EnemySpawner extends Controller {
 	@Override
@@ -26,7 +26,7 @@ public class EnemySpawner extends Controller {
 				Randomizer.random.nextFloat() * (bounds.GetRight()-1),
 				Randomizer.random.nextFloat() * (bounds.GetBottom()-1)
 			);
-			State.world.SpawnEnemy(position, EnemyArchetypes.GetRandomType().id);
+			State.world.SpawnEnemy(position, Archetypes.Enemies.GetRandomType().id);
 		}
 	}
 }

@@ -3,8 +3,8 @@ package com.christian.adventuregame.demo.utils.loaders;
 import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventureengine.utils.DataLoader;
 import com.christian.adventureengine.utils.DataLoader.Block;
-import com.christian.adventuregame.demo.data.terrain.TileArchetypes;
-import com.christian.adventuregame.demo.data.terrain.TileType;
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
+import com.christian.adventuregame.demo.data.archetypes.TileType;
 
 public class TileLoaderUtil {
 	public static void LoadTileTypes() {
@@ -15,7 +15,7 @@ public class TileLoaderUtil {
 			TileType type = new TileType();
 			type.id = block.GetString("id");
 			type.textureFilename = block.GetString("textureFilename");
-			TileArchetypes.RegisterArchetype(type);
+			Archetypes.Tiles.RegisterArchetype(type);
 			
 			Sprites.GetSpriteManager().RegisterSprite(type.textureFilename);
 			

@@ -1,0 +1,14 @@
+[GrassLand]
+id=grass_land
+name=Grass Land
+enemies=blob_easy,impersonator_easy
+
+[MidLands]
+id=mid_lands
+name=Mid Lands
+enemies=blob_easy,blob_med,impersonator_med
+
+[HighLands]
+id=high_lands
+name=High Lands
+enemies=blob_med,blob_hard,impersonator_med,impersonator_hard

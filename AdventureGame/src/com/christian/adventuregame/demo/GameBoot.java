@@ -17,12 +17,13 @@ import com.christian.adventuregame.demo.controllers.EnemySpawner;
 import com.christian.adventuregame.demo.controllers.EnemyWanderController;
 import com.christian.adventuregame.demo.controllers.FloatTextEffectController;
 import com.christian.adventuregame.demo.data.State;
-import com.christian.adventuregame.demo.data.WeaponArchetypes;
 import com.christian.adventuregame.demo.data.World;
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
 import com.christian.adventuregame.demo.utils.loaders.EnemyLoaderUtil;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
+import com.christian.adventuregame.demo.utils.loaders.RegionLoaderUtil;
 import com.christian.adventuregame.demo.utils.loaders.TileLoaderUtil;
-import com.christian.adventuregame.demo.utils.loaders.WeaponLoader;
+import com.christian.adventuregame.demo.utils.loaders.WeaponLoaderUtil;
 import com.christian.adventuregame.demo.views.GameplayView;
 
 public class GameBoot {
@@ -41,9 +42,10 @@ public class GameBoot {
 
 		TileLoaderUtil.LoadTileTypes();
 		EnemyLoaderUtil.LoadEnemyTypes();
-		WeaponLoader.LoadWeapons();
+		WeaponLoaderUtil.LoadWeapons();
+		RegionLoaderUtil.LoadRegions();
 
-		State.world.player.weaponType = WeaponArchetypes.Get("simple_wand");
+		State.world.player.weaponType = Archetypes.Weapons.Get("simple_wand");
 
 		State.terrain = TerrainUtil.LoadFromFile();
 		

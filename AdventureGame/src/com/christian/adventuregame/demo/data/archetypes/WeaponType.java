@@ -1,7 +1,6 @@
-package com.christian.adventuregame.demo.data;
+package com.christian.adventuregame.demo.data.archetypes;
 
-public class WeaponType {
-    public String id;
+public class WeaponType extends Archetype {
     public String projectileEmitter;
     public String projectileBehavior;
 

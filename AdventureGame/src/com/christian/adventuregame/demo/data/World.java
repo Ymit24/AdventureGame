@@ -3,6 +3,7 @@ package com.christian.adventuregame.demo.data;
 import java.util.ArrayList;
 
 import com.christian.adventureengine.data.Vector2;
+import com.christian.adventuregame.demo.data.archetypes.WeaponType;
 
 public class World {
 	public Player player;

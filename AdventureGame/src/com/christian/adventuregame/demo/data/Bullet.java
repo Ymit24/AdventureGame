@@ -2,6 +2,7 @@ package com.christian.adventuregame.demo.data;
 
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.data.WorldObject;
+import com.christian.adventuregame.demo.data.archetypes.WeaponType;
 
 public class Bullet extends WorldObject {
 	public static final int SPEED = 7;
@@ -33,7 +34,6 @@ public class Bullet extends WorldObject {
 
 	public void OffsetWave() {
 		this.timer += (float)Math.PI / 1.0;
-		System.out.println("Timer: " + timer + " sine: " + (Math.sin(timer * 20)));
 	}
 	
 	public Vector2 GetDirection() {

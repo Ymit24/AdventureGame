@@ -1,6 +1,7 @@
 package com.christian.adventureeditor.views;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import com.christian.adventureeditor.EditorData;
 import com.christian.adventureeditor.UISkin;
@@ -13,9 +14,9 @@ import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventureengine.ui.elements.Button;
 import com.christian.adventureengine.ui.elements.Label;
 import com.christian.adventureengine.ui.elements.LineBreak;
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
 import com.christian.adventuregame.demo.data.terrain.Terrain;
-import com.christian.adventuregame.demo.data.terrain.TileArchetypes;
-import com.christian.adventuregame.demo.data.terrain.TileType;
+import com.christian.adventuregame.demo.data.archetypes.TileType;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
 
 public class UIView extends View implements IButtonCallback {
@@ -68,7 +69,7 @@ public class UIView extends View implements IButtonCallback {
 		
 		mainLayout.PushElement(UISkin.CreateSubHeader(mainLayout, "terrainTools_label", "Terrain Tools"));
 		
-		TileType[] tileTypes = TileArchetypes.GetAll();
+		ArrayList<TileType> tileTypes = Archetypes.Tiles.GetAll();
 		for (TileType type : tileTypes) {
 			Button button = UISkin.CreateButton(mainLayout, type.id, type.id);
 			button.SetCallback(this);

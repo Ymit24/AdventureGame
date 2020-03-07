@@ -4,8 +4,8 @@ import com.christian.adventureengine.audio.AudioPlayer;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.utils.Collision;
-import com.christian.adventureengine.utils.Randomizer;
 import com.christian.adventuregame.demo.data.*;
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
 
 import java.awt.*;
 
@@ -25,7 +25,7 @@ public class BulletEnemyCollisionController extends Controller {
 					if (enemy.health <= 0)
 					{
 						State.world.enemies.remove(enemy);
-						int xpGain = EnemyArchetypes.Get(enemy.id).xpDrop;
+						int xpGain = Archetypes.Enemies.Get(enemy.id).xpDrop;
 						State.world.player.stats.GainXp(xpGain);
 						State.floatTextEffects.add(new FloatTextEffect("+" + xpGain, new Vector2(State.world.player.Position), 1.5f, 0.75f, Color.blue));
 					}

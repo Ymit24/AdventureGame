@@ -3,8 +3,10 @@ package com.christian.adventuregame.demo.utils;
 import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.utils.Randomizer;
 import com.christian.adventuregame.demo.data.State;
-import com.christian.adventuregame.demo.data.WeaponArchetypes;
-import com.christian.adventuregame.demo.data.WeaponType;
+import com.christian.adventuregame.demo.data.archetypes.Archetypes;
+import com.christian.adventuregame.demo.data.archetypes.WeaponType;
+
+import java.util.ArrayList;
 
 public class ProjectileEmitterUtil {
     public static void Emit(WeaponType type, Vector2 basePosition, Vector2 direction) {
@@ -69,9 +71,9 @@ public class ProjectileEmitterUtil {
         CircleShot(basePosition, 12, type);
     }
     public static void CircleShot(Vector2 basePosition, int shotsToFire, WeaponType type) {
-        WeaponType[] allTypes = WeaponArchetypes.GetAll();
+        ArrayList<WeaponType> allTypes = Archetypes.Weapons.GetAll();
         for (int i = 0; i < 360; i+=360/shotsToFire) {
-            Single(basePosition, new Vector2(i), allTypes[Randomizer.random.nextInt(allTypes.length)]);
+            Single(basePosition, new Vector2(i), allTypes.get(Randomizer.random.nextInt(allTypes.size())));
         }
     }
 }
