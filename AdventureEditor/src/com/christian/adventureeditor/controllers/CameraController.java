@@ -36,7 +36,8 @@ public class CameraController extends Controller implements IMouseScrollListener
 	@Override
 	public void Update(float deltaTime) {
 		Vector2 direction = new Vector2();
-		
+//		size += deltaTime * 0.25f;
+//		Camera.GetCamera().CenterZoom(size);
 		if (Input.GetMouseListener().isMouseButtonDown(1)) {
 			Vector2 moveBy = Input.GetMouseListener().GetPosition().Sub(lastMousePos);
 			

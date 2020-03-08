@@ -165,10 +165,10 @@ public class CoreRenderer implements IRenderer {
 		
 		graphics.drawImage(
 			sprite.GetImage(),
-			(int)pixelLocation.x,
-			(int)pixelLocation.y,
-			(int)((camera.GetPixelsPerWorldUnit().x / sprite.PixelsToWorld.x) * sprite.GetImage().getWidth()),
-			(int)((camera.GetPixelsPerWorldUnit().y / sprite.PixelsToWorld.y) * sprite.GetImage().getHeight()),
+			Math.round(pixelLocation.x),
+			Math.round(pixelLocation.y),
+			Math.round((camera.GetPixelsPerWorldUnit().x / sprite.PixelsToWorld.x) * sprite.GetImage().getWidth()),
+			Math.round((camera.GetPixelsPerWorldUnit().y / sprite.PixelsToWorld.y) * sprite.GetImage().getHeight()),
 			null
 		);
 	}

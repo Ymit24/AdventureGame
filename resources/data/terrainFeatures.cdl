@@ -1,0 +1,5 @@
+[Tree]
+id=tree
+name=Grassland Tree
+textureFilename=tree_0.png
+collision=true

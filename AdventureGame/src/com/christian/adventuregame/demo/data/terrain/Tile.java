@@ -9,11 +9,13 @@ import com.christian.adventureengine.utils.Serializer;
 public class Tile extends WorldObject implements ISerializable {
 	public String type;
 	public String regionId;
+	public String terrainFeatureId;
 
-	public Tile(Vector2 position, String type, String regionId) {
+	public Tile(Vector2 position, String type, String regionId, String terrainFeatureId) {
 		super(position);
 		this.type = type;
 		this.regionId = regionId;
+		this.terrainFeatureId = terrainFeatureId;
 	}
 	
 	private Tile(WorldObject object) {
@@ -25,12 +27,14 @@ public class Tile extends WorldObject implements ISerializable {
 		super.Serialize(serializer);
 		serializer.WriteString(type);
 		serializer.WriteString(regionId);
+		serializer.WriteString(terrainFeatureId);
 	}
 
 	public static Tile Deserialize(Deserializer deserializer) {
 		Tile tile = new Tile(WorldObject.Deserialize(deserializer));
 		tile.type = deserializer.ReadString();
 		tile.regionId = deserializer.ReadString();
+		tile.terrainFeatureId = deserializer.ReadString();
 		return tile;
 	}
 }

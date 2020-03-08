@@ -14,6 +14,7 @@ public class MainTools implements IButtonCallback {
         MetaDataTools metaDataTools = new MetaDataTools();
         TerrainTools terrainTools = new TerrainTools();
         RegionTools regionTools = new RegionTools();
+        TerrainFeatureTools terrainFeatureTools = new TerrainFeatureTools();
 
         mainLayout.PushElement(
                 new Label(mainLayout, "terrainEditorTitle_label", "Terrain Editor")
@@ -34,6 +35,7 @@ public class MainTools implements IButtonCallback {
                                 UISkin.CreateStateButton(mainLayout, "metaMode", "Meta").SetCallback(this),
                                 UISkin.CreateStateButton(mainLayout, "terrainMode", "Terrain").SetCallback(this),
                                 UISkin.CreateStateButton(mainLayout, "regionMode", "Region").SetCallback(this),
+                                UISkin.CreateStateButton(mainLayout, "terrainFeatureMode", "Features").SetCallback(this)
                         }
                 )
         );
@@ -46,11 +48,12 @@ public class MainTools implements IButtonCallback {
         mainLayout.PushElement(
                 new TabContainer(
                         mainLayout,
-                        "testContainer",
+                        "editorModeTabs",
                         new Container[] {
-                                new Container(mainLayout, "testContainer1", metaDataTools.Generate(mainLayout)),
-                                new Container(mainLayout, "testContainer2", terrainTools.Generate(mainLayout)),
-                                new Container(mainLayout, "testContainer2", regionTools.Generate(mainLayout))
+                                new Container(mainLayout, "_", metaDataTools.Generate(mainLayout)),
+                                new Container(mainLayout, "_", terrainTools.Generate(mainLayout)),
+                                new Container(mainLayout, "_", regionTools.Generate(mainLayout)),
+                                new Container(mainLayout, "_", terrainFeatureTools.Generate(mainLayout))
                         }
                 )
         );
@@ -62,17 +65,21 @@ public class MainTools implements IButtonCallback {
     public void OnButtonClicked(String id) {
         VerticalPushLayout layout = EditorData.layout;
         if (id.contains("metaMode")) {
-            TabContainer tc = (TabContainer)layout.FindElementById("testContainer");
+            TabContainer tc = (TabContainer)layout.FindElementById("editorModeTabs");
             tc.SetActiveIndex(0);
             EditorData.state = EditorData.EditorState.MetaData;
         } else if (id.contains("terrainMode")) {
-            TabContainer tc = (TabContainer)layout.FindElementById("testContainer");
+            TabContainer tc = (TabContainer)layout.FindElementById("editorModeTabs");
             EditorData.state = EditorData.EditorState.Terrain;
             tc.SetActiveIndex(1);
         } else if (id.contains("regionMode")) {
-            TabContainer tc = (TabContainer)layout.FindElementById("testContainer");
+            TabContainer tc = (TabContainer)layout.FindElementById("editorModeTabs");
             EditorData.state = EditorData.EditorState.Region;
             tc.SetActiveIndex(2);
+        } else if (id.contains("terrainFeatureMode")) {
+            TabContainer tc = (TabContainer)layout.FindElementById("editorModeTabs");
+            EditorData.state = EditorData.EditorState.Features;
+            tc.SetActiveIndex(3);
         }
     }
 }

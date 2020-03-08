@@ -65,6 +65,8 @@ public class Camera {
 			screenSpace.size.x / worldSpaceView.x,
 			screenSpace.size.y / worldSpaceView.y
 		);
+		pixelsPerWorldUnit.x = Math.round(pixelsPerWorldUnit.x * 2) / 2.0f;
+		pixelsPerWorldUnit.y = Math.round(pixelsPerWorldUnit.y * 2) / 2.0f;
 		this.worldSpace = worldSpaceView;
 	}
 	

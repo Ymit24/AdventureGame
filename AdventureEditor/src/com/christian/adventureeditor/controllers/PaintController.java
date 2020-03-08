@@ -48,6 +48,10 @@ public class PaintController extends Controller implements IMouseClickListener {
 				EditorData.terrain.tiles[tileX][tileY].regionId = EditorData.paintingRegionType;
 				break;
 			}
+			case Features:
+			{
+				EditorData.terrain.tiles[tileX][tileY].terrainFeatureId = EditorData.paintingFeatureType;
+			}
 		}
 	}
 }

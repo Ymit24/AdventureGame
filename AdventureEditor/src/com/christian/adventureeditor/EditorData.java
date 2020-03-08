@@ -17,4 +17,5 @@ public class EditorData {
 
 	public static String paintingTileType = "grass";
 	public static String paintingRegionType = "grass_land";
+	public static String paintingFeatureType = "tree";
 }

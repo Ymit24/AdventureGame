@@ -8,11 +8,8 @@ import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventuregame.demo.data.State;
-import com.christian.adventuregame.demo.data.archetypes.Archetype;
-import com.christian.adventuregame.demo.data.archetypes.Archetypes;
-import com.christian.adventuregame.demo.data.archetypes.RegionType;
+import com.christian.adventuregame.demo.data.archetypes.*;
 import com.christian.adventuregame.demo.data.terrain.Terrain;
-import com.christian.adventuregame.demo.data.archetypes.TileType;
 import com.christian.adventuregame.demo.views.TerrainView;
 import com.sun.org.apache.xalan.internal.xsltc.dom.CachedNodeListIterator;
 
@@ -47,16 +44,24 @@ public class EditorView extends View {
 						Color regionColor = Color.decode("#" + regionType.editorHexColor);
 						regionColor = new Color(regionColor.getRed(), regionColor.getGreen(), regionColor.getBlue(), 50);
 						renderer.FillBox(
-							new Box(
-								Camera.GetCamera().CalculateWorldToScreen(terrain.tiles[x][y].Position),
-								Camera.GetCamera().GetPixelsPerWorldUnit()
-							),
-							regionColor
+								new Box(
+										Camera.GetCamera().CalculateWorldToScreen(terrain.tiles[x][y].Position),
+										Camera.GetCamera().GetPixelsPerWorldUnit()
+								),
+								regionColor
 						);
+					} else if (EditorData.state.equals(EditorData.EditorState.Features) && !terrain.tiles[x][y].terrainFeatureId.equals("none")) {
+						TerrainFeatureType featureType = Archetypes.TerrianFeatures.Get(terrain.tiles[x][y].terrainFeatureId);
+						renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite(featureType.textureFilename), terrain.tiles[x][y]);
 					}
 				}
 			}
 		}
 		uiView.draw(renderer);
+
+		renderer.SetFontSize(24);
+		renderer.SetColor(Color.black);
+		String m = "PPWU: " + Camera.GetCamera().GetPixelsPerWorldUnit();
+		renderer.DrawScreenText(m, new Vector2(renderer.GetDisplayWidth()-renderer.GetFontWidth(m), 0));
 	}
 }

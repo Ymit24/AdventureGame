@@ -14,6 +14,7 @@ import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
 import com.christian.adventuregame.demo.utils.loaders.RegionLoaderUtil;
+import com.christian.adventuregame.demo.utils.loaders.TerrainFeatureLoader;
 import com.christian.adventuregame.demo.utils.loaders.TileLoaderUtil;
 
 public class EditorBoot {
@@ -26,6 +27,7 @@ public class EditorBoot {
 		
 		TileLoaderUtil.LoadTileTypes();
 		RegionLoaderUtil.LoadRegions();
+		TerrainFeatureLoader.Load();
 		EditorData.layout = renderer.CreateUILayout(new Box(0, 30, 300, 720));
 		new MainTools();
 		
