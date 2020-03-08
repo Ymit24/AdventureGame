@@ -7,6 +7,7 @@ import com.christian.adventureengine.input.Input;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.Player;
+import com.christian.adventuregame.demo.utils.CollisionMovementUtil;
 
 public class PlayerMovementController extends Controller {
 	@Override
@@ -34,7 +35,8 @@ public class PlayerMovementController extends Controller {
 		if (direction.Magnitude() > 0)
 		{
 			pos = pos.Add(direction.Mul(deltaTime));
-			player.Position = pos;		
+			Vector2 newDir = CollisionMovementUtil.TryMove(player, direction.Mul(deltaTime));
+			player.Position = player.Position.Add(newDir);
 		}
 	}
 }

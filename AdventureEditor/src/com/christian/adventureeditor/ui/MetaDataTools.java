@@ -19,7 +19,11 @@ public class MetaDataTools implements IButtonCallback {
                 new LineBreak(mainLayout, "lineBreak_2", 2)
                         .SetColor(UISkin.uiForeground),
                 UISkin.CreateInputWithLabel(mainLayout, "name", "Name", "OVERWORLD_V1"),
-                UISkin.CreateButton(mainLayout, "new", "New").SetCallback(this),
+                UISkin.CreateSplitContainer(
+                        mainLayout,"_",
+                        UISkin.CreateButton(mainLayout, "new", "New").SetCallback(this),
+                        UISkin.CreateButton(mainLayout, "update", "Update").SetCallback(this)
+                ),
                 UISkin.CreateSplitContainer(
                         mainLayout,
                         "save_and_load",
@@ -35,10 +39,16 @@ public class MetaDataTools implements IButtonCallback {
         if (id.equals("new_button")) {
             String widthText = ((Label)layout.FindElementById("width_inputfield_label")).text;
             String heightText = ((Label)layout.FindElementById("height_inputfield_label")).text;
+            EditorData.terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText));
+        } else if (id.equals("update_button")) {
+            String widthText = ((Label)layout.FindElementById("width_inputfield_label")).text;
+            String heightText = ((Label)layout.FindElementById("height_inputfield_label")).text;
             System.out.println("Dimensions: <" + widthText + ", " + heightText + ">");
 
-            EditorData.terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText));
-        } else if (id.equals("save_button")) {
+            Terrain terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText));
+            terrain.CopyFrom(EditorData.terrain);
+            EditorData.terrain = terrain;
+        }  else if (id.equals("save_button")) {
             TerrainUtil.SaveToFile(EditorData.terrain);
         } else if (id.equals("load_button")) {
             EditorData.terrain = TerrainUtil.LoadFromFile();

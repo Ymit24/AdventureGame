@@ -29,6 +29,6 @@ public class TerrainFeatureTools implements IButtonCallback {
     @Override
     public void OnButtonClicked(String id) {
         VerticalPushLayout layout = EditorData.layout;
-        EditorData.paintingFeatureType = id.split("_")[0];
+        EditorData.paintingFeatureType = id.split("_button")[0];
     }
 }

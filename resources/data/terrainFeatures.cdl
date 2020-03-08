@@ -3,3 +3,15 @@ id=tree
 name=Grassland Tree
 textureFilename=tree_0.png
 collision=true
+
+[SwampTree]
+id=swamp_tree
+name=Swamp Tree
+textureFilename=swamp/swamp_tree.png
+collision=true
+
+[SwampStones]
+id=swamp_rocks
+name=Swamp Rocks
+textureFilename=swamp/swamp_rocks.png
+collision=false

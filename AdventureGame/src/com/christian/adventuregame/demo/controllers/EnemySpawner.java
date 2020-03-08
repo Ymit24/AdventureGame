@@ -28,10 +28,20 @@ public class EnemySpawner extends Controller {
 			tileRingPosition = new Vector2((int)tileRingPosition.x, (int)tileRingPosition.y);
 
 			Terrain terrain = State.terrain;
-			while ( (int)tileRingPosition.x < 0 || (int)tileRingPosition.x >= terrain.width ||
-					(int)tileRingPosition.y < 0 || (int)tileRingPosition.y >= terrain.height) {
-				tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
-				tileRingPosition = new Vector2((int)tileRingPosition.x, (int)tileRingPosition.y);
+			while (true) {
+				while ((int) tileRingPosition.x < 0 || (int) tileRingPosition.x >= terrain.width ||
+						(int) tileRingPosition.y < 0 || (int) tileRingPosition.y >= terrain.height) {
+					tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
+					tileRingPosition = new Vector2((int) tileRingPosition.x, (int) tileRingPosition.y);
+				}
+				if (terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].isWalkable())
+				{
+					break;
+				}
+				else {
+					tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
+					tileRingPosition = new Vector2((int) tileRingPosition.x, (int) tileRingPosition.y);
+				}
 			}
 
 			String regionId = terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].regionId;

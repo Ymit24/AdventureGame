@@ -11,7 +11,7 @@ public class World {
 	public ArrayList<Bullet> bullets;
 	
 	public World() {
-		player = new Player(new Vector2(0,0));
+		player = new Player(new Vector2(8,8));
 		enemies = new ArrayList<Enemy>();
 		bullets = new ArrayList<Bullet>();
 	}

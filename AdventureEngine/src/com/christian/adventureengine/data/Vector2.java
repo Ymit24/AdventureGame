@@ -21,7 +21,7 @@ public class Vector2 implements ISerializable {
 	}
 	
 	public static Vector2 Zero() {
-		return new Vector2(1, 1);
+		return new Vector2(0, 0);
 	}
 	
 	public Vector2(Vector2 other) {
@@ -92,5 +92,9 @@ public class Vector2 implements ISerializable {
 		vector.x = deserializer.ReadFloat();
 		vector.y = deserializer.ReadFloat();
 		return vector;
+	}
+
+	public boolean equals(Vector2 other) {
+		return other.x == x && other.y == y;
 	}
 }

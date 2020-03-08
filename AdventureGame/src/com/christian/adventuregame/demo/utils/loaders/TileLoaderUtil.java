@@ -15,6 +15,7 @@ public class TileLoaderUtil {
 			TileType type = new TileType();
 			type.id = block.GetString("id");
 			type.textureFilename = block.GetString("textureFilename");
+			type.isWalkable = block.GetBoolean("isWalkable");
 			Archetypes.Tiles.RegisterArchetype(type);
 			
 			Sprites.GetSpriteManager().RegisterSprite(type.textureFilename);

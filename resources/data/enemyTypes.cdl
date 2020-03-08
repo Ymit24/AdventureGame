@@ -39,3 +39,17 @@ moveSpeed=3.4
 health=154
 textureFilename=impersonator_2.png
 xpDrop=13
+
+[Spider]
+id=spider
+moveSpeed=2.5
+health=425
+textureFilename=swamp/spider.png
+xpDrop=27
+
+[SwampBlob]
+id=swamp_blob
+moveSpeed=2
+health=640
+textureFilename=swamp/swamp_blob.png
+xpDrop=40

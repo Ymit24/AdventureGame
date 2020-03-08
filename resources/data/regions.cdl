@@ -15,3 +15,9 @@ id=high_lands
 name=High Lands
 enemies=blob_med,blob_hard,impersonator_med,impersonator_hard
 editorHexColor=ff0000
+
+[Swamp]
+id=swamp
+name=Swamp
+enemies=spider,swamp_blob
+editorHexColor=554456

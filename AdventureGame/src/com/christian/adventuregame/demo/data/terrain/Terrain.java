@@ -21,7 +21,7 @@ public class Terrain implements ISerializable {
 		tiles = new Tile[width][height];
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				tiles[x][y] = new Tile(new Vector2(x,y), "grass", "grass_land", null);
+				tiles[x][y] = new Tile(new Vector2(x,y), "grass", "grass_land", "none");
 			}
 		}
 	}
@@ -62,5 +62,13 @@ public class Terrain implements ISerializable {
 		}
 		
 		return terrain;
+	}
+
+	public void CopyFrom(Terrain other) {
+		for (int x = 0; x < Math.min(width, other.width); x++) {
+			for (int y = 0; y < Math.min(height, other.height); y++) {
+				this.tiles[x][y] = other.tiles[x][y];
+			}
+		}
 	}
 }
