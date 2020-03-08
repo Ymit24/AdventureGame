@@ -131,6 +131,26 @@ public class CoreRenderer implements IRenderer {
 		currentFont = Fonts.GetFont(size);
 		graphics.setFont(currentFont);
 	}
+
+	@Override
+	public void SetFontFamily(String family) {
+		Font newFont = Fonts.GetFont(family, currentFont.getSize());
+		if (newFont != null)
+		{
+			currentFont = newFont;
+			graphics.setFont(currentFont);
+		}
+	}
+
+	@Override
+	public void SetFontFamily(String family, int size) {
+		Font newFont = Fonts.GetFont(family, size);
+		if (newFont != null)
+		{
+			currentFont = newFont;
+			graphics.setFont(currentFont);
+		}
+	}
 	
 	@Override
 	public void SetColor(Color color) {

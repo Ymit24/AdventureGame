@@ -19,6 +19,7 @@ import com.christian.adventuregame.demo.controllers.FloatTextEffectController;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.World;
 import com.christian.adventuregame.demo.data.archetypes.Archetypes;
+import com.christian.adventuregame.demo.ui.GameUI;
 import com.christian.adventuregame.demo.utils.loaders.*;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
 import com.christian.adventuregame.demo.views.GameplayView;
@@ -42,6 +43,8 @@ public class GameBoot {
 		WeaponLoaderUtil.LoadWeapons();
 		RegionLoaderUtil.LoadRegions();
 		TerrainFeatureLoader.Load();
+		State.mainUILayout = renderer.CreateUILayout(new Box(1000, 150, 280, 570));
+		new GameUI().Create();
 
 		State.world.player.weaponType = Archetypes.Weapons.Get("simple_wand");
 

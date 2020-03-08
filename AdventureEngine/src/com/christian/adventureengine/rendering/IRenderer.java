@@ -25,6 +25,8 @@ public interface IRenderer {
 
 	public void SetFontSize(int size);
 	public void SetColor(Color color);
+	public void SetFontFamily(String family);
+	public void SetFontFamily(String family, int size);
 	
 	public int GetFontWidth(String message);
 	

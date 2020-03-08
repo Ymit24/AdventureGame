@@ -33,13 +33,13 @@ public class VerticalPushLayout implements IMouseClickListener, IKeyListener {
 		currentY = (int)bounds.position.y;
 		for (Element el : elements) {
 			int height = el.CalculateHeight();
-			el.UpdateBounds(new Box(0, currentY, bounds.size.x, height));
+			el.UpdateBounds(new Box(bounds.position.x, currentY, bounds.size.x, height));
 			currentY += height;
 		}
 	}
 	
 	public void PushElement(Element element) {
-		element.bounds.position = new Vector2(0, currentY);
+		element.bounds.position = new Vector2(bounds.position.x, currentY);
 		currentY += element.bounds.size.y;
 		
 		elements.add(element);

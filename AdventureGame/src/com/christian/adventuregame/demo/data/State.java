@@ -2,6 +2,7 @@ package com.christian.adventuregame.demo.data;
 
 import java.util.ArrayList;
 
+import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventuregame.demo.data.terrain.Terrain;
 
 public class State {
@@ -13,4 +14,6 @@ public class State {
 	public static float enemySpawnTimer = 0;
 	
 	public static ArrayList<FloatTextEffect> floatTextEffects = new ArrayList<>();
+
+	public static VerticalPushLayout mainUILayout;
 }
