@@ -1,13 +1,12 @@
 package com.christian.adventuregame.demo.controllers;
 
-import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.Controller;
-import com.christian.adventureengine.rendering.Camera;
-import com.christian.adventureengine.utils.Randomizer;
 import com.christian.adventuregame.demo.data.Enemy;
 import com.christian.adventuregame.demo.data.State;
+import com.christian.adventuregame.demo.utils.EnemyMovementAi;
 
 public class EnemyWanderController extends Controller {
+	private static final float WANDER_RANGE = 5;
 	@Override
 	public void Update(float deltaTime) {
 		for (Enemy enemy : State.world.enemies) {
@@ -19,32 +18,8 @@ public class EnemyWanderController extends Controller {
 					continue;
 				}
 			}
-			
-			float wanderRange = 5;
-			
-			float wanderX = Randomizer.Between(
-				Math.max(
-					Camera.GetCamera().GetCameraBounds().GetLeft(),
-					enemy.Position.x - wanderRange
-				),
-				Math.min(
-					Camera.GetCamera().GetCameraBounds().GetRight() - 1,
-					enemy.Position.x + wanderRange
-				)
-			);
-			
-			float wanderY = Randomizer.Between(
-					Math.max(
-						Camera.GetCamera().GetCameraBounds().GetTop(),
-						enemy.Position.y - wanderRange
-					),
-					Math.min(
-						Camera.GetCamera().GetCameraBounds().GetBottom() - 1,
-						enemy.Position.y + wanderRange
-					)
-				);
-			
-			enemy.wanderingTarget = new Vector2(wanderX, wanderY);
+
+			enemy.wanderingTarget = EnemyMovementAi.GetWanderTarget(enemy.Position, WANDER_RANGE);
 			enemy.isWandering = true;
 		}
 	}

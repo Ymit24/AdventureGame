@@ -24,14 +24,14 @@ public class EnemySpawner extends Controller {
 			Camera c = Camera.GetCamera();
 			Box bounds = c.GetCameraBounds();
 
-			Vector2 tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
+			Vector2 tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(2);
 			tileRingPosition = new Vector2((int)tileRingPosition.x, (int)tileRingPosition.y);
 
 			Terrain terrain = State.terrain;
 			while (true) {
 				while ((int) tileRingPosition.x < 0 || (int) tileRingPosition.x >= terrain.width ||
 						(int) tileRingPosition.y < 0 || (int) tileRingPosition.y >= terrain.height) {
-					tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
+					tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(2);
 					tileRingPosition = new Vector2((int) tileRingPosition.x, (int) tileRingPosition.y);
 				}
 				if (terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].isWalkable())
