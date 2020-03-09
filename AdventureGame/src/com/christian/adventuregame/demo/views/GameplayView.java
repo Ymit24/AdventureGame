@@ -6,6 +6,7 @@ import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.View;
+import com.christian.adventuregame.demo.data.Inventory;
 import com.christian.adventuregame.demo.data.State;
 
 public class GameplayView extends View {
@@ -16,6 +17,7 @@ public class GameplayView extends View {
 	private EnemyView enemyView;
 	private FloatTextEffectView hitEffectView;
 	private PlayerStatsView playerStatsView;
+	private InventoryView inventoryView;
 
 	public GameplayView() {
 		playerView = new PlayerView();
@@ -24,6 +26,7 @@ public class GameplayView extends View {
 		enemyView = new EnemyView();
 		hitEffectView = new FloatTextEffectView();
 		playerStatsView = new PlayerStatsView();
+		inventoryView = new InventoryView();
 	}
 
 	@Override
@@ -34,6 +37,7 @@ public class GameplayView extends View {
 		bulletView.draw(renderer);
 		hitEffectView.draw(renderer);
 		playerStatsView.draw(renderer);
+		inventoryView.draw(renderer);
 
 //		renderer.FillBox(State.mainUILayout.bounds, Color.black);
 

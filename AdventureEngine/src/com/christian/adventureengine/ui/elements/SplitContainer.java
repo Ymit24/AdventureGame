@@ -1,16 +1,21 @@
 package com.christian.adventureengine.ui.elements;
 
 import com.christian.adventureengine.data.Box;
+import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.ui.VerticalPushLayout;
+
+import java.awt.*;
 
 public class SplitContainer extends Element {
 	private float splitPercent;
+	private Color backgroundColor;
 
 	public SplitContainer(VerticalPushLayout layout, String id, Element left, Element right, float splitPercent) {
 		super(layout, id);
 		children = new Element[2];
 		children[0] = left;
 		children[1] = right;
+		this.backgroundColor = Color.black;
 		this.splitPercent = splitPercent;
 	}
 
@@ -18,6 +23,12 @@ public class SplitContainer extends Element {
 		super(layout, id);
 		this.children = children;
 		this.splitPercent = 1 / (float) children.length;
+		this.backgroundColor = Color.black;
+	}
+
+	public SplitContainer SetBackgroundColor(Color color) {
+		this.backgroundColor = color;
+		return this;
 	}
 
 	@Override
@@ -48,5 +59,11 @@ public class SplitContainer extends Element {
 				);
 			}
 		}
+	}
+
+	@Override
+	public void draw(IRenderer renderer) {
+		renderer.FillBox(bounds, backgroundColor);
+		super.draw(renderer);
 	}
 }

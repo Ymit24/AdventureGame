@@ -5,7 +5,10 @@ import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.ISpriteType;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
+import com.christian.adventuregame.demo.data.Inventory;
 import com.christian.adventuregame.demo.data.State;
+import com.christian.adventuregame.demo.data.archetypes.ItemType;
+import com.christian.adventuregame.demo.ui.elements.InventorySlot;
 
 public class PlayerView extends View {
 

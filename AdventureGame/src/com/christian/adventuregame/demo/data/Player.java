@@ -10,13 +10,14 @@ public class Player extends WorldObject {
 	public float ShootingTimer;
 
 	public Stats stats;
-	public WeaponType weaponType;
+	public Inventory inventory;
 
 	public Player(Vector2 position) {
 		super(position);
 		ShootingTimer = 0;
 
 		stats = new Stats();
+		inventory = new Inventory(9);
 	}
 	
 }

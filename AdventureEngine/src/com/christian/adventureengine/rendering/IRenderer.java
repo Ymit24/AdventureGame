@@ -35,6 +35,7 @@ public interface IRenderer {
 
 	public void DrawScreenText(String message, Vector2 screenLocation);
 	public void DrawScreenSprite(Sprite sprite, Vector2 screenLocation);
+	public void DrawScreenSprite(Sprite sprite, Box screenBounds);
 	
 	public void FillBox(Box box, Color color);
 }

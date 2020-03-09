@@ -21,6 +21,7 @@ public abstract class Element {
 		bounds = new Box(0,0,0,0);
 		padding = Vector2.Zero();
 		isActive = false;
+		children = new Element[] {};
 	}
 	
 	public Element HitTest(Vector2 screenLocation) {

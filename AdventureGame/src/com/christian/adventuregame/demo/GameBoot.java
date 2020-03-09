@@ -7,15 +7,7 @@ import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
-import com.christian.adventuregame.demo.controllers.BulletEnemyCollisionController;
-import com.christian.adventuregame.demo.controllers.BulletMovementController;
-import com.christian.adventuregame.demo.controllers.BulletSpawnController;
-import com.christian.adventuregame.demo.controllers.CameraController;
-import com.christian.adventuregame.demo.controllers.PlayerMovementController;
-import com.christian.adventuregame.demo.controllers.EnemyMovement;
-import com.christian.adventuregame.demo.controllers.EnemySpawner;
-import com.christian.adventuregame.demo.controllers.EnemyWanderController;
-import com.christian.adventuregame.demo.controllers.FloatTextEffectController;
+import com.christian.adventuregame.demo.controllers.*;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.World;
 import com.christian.adventuregame.demo.data.archetypes.Archetypes;
@@ -43,10 +35,12 @@ public class GameBoot {
 		WeaponLoaderUtil.LoadWeapons();
 		RegionLoaderUtil.LoadRegions();
 		TerrainFeatureLoader.Load();
+		ItemLoader.Load();
+
 		State.mainUILayout = renderer.CreateUILayout(new Box(1000, 150, 280, 570));
 		new GameUI().Create();
 
-		State.world.player.weaponType = Archetypes.Weapons.Get("simple_wand");
+		State.world.player.inventory.equippedWeaponItem = Archetypes.Items.Get("purple_wand_item");
 
 		State.terrain = TerrainUtil.LoadFromFile();
 		
@@ -54,7 +48,9 @@ public class GameBoot {
 		renderer.SetRootView(view);
 
 		AudioPlayer.Play("background.wav");
-		
+
+		ControllerManager.AddController(new WeaponEquipSwitcher());
+		ControllerManager.AddController(new InventoryDragController());
 		ControllerManager.AddController(new PlayerMovementController());
 		ControllerManager.AddController(new FloatTextEffectController());
 		ControllerManager.AddController(new EnemySpawner());

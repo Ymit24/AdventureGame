@@ -221,6 +221,22 @@ public class CoreRenderer implements IRenderer {
 			null
 		);
 	}
+
+	@Override
+	public void DrawScreenSprite(Sprite sprite, Box screenBounds) {
+		if (canDraw == false)
+			return;
+
+		graphics.setClip(0, 0, displayWidth, displayHeight);
+		graphics.drawImage(
+				sprite.GetImage(),
+				(int)screenBounds.position.x,
+				(int)screenBounds.position.y,
+				(int)screenBounds.size.x,
+				(int)screenBounds.size.y,
+				null
+		);
+	}
 	
 	@Override
 	public void FillBox(Box box, Color color) {
