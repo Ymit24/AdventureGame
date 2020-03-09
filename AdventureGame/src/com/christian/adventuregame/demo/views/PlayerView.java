@@ -11,24 +11,14 @@ import com.christian.adventuregame.demo.data.archetypes.ItemType;
 import com.christian.adventuregame.demo.ui.elements.InventorySlot;
 
 public class PlayerView extends View {
-
-	private enum PlayerSprites implements ISpriteType {
-		IDLE,
-		WALK_0,
-		WALK_1
-	}
-	
-	private Sprite sprite;
-	
 	public PlayerView() {
-		Sprites.GetSpriteManager().RegisterSprite(PlayerSprites.IDLE, "player_idle.png");
-		
-		sprite = Sprites.GetSpriteManager().GetSprite(PlayerSprites.IDLE);
+		super(4);
+		Sprites.GetSpriteManager().RegisterSprite("player_idle.png");
 	}
 	
 	@Override
 	public void draw(IRenderer renderer) {
-		renderer.DrawWorldSprite(sprite, State.world.player);
+		renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite("player_idle.png"), State.world.player);
 	}
 
 }

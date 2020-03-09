@@ -41,13 +41,13 @@ public class GameUI {
                 new SplitContainer(layout, "equipBar", new Element[]{
                         new InventorySlot(
                                 layout, "equippedWeaponSlot", 64
-                        ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)),
+                        ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("weapon"),
                         new InventorySlot(
                                 layout, "_", 64
-                        ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)),
+                        ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("weapon"),
                         new InventorySlot(
                                 layout, "_", 64
-                        ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6))
+                        ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("weapon")
                 }).SetBackgroundColor(new Color(219, 149, 87))
         );
 
@@ -58,35 +58,35 @@ public class GameUI {
                         new SplitContainer(layout, "inventoryRow0", new Element[]{
                                 new InventorySlot(
                                         layout, "inventorySlot0", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)),
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("0"),
                                 new InventorySlot(
                                         layout, "inventorySlot1", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)),
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("1"),
                                 new InventorySlot(
                                         layout, "inventorySlot2", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6))
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("2")
                         }).SetBackgroundColor(new Color(219, 149, 87)),
                         new SplitContainer(layout, "inventoryRow1", new Element[]{
                                 new InventorySlot(
                                         layout, "inventorySlot3", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)),
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("3"),
                                 new InventorySlot(
                                         layout, "inventorySlot4", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)),
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("4"),
                                 new InventorySlot(
                                         layout, "inventorySlot5", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6))
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("5")
                         }).SetBackgroundColor(new Color(219, 149, 87)),
                         new SplitContainer(layout, "inventoryRow2", new Element[]{
                                 new InventorySlot(
                                         layout, "inventorySlot6", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)),
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("6"),
                                 new InventorySlot(
                                         layout, "inventorySlot7", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)),
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("7"),
                                 new InventorySlot(
                                         layout, "inventorySlot8", 64
-                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6))
+                                ).SetColor(new Color(168, 118, 74)).SetPadding(new Vector2(12, 6)).SetData("8")
                         }).SetBackgroundColor(new Color(219, 149, 87))
                 }).SetBackgroundColor(new Color(219, 149, 87))
         );

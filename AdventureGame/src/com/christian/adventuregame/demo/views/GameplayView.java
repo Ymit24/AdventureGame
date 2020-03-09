@@ -20,24 +20,11 @@ public class GameplayView extends View {
 	private InventoryView inventoryView;
 
 	public GameplayView() {
-		playerView = new PlayerView();
-		terrainView = new TerrainView();
-		bulletView = new BulletView();
-		enemyView = new EnemyView();
-		hitEffectView = new FloatTextEffectView();
-		playerStatsView = new PlayerStatsView();
-		inventoryView = new InventoryView();
+		super(11);
 	}
 
 	@Override
 	public void draw(IRenderer renderer) {
-		terrainView.draw(renderer);
-		enemyView.draw(renderer);
-		playerView.draw(renderer);
-		bulletView.draw(renderer);
-		hitEffectView.draw(renderer);
-		playerStatsView.draw(renderer);
-		inventoryView.draw(renderer);
 
 //		renderer.FillBox(State.mainUILayout.bounds, Color.black);
 

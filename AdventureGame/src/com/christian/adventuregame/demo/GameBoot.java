@@ -14,7 +14,7 @@ import com.christian.adventuregame.demo.data.archetypes.Archetypes;
 import com.christian.adventuregame.demo.ui.GameUI;
 import com.christian.adventuregame.demo.utils.loaders.*;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
-import com.christian.adventuregame.demo.views.GameplayView;
+import com.christian.adventuregame.demo.views.*;
 
 public class GameBoot {
 	public static void main(String[] args) {
@@ -43,9 +43,15 @@ public class GameBoot {
 		State.world.player.inventory.equippedWeaponItem = Archetypes.Items.Get("purple_wand_item");
 
 		State.terrain = TerrainUtil.LoadFromFile();
-		
-		GameplayView view = new GameplayView();
-		renderer.SetRootView(view);
+
+		renderer.AddView(new PlayerStatsView());
+		renderer.AddView(new TerrainView());
+		renderer.AddView(new EnemyView());
+		renderer.AddView(new BulletView());
+		renderer.AddView(new PlayerView());
+		renderer.AddView(new FloatTextEffectView());
+		renderer.AddView(new GameplayView());
+		renderer.AddView(new InventoryView());
 
 		AudioPlayer.Play("background.wav");
 

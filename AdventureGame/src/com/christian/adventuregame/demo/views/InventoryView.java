@@ -9,6 +9,10 @@ import com.christian.adventuregame.demo.data.archetypes.ItemType;
 import com.christian.adventuregame.demo.ui.elements.InventorySlot;
 
 public class InventoryView extends View {
+    public InventoryView() {
+        super(11);
+    }
+
     @Override
     public void draw(IRenderer renderer) {
         // TODO: Split this code out into an InventoryView that uses callbacks when the inventory changes in order
@@ -17,12 +21,15 @@ public class InventoryView extends View {
         if (weapon != null) {
             ((InventorySlot) State.mainUILayout.FindElementById("equippedWeaponSlot")).SetIcon(Sprites.GetSpriteManager().GetSprite(weapon.iconTextureFilename));
         }
+        else {
+            ((InventorySlot) State.mainUILayout.FindElementById("equippedWeaponSlot")).SetIcon(null);
+        }
         Inventory inventory = State.world.player.inventory;
         for (int i = 0; i < inventory.storageItems.length; i++) {
             ItemType item = inventory.storageItems[i];
-            if (i == State.slotIndexDragging && State.isDragging)
+            if (State.isDragging && item != null && item.equals(inventory.GetSlot(State.slotIdDragging)))
             {
-                ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot" + i)).SetIcon(null);
+                    ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot" + i)).SetIcon(null);
             }
             else {
                 ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot" + i)).SetIcon(item != null ? Sprites.GetSpriteManager().GetSprite(item.iconTextureFilename) : null);

@@ -11,6 +11,7 @@ public abstract class Element {
 	public Vector2 padding;
 	public Box bounds;
 	public String id;
+	public String data;
 	
 	public Element[] children;
 	public boolean isActive;
@@ -44,10 +45,10 @@ public abstract class Element {
 		}
 	}
 	
-	public void HandleClick() {
+	public void HandleClick(boolean isDown) {
 		if (children != null) {
 			for (Element child : children) {
-				child.HandleClick();
+				child.HandleClick(isDown);
 			}
 		}
 	}

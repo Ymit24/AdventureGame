@@ -22,6 +22,30 @@ public class Inventory {
         return false;
     }
 
+    public ItemType GetSlot(String slotId) {
+        if (slotId.equals("none"))
+            return null;
+        if (slotId.equals("weapon")) {
+            return equippedWeaponItem;
+        }
+        int slotIndex = Integer.parseInt(slotId);
+        if (slotIndex >= 0 && slotIndex < storageItems.length) {
+            return storageItems[slotIndex];
+        }
+        return null;
+    }
+
+    public void SetSlot(String slotId, ItemType type) {
+        if (slotId.equals("weapon")) {
+            equippedWeaponItem = type;
+            return;
+        }
+        int slotIndex = Integer.parseInt(slotId);
+        if (slotIndex >= 0 && slotIndex < storageItems.length) {
+            storageItems[slotIndex] = type;
+        }
+    }
+
     public WeaponType GetWeaponType() {
         if (equippedWeaponItem != null && weaponType != null && weaponType.id.equals(equippedWeaponItem.weaponId))
             return weaponType;

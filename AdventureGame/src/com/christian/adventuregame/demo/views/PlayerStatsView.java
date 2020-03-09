@@ -12,6 +12,11 @@ import java.awt.*;
 
 public class PlayerStatsView extends View {
     private final Box bounds = new Box(1000, 0, 280, 720);
+
+    public PlayerStatsView() {
+        super(-1);
+    }
+
     @Override
     public void draw(IRenderer renderer) {
         renderer.SetFontSize(24);

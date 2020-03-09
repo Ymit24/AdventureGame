@@ -58,19 +58,26 @@ public class VerticalPushLayout implements IMouseClickListener, IKeyListener {
 	@Override
 	public boolean OnClick(Vector2 screenLocation, int button, boolean isDown) {
 		if (bounds.Includes(screenLocation)) {
-			if (isDown) {
-				for (Element el : elements) {
-					Element hit = el.HitTest(screenLocation);
-					if (hit != null) {
+			for (Element el : elements) {
+				Element hit = el.HitTest(screenLocation);
+				if (hit != null) {
+					if (isDown) {
 						if (active != null) {
 							active.isActive = false;
 						}
 						active = hit;
 						hit.isActive = true;
 
-						hit.HandleClick();
-						return true;
+						hit.HandleClick(isDown);
 					}
+					else {
+						if (active != null) {
+							active.isActive = false;
+						}
+						active = null;
+						hit.HandleClick(isDown);
+					}
+					return true;
 				}
 			}
 			return true;

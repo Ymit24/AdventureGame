@@ -6,6 +6,10 @@ import com.christian.adventuregame.demo.data.FloatTextEffect;
 import com.christian.adventuregame.demo.data.State;
 
 public class FloatTextEffectView extends View {
+	public FloatTextEffectView() {
+		super(5);
+	}
+
 	@Override
 	public void draw(IRenderer renderer) {
 		for (FloatTextEffect effect : State.floatTextEffects) {

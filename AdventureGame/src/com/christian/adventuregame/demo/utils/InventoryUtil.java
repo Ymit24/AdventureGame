@@ -3,7 +3,7 @@ package com.christian.adventuregame.demo.utils;
 import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventuregame.demo.data.Inventory;
 import com.christian.adventuregame.demo.data.State;
-import com.christian.adventuregame.demo.ui.elements.InventorySlot;
+import com.christian.adventuregame.demo.data.archetypes.ItemType;
 
 public class InventoryUtil {
     public static void StartDrag(String slotId) {
@@ -11,18 +11,30 @@ public class InventoryUtil {
         Inventory inventory = State.world.player.inventory;
 
         if (slotId.equals("equippedWeaponSlot")) {
-            System.out.println("Clied on weapon slot.");
+            System.out.println("Clicked on weapon slot.");
         }
         else {
-            int slotIndex = Integer.parseInt(slotId.substring(slotId.length() - 1));
-            System.out.println("Slot " + slotIndex + " is full: " + (inventory.storageItems[slotIndex] != null));
-            if (inventory.storageItems[slotIndex] == null) {
+            if (inventory.GetSlot(slotId) == null) {
                 return;
             }
 
             State.isDragging = true;
-            State.slotIndexDragging = slotIndex;
-            State.iconDragSprite = Sprites.GetSpriteManager().GetSprite(inventory.storageItems[slotIndex].iconTextureFilename);
+            State.slotIdDragging = slotId;
+            State.iconDragSprite = Sprites.GetSpriteManager().GetSprite(inventory.GetSlot(slotId).iconTextureFilename);
         }
+    }
+
+    public static void StopDrag(String slotId) {
+        System.out.println("Completed drag " + slotId + " " + State.slotIdDragging);
+
+        Inventory inventory = State.world.player.inventory;
+
+        ItemType cache = inventory.GetSlot(slotId);
+        inventory.SetSlot(slotId, inventory.GetSlot(State.slotIdDragging));
+        inventory.SetSlot(State.slotIdDragging, cache);
+
+        State.isDragging = false;
+        State.slotIdDragging = "none";
+        State.iconDragSprite = null;
     }
 }

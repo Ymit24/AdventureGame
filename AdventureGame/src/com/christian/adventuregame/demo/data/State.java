@@ -18,7 +18,7 @@ public class State {
 	public static boolean isDragging;
 	public static Sprite iconDragSprite;
 	public static Vector2 dragPosition;
-	public static int slotIndexDragging;
+	public static String slotIdDragging = "none";
 
 	public static ArrayList<FloatTextEffect> floatTextEffects = new ArrayList<>();
 

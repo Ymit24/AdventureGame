@@ -6,6 +6,7 @@ import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventureengine.ui.elements.Element;
+import com.christian.adventuregame.demo.data.Inventory;
 import com.christian.adventuregame.demo.utils.InventoryUtil;
 
 import java.awt.*;
@@ -39,10 +40,20 @@ public class InventorySlot extends Element {
         return this;
     }
 
+    public InventorySlot SetData(String data) {
+        this.data = data;
+        return this;
+    }
+
     @Override
-    public void HandleClick() {
-        InventoryUtil.StartDrag(id);
-        super.HandleClick();
+    public void HandleClick(boolean isDown) {
+        if (isDown) {
+            InventoryUtil.StartDrag(data);
+        }
+        else {
+            InventoryUtil.StopDrag(data);
+        }
+        super.HandleClick(isDown);
     }
 
     @Override
