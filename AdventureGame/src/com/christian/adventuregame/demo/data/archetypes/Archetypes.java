@@ -10,6 +10,7 @@ public class Archetypes<T extends Archetype> {
     public static Archetypes<TileType> Tiles = new Archetypes<>();
     public static Archetypes<WeaponType> Weapons = new Archetypes<>();
     public static Archetypes<TerrainFeatureType> TerrianFeatures = new Archetypes<>();
+    public static Archetypes<ItemType> Items = new Archetypes<>();
 
     private ArrayList<T> types;
 

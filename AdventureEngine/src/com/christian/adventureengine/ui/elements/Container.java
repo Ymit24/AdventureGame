@@ -2,13 +2,24 @@ package com.christian.adventureengine.ui.elements;
 
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
+import com.christian.adventureengine.logic.Controller;
+import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.sun.org.apache.xalan.internal.xsltc.dom.CachedNodeListIterator;
 
+import java.awt.*;
+
 public class Container extends Element {
+    private Color backgroundColor;
     public Container(VerticalPushLayout layout, String id, Element[] children) {
         super(layout, id);
         this.children = children;
+        this.backgroundColor = Color.black;
+    }
+
+    public Container SetBackgroundColor(Color color) {
+        this.backgroundColor = color;
+        return this;
     }
 
     @Override
@@ -41,5 +52,11 @@ public class Container extends Element {
             ));
             accumulatedPosition += relHeight;
         }
+    }
+
+    @Override
+    public void draw(IRenderer renderer) {
+        renderer.FillBox(bounds, backgroundColor);
+        super.draw(renderer);
     }
 }

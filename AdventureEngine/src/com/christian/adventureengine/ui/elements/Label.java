@@ -12,8 +12,10 @@ public class Label extends Element {
 		LEFT, CENTER, RIGHT
 	}
 	public static final int DEFAULT_FONT_SIZE = 16;
+	public static final String DEFAULT_FONT_FAMILY = "Arial";
 	public String text;
 	public int fontSize;
+	public String fontFamily;
 	public Color fontColor;
 	
 	public Alignment alignment;
@@ -24,6 +26,7 @@ public class Label extends Element {
 		this.text = text;
 		this.fontColor = Color.white;
 		this.fontSize = DEFAULT_FONT_SIZE;
+		this.fontFamily = DEFAULT_FONT_FAMILY;
 		this.alignment = Alignment.CENTER;
 	}
 
@@ -35,6 +38,12 @@ public class Label extends Element {
 	
 	public Label SetFontSize(int fontSize) {
 		this.fontSize = fontSize;
+		layout.RecalculateHeights();
+		return this;
+	}
+
+	public Label SetFontFamily(String fontFamily) {
+		this.fontFamily = fontFamily;
 		layout.RecalculateHeights();
 		return this;
 	}

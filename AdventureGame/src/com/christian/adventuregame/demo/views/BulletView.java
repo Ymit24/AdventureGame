@@ -10,6 +10,10 @@ import com.christian.adventuregame.demo.data.Bullet;
 import com.christian.adventuregame.demo.data.State;
 
 public class BulletView extends View {
+	public BulletView() {
+		super(3);
+	}
+
 	@Override
 	public void draw(IRenderer renderer) {
 		for (Bullet bullet : State.world.bullets) {

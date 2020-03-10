@@ -57,7 +57,7 @@ public class Button extends Element {
 	}
 	
 	@Override
-	public void HandleClick() {
+	public void HandleClick(boolean isDown) {
 		if (callback != null) {
 			callback.OnButtonClicked(id);
 		}

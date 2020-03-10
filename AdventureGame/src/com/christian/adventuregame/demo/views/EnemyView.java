@@ -12,6 +12,10 @@ import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.archetypes.Archetypes;
 
 public class EnemyView extends View {
+	public EnemyView() {
+		super(2);
+	}
+
 	@Override
 	public void draw(IRenderer renderer) {
 		for (Enemy enemy : State.world.enemies) {

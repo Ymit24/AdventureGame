@@ -33,13 +33,13 @@ public class VerticalPushLayout implements IMouseClickListener, IKeyListener {
 		currentY = (int)bounds.position.y;
 		for (Element el : elements) {
 			int height = el.CalculateHeight();
-			el.UpdateBounds(new Box(0, currentY, bounds.size.x, height));
+			el.UpdateBounds(new Box(bounds.position.x, currentY, bounds.size.x, height));
 			currentY += height;
 		}
 	}
 	
 	public void PushElement(Element element) {
-		element.bounds.position = new Vector2(0, currentY);
+		element.bounds.position = new Vector2(bounds.position.x, currentY);
 		currentY += element.bounds.size.y;
 		
 		elements.add(element);
@@ -58,19 +58,26 @@ public class VerticalPushLayout implements IMouseClickListener, IKeyListener {
 	@Override
 	public boolean OnClick(Vector2 screenLocation, int button, boolean isDown) {
 		if (bounds.Includes(screenLocation)) {
-			if (isDown) {
-				for (Element el : elements) {
-					Element hit = el.HitTest(screenLocation);
-					if (hit != null) {
+			for (Element el : elements) {
+				Element hit = el.HitTest(screenLocation);
+				if (hit != null) {
+					if (isDown) {
 						if (active != null) {
 							active.isActive = false;
 						}
 						active = hit;
 						hit.isActive = true;
 
-						hit.HandleClick();
-						return true;
+						hit.HandleClick(isDown);
 					}
+					else {
+						if (active != null) {
+							active.isActive = false;
+						}
+						active = null;
+						hit.HandleClick(isDown);
+					}
+					return true;
 				}
 			}
 			return true;

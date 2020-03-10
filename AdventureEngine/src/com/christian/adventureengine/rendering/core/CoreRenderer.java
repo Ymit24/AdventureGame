@@ -7,6 +7,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
@@ -16,11 +18,14 @@ import com.christian.adventureengine.input.core.KeyboardListener;
 import com.christian.adventureengine.input.core.MouseListener;
 import com.christian.adventureengine.rendering.Camera;
 import com.christian.adventureengine.rendering.IRenderer;
+import com.christian.adventureengine.rendering.UIView;
 import com.christian.adventureengine.rendering.View;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventureengine.ui.elements.Element;
+
+import javax.swing.*;
 
 public class CoreRenderer implements IRenderer {
 	private int displayWidth = 1280;
@@ -30,13 +35,15 @@ public class CoreRenderer implements IRenderer {
 	private Canvas canvas;
 	
 	private BufferStrategy bufferStrategy;
-	private View rootView;
+
+	private ArrayList<View> orderedViews;
 
 	private Graphics graphics;
 	private boolean canDraw;
 	
 	private static final int DEFAULT_FONTSIZE = 24;
 	private static final Color DEFAULT_COLOR = Color.white;
+	private static final int UI_LAYER = 10;
 	
 	private Font currentFont;
 	private Color currentColor;
@@ -66,6 +73,9 @@ public class CoreRenderer implements IRenderer {
 		SetFontSize(DEFAULT_FONTSIZE);
 		currentColor = DEFAULT_COLOR;
 		uiLayouts = new ArrayList<VerticalPushLayout>();
+
+		orderedViews = new ArrayList<>();
+		orderedViews.add(new UIView(UI_LAYER));
 	}
 
 	public int GetDisplayWidth() {
@@ -121,15 +131,57 @@ public class CoreRenderer implements IRenderer {
 		Sprites.SetSpriteManager(spriteManager);
 	}
 
+
 	@Override
-	public void SetRootView(View view) {
-		this.rootView = view;
+	public void AddView(View view) {
+		orderedViews.add(view);
+		orderedViews.sort(new Comparator<View>() {
+			@Override
+			public int compare(View o1, View o2) {
+				return o1.layer - o2.layer;
+			}
+		});
 	}
-	
+
+	@Override
+	public void RemoveView(View view) {
+		orderedViews.remove(view);
+	}
+
+	@Override
+	public ArrayList<VerticalPushLayout> GetLayouts() {
+		return uiLayouts;
+	}
+
+	@Override
+	public int GetUILayer() {
+		return UI_LAYER;
+	}
+
 	@Override
 	public void SetFontSize(int size) {
 		currentFont = Fonts.GetFont(size);
 		graphics.setFont(currentFont);
+	}
+
+	@Override
+	public void SetFontFamily(String family) {
+		Font newFont = Fonts.GetFont(family, currentFont.getSize());
+		if (newFont != null)
+		{
+			currentFont = newFont;
+			graphics.setFont(currentFont);
+		}
+	}
+
+	@Override
+	public void SetFontFamily(String family, int size) {
+		Font newFont = Fonts.GetFont(family, size);
+		if (newFont != null)
+		{
+			currentFont = newFont;
+			graphics.setFont(currentFont);
+		}
 	}
 	
 	@Override
@@ -201,6 +253,22 @@ public class CoreRenderer implements IRenderer {
 			null
 		);
 	}
+
+	@Override
+	public void DrawScreenSprite(Sprite sprite, Box screenBounds) {
+		if (canDraw == false)
+			return;
+
+		graphics.setClip(0, 0, displayWidth, displayHeight);
+		graphics.drawImage(
+				sprite.GetImage(),
+				(int)screenBounds.position.x,
+				(int)screenBounds.position.y,
+				(int)screenBounds.size.x,
+				(int)screenBounds.size.y,
+				null
+		);
+	}
 	
 	@Override
 	public void FillBox(Box box, Color color) {
@@ -211,7 +279,7 @@ public class CoreRenderer implements IRenderer {
 		graphics.setColor(color);
 		graphics.fillRect((int)box.position.x, (int)box.position.y, (int)box.size.x, (int)box.size.y);
 	}
-	
+
 	@Override
 	public void OnRender() {
 		graphics = bufferStrategy.getDrawGraphics();
@@ -220,15 +288,9 @@ public class CoreRenderer implements IRenderer {
 		
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, displayWidth, displayHeight);
-		
-		if (rootView != null) {
-			rootView.draw(this);
-		}
-		
-		for (VerticalPushLayout layout : uiLayouts) {
-			for (Element el : layout.elements) {
-				el.draw(this);
-			}
+
+		for (View view : orderedViews) {
+			view.draw(this);
 		}
 		
 		canDraw = false;
