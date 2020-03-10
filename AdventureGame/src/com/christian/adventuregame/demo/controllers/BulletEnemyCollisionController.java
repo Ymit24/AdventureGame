@@ -18,9 +18,9 @@ public class BulletEnemyCollisionController extends Controller {
 				Bullet bullet = State.world.bullets.get(bulletIndex);
 				if (Collision.AABB(enemy.Position, bullet.Position, enemy.Size, bullet.Size)) {
 					State.world.bullets.remove(bullet);
-					State.floatTextEffects.add(new FloatTextEffect("-" + State.world.player.weaponType.damage, new Vector2(enemy.Position), 0.3f, 0.9f, Color.red));
+					State.floatTextEffects.add(new FloatTextEffect("-" + State.world.player.inventory.GetWeaponType().damage, new Vector2(enemy.Position), 0.3f, 0.9f, Color.red));
 					AudioPlayer.Play("hit.wav");
-					enemy.health -= State.world.player.weaponType.damage;
+					enemy.health -= State.world.player.inventory.GetWeaponType().damage;
 					
 					if (enemy.health <= 0)
 					{

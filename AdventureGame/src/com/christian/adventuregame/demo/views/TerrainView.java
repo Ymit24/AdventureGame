@@ -15,6 +15,10 @@ import com.christian.adventuregame.demo.data.terrain.Tile;
 import java.awt.*;
 
 public class TerrainView extends View {
+	public TerrainView() {
+		super(1);
+	}
+
 	@Override
 	public void draw(IRenderer renderer) {
 		for (int x = 0; x < State.terrain.width; x++) {

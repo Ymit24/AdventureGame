@@ -1,6 +1,7 @@
 package com.christian.adventureengine.rendering;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import com.christian.adventureengine.data.Box;
 import com.christian.adventureengine.data.Vector2;
@@ -20,11 +21,17 @@ public interface IRenderer {
 	public void CreateCamera(Vector2 worldSpaceView);
 	public void CreateCamera(Vector2 worldSpaceView, Box screenSpace);
 	public VerticalPushLayout CreateUILayout(Box bounds);
-	
-	public void SetRootView(View view);
+
+	public void AddView(View view);
+	public void RemoveView(View view);
+
+	public ArrayList<VerticalPushLayout> GetLayouts();
+	public int GetUILayer();
 
 	public void SetFontSize(int size);
 	public void SetColor(Color color);
+	public void SetFontFamily(String family);
+	public void SetFontFamily(String family, int size);
 	
 	public int GetFontWidth(String message);
 	
@@ -33,6 +40,7 @@ public interface IRenderer {
 
 	public void DrawScreenText(String message, Vector2 screenLocation);
 	public void DrawScreenSprite(Sprite sprite, Vector2 screenLocation);
+	public void DrawScreenSprite(Sprite sprite, Box screenBounds);
 	
 	public void FillBox(Box box, Color color);
 }

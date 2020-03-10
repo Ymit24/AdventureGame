@@ -1,0 +1,23 @@
+[PurpleWand]
+id=purple_wand_item
+name=Purple Wand
+iconTextureFilename=item_icons/pink_wand.png
+weaponId=purple_wand
+
+[GreenStaff]
+id=green_staff_item
+name=Green Staff
+iconTextureFilename=item_icons/green_staff.png
+weaponId=green_staff
+
+[BlueWand]
+id=blue_wand_item
+name=Blue Wand
+iconTextureFilename=item_icons/blue_wand.png
+weaponId=blue_wand
+
+[YellowStaff]
+id=yellow_staff_item
+name=Yellow Staff
+iconTextureFilename=item_icons/yellow_staff.png
+weaponId=yellow_staff

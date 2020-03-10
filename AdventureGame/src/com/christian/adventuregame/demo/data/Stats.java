@@ -32,7 +32,7 @@ public class Stats {
         level++;
 
         if (level == 2) {
-            State.world.player.weaponType = Archetypes.Weapons.Get("spec_staff");
+            State.world.player.inventory.storageItems[0] = Archetypes.Items.Get("yellow_staff_item");
         }
     }
 }

@@ -10,10 +10,11 @@ public class Window {
 	public Window(String title, int width, int height, Canvas canvas) {
 		Dimension size = new Dimension(width, height);
 		frame = new JFrame(title);
+
 		canvas.setPreferredSize(size);
 		frame.add(canvas);
-		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.setVisible(true);
 		
 		frame.pack();
 		frame.pack();
