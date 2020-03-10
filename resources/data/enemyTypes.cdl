@@ -4,6 +4,7 @@ moveSpeed=0.45
 health=6
 textureFilename=blob_0.png
 xpDrop=1
+weaponId=grassland_basic
 
 [BlobMedium]
 id=blob_med
@@ -11,6 +12,7 @@ moveSpeed=0.55
 health=44
 textureFilename=blob_1.png
 xpDrop=3
+weaponId=grassland_basic
 
 [BlobHard]
 id=blob_hard
@@ -18,6 +20,7 @@ moveSpeed=0.65
 health=123
 textureFilename=blob_2.png
 xpDrop=9
+weaponId=grassland_basic
 
 [ImpersonatorEasy]
 id=impersonator_easy
@@ -25,6 +28,7 @@ moveSpeed=2.25
 health=8
 textureFilename=impersonator_0.png
 xpDrop=2
+weaponId=grassland_basic
 
 [ImpersonatorMedium]
 id=impersonator_med
@@ -32,6 +36,7 @@ moveSpeed=3
 health=64
 textureFilename=impersonator_1.png
 xpDrop=6
+weaponId=grassland_basic
 
 [ImpersonatorHard]
 id=impersonator_hard
@@ -39,6 +44,7 @@ moveSpeed=3.4
 health=154
 textureFilename=impersonator_2.png
 xpDrop=13
+weaponId=grassland_basic
 
 [Spider]
 id=spider
@@ -46,6 +52,7 @@ moveSpeed=2.5
 health=425
 textureFilename=swamp/spider.png
 xpDrop=27
+weaponId=grassland_basic
 
 [SwampBlob]
 id=swamp_blob
@@ -53,3 +60,4 @@ moveSpeed=2
 health=640
 textureFilename=swamp/swamp_blob.png
 xpDrop=40
+weaponId=grassland_basic

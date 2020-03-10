@@ -12,6 +12,8 @@ public class Enemy extends WorldObject {
 	
 	public Vector2 wanderingTarget;
 	public boolean isWandering;
+
+	public boolean isShooting;
 	
 	public Enemy(Vector2 position, String id) {
 		super(position);
