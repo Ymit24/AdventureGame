@@ -7,4 +7,5 @@ public class EnemyType extends Archetype {
 	public float InitialHealth;
 	public int xpDrop;
 	public String textureFilename;
+	public String weaponId;
 }
