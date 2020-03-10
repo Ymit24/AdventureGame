@@ -14,6 +14,7 @@ public class Enemy extends WorldObject {
 	public boolean isWandering;
 
 	public boolean isShooting;
+	public float shootTimer;
 	
 	public Enemy(Vector2 position, String id) {
 		super(position);
@@ -23,5 +24,7 @@ public class Enemy extends WorldObject {
 		this.id = id;
 		this.health = type.InitialHealth;
 		this.moveSpeed = type.MoveSpeed;
+		isShooting = false;
+		shootTimer = 0;
 	}
 }

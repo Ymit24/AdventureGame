@@ -18,6 +18,8 @@ public class EnemyLoaderUtil {
 			type.InitialHealth = block.GetNumber("health");
 			type.textureFilename = block.GetString("textureFilename");
 			type.xpDrop = (int)block.GetNumber("xpDrop");
+			type.weaponId = block.GetString("weaponId");
+
 			Archetypes.Enemies.RegisterArchetype(type);
 			
 			Sprites.GetSpriteManager().RegisterSprite(type.textureFilename);

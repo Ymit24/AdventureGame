@@ -27,28 +27,27 @@ public class BulletSpawnController extends Controller implements IMouseClickList
 	public void Update(float deltaTime) {
 		Player player = State.world.player;
 		player.ShootingTimer -= deltaTime;
+		WeaponType weaponType = player.inventory.GetWeaponType();
 		if (Input.GetKeyboardListener().isKeyDown(KeyEvent.VK_SPACE) && player.ShootingTimer <= 0) {
-			player.ShootingTimer = Player.SECONDS_PER_SHOT;
+			player.ShootingTimer = weaponType.firingRate;
 			Vector2 mousePosition = Input.GetMouseListener().GetPosition();
 			mousePosition = Camera.GetCamera().CalculateScreenToWorld(mousePosition);
 
 			Vector2 playerPos = State.world.player.Position.Add(new Vector2(0.5f,0.5f));
 			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
 
-			ArrayList<WeaponType> allTypes = Archetypes.Weapons.GetAll();
-			ProjectileEmitterUtil.Emit(allTypes.get(Randomizer.random.nextInt(allTypes.size())), playerPos, direction);
+			ProjectileEmitterUtil.CircleShot(playerPos, 40, weaponType, false);
 
 			AudioPlayer.Play("shoot.wav");
 		}
 		if (isShooting && player.ShootingTimer <= 0) {
-			player.ShootingTimer = Player.SECONDS_PER_SHOT;
+			player.ShootingTimer = weaponType.firingRate;
 			Vector2 mousePosition = Input.GetMouseListener().GetPosition();
 			mousePosition = Camera.GetCamera().CalculateScreenToWorld(mousePosition);
 
 			Vector2 playerPos = State.world.player.Position.Add(new Vector2(0.5f,0.5f));
 			Vector2 direction = new Vector2(mousePosition.x - playerPos.x, mousePosition.y - playerPos.y).Normalized();
 
-			ArrayList<WeaponType> allTypes = Archetypes.Weapons.GetAll();
 			ProjectileEmitterUtil.Emit(player.inventory.GetWeaponType(), playerPos, direction);
 
 			AudioPlayer.Play("shoot.wav");

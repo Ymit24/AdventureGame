@@ -4,7 +4,15 @@ textureFilename=grassland_bullet.png
 projectileBehavior=straight
 projectileEmitter=single
 firingRate=1.25
-damage=2
+damage=
+
+[Spider]
+id=spider_attack
+textureFilename=bullet_0.png
+projectileBehavior=sine
+projectileEmitter=triple
+firingRate=.6
+damage=5
 
 [PurpleWand]
 id=purple_wand

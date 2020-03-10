@@ -5,15 +5,15 @@ import com.christian.adventureengine.data.WorldObject;
 import com.christian.adventuregame.demo.data.archetypes.WeaponType;
 
 public class Bullet extends WorldObject {
-	public static final int SPEED = 7;
+	public static final int SPEED = 7; // TODO: THIS SHOULD BE DATA
 	private Vector2 direction;
-	private Vector2 normalDirection;
 
 	public Vector2 normal;
 	public Vector2 straightPos;
 	public float timer;
 
 	public WeaponType type;
+	public boolean isEnemy;
 
 	public Bullet(Vector2 position, Vector2 direction, WeaponType type) {
 		super(position, new Vector2(0.25f, 0.25f));

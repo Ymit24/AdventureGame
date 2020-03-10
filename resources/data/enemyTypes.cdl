@@ -52,7 +52,7 @@ moveSpeed=2.5
 health=425
 textureFilename=swamp/spider.png
 xpDrop=27
-weaponId=grassland_basic
+weaponId=spider_attack
 
 [SwampBlob]
 id=swamp_blob

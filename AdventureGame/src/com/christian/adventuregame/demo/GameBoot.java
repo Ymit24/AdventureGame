@@ -56,6 +56,7 @@ public class GameBoot {
 		AudioPlayer.Play("background.wav");
 
 		new ZoomController();
+		ControllerManager.AddController(new EnemyFireController());
 		ControllerManager.AddController(new WeaponEquipSwitcher());
 		ControllerManager.AddController(new InventoryDragController());
 		ControllerManager.AddController(new PlayerMovementController());

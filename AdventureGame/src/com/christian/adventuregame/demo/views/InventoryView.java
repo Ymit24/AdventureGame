@@ -15,15 +15,9 @@ public class InventoryView extends View {
 
     @Override
     public void draw(IRenderer renderer) {
-        // TODO: Split this code out into an InventoryView that uses callbacks when the inventory changes in order
+        // TODO: Use callbacks when the inventory changes in order
         //       to not need to keep regrabbing sprites every frame.
-//        ItemType weapon = State.world.player.inventory.GetWeapon();
-//        if (weapon != null && State.slotIdDragging != 0) {
-//            ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot0")).SetIcon(Sprites.GetSpriteManager().GetSprite(weapon.iconTextureFilename));
-//        }
-//        else {
-//            ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot0")).SetIcon(null);
-//        }
+
         Inventory inventory = State.world.player.inventory;
         for (int i = 0; i < inventory.storageItems.length; i++) {
             ItemType item = inventory.storageItems[i];
