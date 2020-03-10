@@ -11,7 +11,6 @@ public class InventoryDragController extends Controller {
             State.dragPosition = Input.GetMouseListener().GetPosition();
 
             if (Input.GetMouseListener().isMouseButtonDown(0) == false) {
-                System.out.println("T");
                 State.isDragging = false;
             }
         }

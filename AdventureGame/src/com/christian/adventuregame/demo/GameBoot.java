@@ -40,7 +40,7 @@ public class GameBoot {
 		State.mainUILayout = renderer.CreateUILayout(new Box(1000, 150, 280, 570));
 		new GameUI().Create();
 
-		State.world.player.inventory.equippedWeaponItem = Archetypes.Items.Get("purple_wand_item");
+		State.world.player.inventory.storageItems[0] = Archetypes.Items.Get("purple_wand_item");
 
 		State.terrain = TerrainUtil.LoadFromFile();
 
@@ -55,6 +55,7 @@ public class GameBoot {
 
 		AudioPlayer.Play("background.wav");
 
+		new ZoomController();
 		ControllerManager.AddController(new WeaponEquipSwitcher());
 		ControllerManager.AddController(new InventoryDragController());
 		ControllerManager.AddController(new PlayerMovementController());

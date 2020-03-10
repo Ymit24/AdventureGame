@@ -69,7 +69,12 @@ public class Camera {
 		pixelsPerWorldUnit.y = Math.round(pixelsPerWorldUnit.y * 2) / 2.0f;
 		this.worldSpace = worldSpaceView;
 	}
-	
+
+	public void CenterZoom(Vector2 worldUnitSize) {
+		UpdateBounds(worldUnitSize);
+		position = position.Add(worldSpace.Sub(worldUnitSize).Div(2));
+	}
+
 	public void CenterZoom(float worldUnitSize) {
 		float diff = worldSpace.x - worldUnitSize;
 		UpdateBounds(Vector2.One().Mul(worldUnitSize));

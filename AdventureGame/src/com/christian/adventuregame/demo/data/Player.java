@@ -17,7 +17,7 @@ public class Player extends WorldObject {
 		ShootingTimer = 0;
 
 		stats = new Stats();
-		inventory = new Inventory(9);
+		inventory = new Inventory(12);
 	}
 	
 }

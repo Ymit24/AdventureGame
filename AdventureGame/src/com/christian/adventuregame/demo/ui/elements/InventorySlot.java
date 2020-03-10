@@ -48,10 +48,10 @@ public class InventorySlot extends Element {
     @Override
     public void HandleClick(boolean isDown) {
         if (isDown) {
-            InventoryUtil.StartDrag(data);
+            InventoryUtil.StartDrag(Integer.parseInt(data));
         }
         else {
-            InventoryUtil.StopDrag(data);
+            InventoryUtil.StopDrag(Integer.parseInt(data));
         }
         super.HandleClick(isDown);
     }

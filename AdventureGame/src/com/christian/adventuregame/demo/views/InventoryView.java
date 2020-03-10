@@ -17,20 +17,20 @@ public class InventoryView extends View {
     public void draw(IRenderer renderer) {
         // TODO: Split this code out into an InventoryView that uses callbacks when the inventory changes in order
         //       to not need to keep regrabbing sprites every frame.
-        ItemType weapon = State.world.player.inventory.equippedWeaponItem;
-        if (weapon != null && State.slotIdDragging.equals("weapon") == false) {
-            ((InventorySlot) State.mainUILayout.FindElementById("equippedWeaponSlot")).SetIcon(Sprites.GetSpriteManager().GetSprite(weapon.iconTextureFilename));
-        }
-        else {
-            ((InventorySlot) State.mainUILayout.FindElementById("equippedWeaponSlot")).SetIcon(null);
-        }
+//        ItemType weapon = State.world.player.inventory.GetWeapon();
+//        if (weapon != null && State.slotIdDragging != 0) {
+//            ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot0")).SetIcon(Sprites.GetSpriteManager().GetSprite(weapon.iconTextureFilename));
+//        }
+//        else {
+//            ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot0")).SetIcon(null);
+//        }
         Inventory inventory = State.world.player.inventory;
         for (int i = 0; i < inventory.storageItems.length; i++) {
             ItemType item = inventory.storageItems[i];
-            
-            if (State.isDragging && item != null && item == inventory.GetSlot(State.slotIdDragging))
+
+            if (State.isDragging && item != null && i == State.slotIdDragging)
             {
-                    ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot" + i)).SetIcon(null);
+                ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot" + i)).SetIcon(null);
             }
             else {
                 ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot" + i)).SetIcon(item != null ? Sprites.GetSpriteManager().GetSprite(item.iconTextureFilename) : null);

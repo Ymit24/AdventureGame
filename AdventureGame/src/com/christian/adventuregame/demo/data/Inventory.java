@@ -5,9 +5,6 @@ import com.christian.adventuregame.demo.data.archetypes.ItemType;
 import com.christian.adventuregame.demo.data.archetypes.WeaponType;
 
 public class Inventory {
-    public ItemType equippedWeaponItem;
-    private WeaponType weaponType;
-
     public ItemType[] storageItems;
 
     public Inventory(int storageSlots) {
@@ -22,41 +19,28 @@ public class Inventory {
         return false;
     }
 
-    public ItemType GetSlot(String slotId) {
-        if (slotId.equals("none"))
+    public ItemType GetSlot(int slotIndex) {
+        if (slotIndex == -1)
             return null;
-        if (slotId.equals("weapon")) {
-            return equippedWeaponItem;
-        }
-        int slotIndex = Integer.parseInt(slotId);
         if (slotIndex >= 0 && slotIndex < storageItems.length) {
             return storageItems[slotIndex];
         }
         return null;
     }
 
-    public void SetSlot(String slotId, ItemType type) {
-        if (slotId.equals("none"))
+    public void SetSlot(int slotIndex, ItemType type) {
+        if (slotIndex == -1)
             return;
-        if (slotId.equals("weapon")) {
-            equippedWeaponItem = type;
-            return;
-        }
-        int slotIndex = Integer.parseInt(slotId);
         if (slotIndex >= 0 && slotIndex < storageItems.length) {
             storageItems[slotIndex] = type;
         }
     }
 
+    public ItemType GetWeapon() {
+        return storageItems[0];
+    }
+
     public WeaponType GetWeaponType() {
-        if (equippedWeaponItem != null && weaponType != null && weaponType.id.equals(equippedWeaponItem.weaponId))
-            return weaponType;
-
-        if (equippedWeaponItem == null) {
-            return null;
-        }
-
-        weaponType = Archetypes.Weapons.Get(equippedWeaponItem.weaponId);
-        return weaponType;
+        return Archetypes.Weapons.Get(storageItems[0].weaponId);
     }
 }

@@ -25,6 +25,8 @@ import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventureengine.ui.elements.Element;
 
+import javax.swing.*;
+
 public class CoreRenderer implements IRenderer {
 	private int displayWidth = 1280;
 	private int displayHeight = 720;
