@@ -2,10 +2,12 @@ package com.christian.adventureengine.data;
 
 import com.christian.adventureengine.utils.Deserializer;
 import com.christian.adventureengine.utils.Serializer;
+import javafx.geometry.Pos;
 
 public class WorldObject implements ISerializable {
 	public Vector2 Position;
 	public Vector2 Size;
+	private Box box;
 
 	public WorldObject(Vector2 position) {
 		this.Position = position;
@@ -16,7 +18,18 @@ public class WorldObject implements ISerializable {
 		this.Position = position;
 		this.Size = size;
 	}
-	
+
+	public Box GetBox() {
+		if (box == null) {
+			box = new Box(Position, Size);
+			return box;
+		}
+		if (box.position.equals(Position) && box.size.equals(Size))
+			return box;
+		box = new Box(Position, Size);
+		return box;
+	}
+
 	// used for serialization
 	private WorldObject() {}
 

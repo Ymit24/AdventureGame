@@ -11,10 +11,13 @@ public class Window {
 		Dimension size = new Dimension(width, height);
 		frame = new JFrame(title);
 
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setUndecorated(true);
+		frame.setVisible(true);
+
 		canvas.setPreferredSize(size);
 		frame.add(canvas);
 		frame.setResizable(false);
-		frame.setVisible(true);
 		
 		frame.pack();
 		frame.pack();

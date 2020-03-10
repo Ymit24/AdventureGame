@@ -20,15 +20,16 @@ public class GameBoot {
 	public static void main(String[] args) {
 		new GameBoot();
 	}
-	
+
 	public GameBoot() {
 		State.world = new World();
-		
+
+		boolean isFullScreen = true;
 		IRenderer renderer = new CoreRenderer();
-		renderer.Initialize("Adventure Game", 1280, 720);
+		renderer.Initialize("Adventure Game", isFullScreen ? 1920 : 1280, isFullScreen ? 1080 : 720);
 		renderer.CreateInput();
 		renderer.CreateSpriteManager();
-		renderer.CreateCamera(new Vector2(16,10), new Box(0, 0, 1000, 720));
+		renderer.CreateCamera(new Vector2(16,10), new Box(0, 0, isFullScreen ? 1920-280 : 1000, isFullScreen ? 1080 : 720));
 
 		TileLoaderUtil.LoadTileTypes();
 		EnemyLoaderUtil.LoadEnemyTypes();
@@ -37,7 +38,7 @@ public class GameBoot {
 		TerrainFeatureLoader.Load();
 		ItemLoader.Load();
 
-		State.mainUILayout = renderer.CreateUILayout(new Box(1000, 150, 280, 570));
+		State.mainUILayout = renderer.CreateUILayout(new Box(isFullScreen ? 1920-280 : 1000, 150, 280, 570));
 		new GameUI().Create();
 
 		State.world.player.inventory.storageItems[0] = Archetypes.Items.Get("purple_wand_item");
@@ -56,6 +57,7 @@ public class GameBoot {
 		AudioPlayer.Play("background.wav");
 
 		new ZoomController();
+		ControllerManager.AddController(new PlayerBulletCollisionController());
 		ControllerManager.AddController(new EnemyFireController());
 		ControllerManager.AddController(new WeaponEquipSwitcher());
 		ControllerManager.AddController(new InventoryDragController());

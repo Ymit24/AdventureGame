@@ -22,6 +22,9 @@ public class PlayerStatsView extends View {
         renderer.SetFontSize(24);
         renderer.SetColor(Color.white);
 
+
+        ((ProgressBar)State.mainUILayout.FindElementById("healthBar")).SetCurrentValue(State.world.player.stats.health);
+        ((ProgressBar)State.mainUILayout.FindElementById("healthBar")).SetMaxValue(State.world.player.stats.maxHealth);
         ((Label)State.mainUILayout.FindElementById("levelIndicator")).text = "Level: " + State.world.player.stats.level;
         ((ProgressBar)State.mainUILayout.FindElementById("xpBar")).SetCurrentValue(State.world.player.stats.xp);
         ((ProgressBar)State.mainUILayout.FindElementById("xpBar")).SetMaxValue(State.world.player.stats.xpNext);
