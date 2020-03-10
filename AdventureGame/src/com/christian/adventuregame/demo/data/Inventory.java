@@ -36,6 +36,8 @@ public class Inventory {
     }
 
     public void SetSlot(String slotId, ItemType type) {
+        if (slotId.equals("none"))
+            return;
         if (slotId.equals("weapon")) {
             equippedWeaponItem = type;
             return;

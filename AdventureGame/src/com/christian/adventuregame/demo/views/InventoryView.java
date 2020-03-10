@@ -18,7 +18,7 @@ public class InventoryView extends View {
         // TODO: Split this code out into an InventoryView that uses callbacks when the inventory changes in order
         //       to not need to keep regrabbing sprites every frame.
         ItemType weapon = State.world.player.inventory.equippedWeaponItem;
-        if (weapon != null) {
+        if (weapon != null && State.slotIdDragging.equals("weapon") == false) {
             ((InventorySlot) State.mainUILayout.FindElementById("equippedWeaponSlot")).SetIcon(Sprites.GetSpriteManager().GetSprite(weapon.iconTextureFilename));
         }
         else {
@@ -27,7 +27,8 @@ public class InventoryView extends View {
         Inventory inventory = State.world.player.inventory;
         for (int i = 0; i < inventory.storageItems.length; i++) {
             ItemType item = inventory.storageItems[i];
-            if (State.isDragging && item != null && item.equals(inventory.GetSlot(State.slotIdDragging)))
+            
+            if (State.isDragging && item != null && item == inventory.GetSlot(State.slotIdDragging))
             {
                     ((InventorySlot) State.mainUILayout.FindElementById("inventorySlot" + i)).SetIcon(null);
             }

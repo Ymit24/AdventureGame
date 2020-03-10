@@ -10,21 +10,19 @@ public class InventoryUtil {
         System.out.println("Starting drag on " + slotId);
         Inventory inventory = State.world.player.inventory;
 
-        if (slotId.equals("equippedWeaponSlot")) {
-            System.out.println("Clicked on weapon slot.");
+        if (inventory.GetSlot(slotId) == null) {
+            return;
         }
-        else {
-            if (inventory.GetSlot(slotId) == null) {
-                return;
-            }
 
-            State.isDragging = true;
-            State.slotIdDragging = slotId;
-            State.iconDragSprite = Sprites.GetSpriteManager().GetSprite(inventory.GetSlot(slotId).iconTextureFilename);
-        }
+        System.out.println("Starting drag");
+        State.isDragging = true;
+        State.slotIdDragging = slotId;
+        State.iconDragSprite = Sprites.GetSpriteManager().GetSprite(inventory.GetSlot(slotId).iconTextureFilename);
     }
 
     public static void StopDrag(String slotId) {
+        if (State.isDragging == false)
+            return;
         System.out.println("Completed drag " + slotId + " " + State.slotIdDragging);
 
         Inventory inventory = State.world.player.inventory;
