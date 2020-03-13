@@ -57,11 +57,11 @@ public class CoreRenderer implements IRenderer {
 	}
 	
 	@Override
-	public void Initialize(String windowTitle, int width, int height) {
+	public void Initialize(String windowTitle, int width, int height, boolean isFullscreen) {
 		displayWidth = width;
 		displayHeight = height;
 		canvas = new Canvas();
-		window = new Window(windowTitle, displayWidth, displayHeight, canvas);
+		window = new Window(windowTitle, displayWidth, displayHeight, canvas, isFullscreen);
 		
 		if (bufferStrategy == null) {
 			canvas.createBufferStrategy(2);

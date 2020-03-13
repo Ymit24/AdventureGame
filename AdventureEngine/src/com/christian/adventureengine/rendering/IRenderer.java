@@ -10,7 +10,7 @@ import com.christian.adventureengine.rendering.sprites.Sprite;
 import com.christian.adventureengine.ui.VerticalPushLayout;
 
 public interface IRenderer {
-	public void Initialize(String windowTitle, int width, int height);
+	public void Initialize(String windowTitle, int width, int height, boolean isFullscreen);
 	public void OnRender();
 	
 	public int GetDisplayWidth();

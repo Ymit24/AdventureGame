@@ -7,12 +7,14 @@ import javax.swing.JFrame;
 
 public class Window {
 	private JFrame frame;
-	public Window(String title, int width, int height, Canvas canvas) {
+	public Window(String title, int width, int height, Canvas canvas, boolean isFullscreen) {
 		Dimension size = new Dimension(width, height);
 		frame = new JFrame(title);
 
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setUndecorated(true);
+		if (isFullscreen) {
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			frame.setUndecorated(true);
+		}
 		frame.setVisible(true);
 
 		canvas.setPreferredSize(size);

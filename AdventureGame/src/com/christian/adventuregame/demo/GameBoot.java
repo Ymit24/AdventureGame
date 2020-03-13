@@ -24,9 +24,9 @@ public class GameBoot {
 	public GameBoot() {
 		State.world = new World();
 
-		boolean isFullScreen = true;
+		boolean isFullScreen = false;
 		IRenderer renderer = new CoreRenderer();
-		renderer.Initialize("Adventure Game", isFullScreen ? 1920 : 1280, isFullScreen ? 1080 : 720);
+		renderer.Initialize("Adventure Game", isFullScreen ? 1920 : 1280, isFullScreen ? 1080 : 720, isFullScreen);
 		renderer.CreateInput();
 		renderer.CreateSpriteManager();
 		renderer.CreateCamera(new Vector2(16,10), new Box(0, 0, isFullScreen ? 1920-280 : 1000, isFullScreen ? 1080 : 720));
