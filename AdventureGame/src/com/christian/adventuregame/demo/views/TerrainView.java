@@ -23,7 +23,7 @@ public class TerrainView extends View {
 	public void draw(IRenderer renderer) {
 		for (int x = 0; x < State.terrain.width; x++) {
 			for (int y = 0; y < State.terrain.height; y++) {
-				Tile tile = State.terrain.tiles[x][y];
+				Tile tile = State.terrain.GetTile(x,y);
 				TileType type = Archetypes.Tiles.Get(tile.type);
 				renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite(type.textureFilename), tile);
 

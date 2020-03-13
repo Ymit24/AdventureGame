@@ -13,7 +13,7 @@ public class TerrainUtil {
 		Serializer serializer = new Serializer();
 		terrain.Serialize(serializer);
 		
-		File file = new File("C:\\Dev\\Git\\AdventureGame\\resources\\bin\\terrain.txt");
+		File file = new File("C:\\Dev\\Git\\AdventureGame\\resources\\bin\\terrain4.txt");
 		try {
 			Files.write(file.toPath(), serializer.getBytes());
 		} catch (IOException e) {

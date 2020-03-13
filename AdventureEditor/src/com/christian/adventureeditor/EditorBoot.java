@@ -20,7 +20,7 @@ import com.christian.adventuregame.demo.utils.loaders.TileLoaderUtil;
 public class EditorBoot {
 	public static void main(String[] args) throws IOException {
 		IRenderer renderer = new CoreRenderer();
-		renderer.Initialize("Adventure Editor", 1280, 720);
+		renderer.Initialize("Adventure Editor", 1280, 720, false);
 		renderer.CreateInput();
 		renderer.CreateCamera(new Vector2(14, 14), new Box(300, 0, 980, 720));
 		renderer.CreateSpriteManager();
@@ -30,8 +30,9 @@ public class EditorBoot {
 		TerrainFeatureLoader.Load();
 		EditorData.layout = renderer.CreateUILayout(new Box(0, 30, 300, 720));
 		new MainTools();
-		
-		renderer.SetRootView(new EditorView());
+
+		// TODO: REIMPLEMENT USING NEW LAYER BASED VIEW SYSTEM
+//		renderer.SetRootView(new EditorView());
 
 		EditorData.terrain = TerrainUtil.LoadFromFile();
 

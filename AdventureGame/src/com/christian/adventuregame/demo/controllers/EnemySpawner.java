@@ -34,7 +34,7 @@ public class EnemySpawner extends Controller {
 					tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(2);
 					tileRingPosition = new Vector2((int) tileRingPosition.x, (int) tileRingPosition.y);
 				}
-				if (terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].isWalkable())
+				if (terrain.GetTile((int)tileRingPosition.x,(int)tileRingPosition.y).isWalkable())
 				{
 					break;
 				}
@@ -44,7 +44,7 @@ public class EnemySpawner extends Controller {
 				}
 			}
 
-			String regionId = terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].regionId;
+			String regionId = terrain.GetTile((int)tileRingPosition.x,(int)tileRingPosition.y).regionId;
 			RegionType type = Archetypes.Regions.Get(regionId);
 
 			System.out.println("region id : " + regionId + " enemies: ");

@@ -7,10 +7,14 @@ import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
+import com.christian.adventureengine.utils.Serializer;
 import com.christian.adventuregame.demo.controllers.*;
 import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.World;
 import com.christian.adventuregame.demo.data.archetypes.Archetypes;
+import com.christian.adventuregame.demo.data.terrain.Chunk;
+import com.christian.adventuregame.demo.data.terrain.Terrain;
+import com.christian.adventuregame.demo.data.terrain.Tile;
 import com.christian.adventuregame.demo.ui.GameUI;
 import com.christian.adventuregame.demo.utils.loaders.*;
 import com.christian.adventuregame.demo.utils.TerrainUtil;
@@ -43,7 +47,26 @@ public class GameBoot {
 
 		State.world.player.inventory.storageItems[0] = Archetypes.Items.Get("purple_wand_item");
 
+//		State.terrain = new Terrain(50, 50, 10);
+//		TerrainUtil.SaveToFile(State.terrain);
 		State.terrain = TerrainUtil.LoadFromFile();
+
+		/////////////// CONVERT TILES[] TERRAIN TO CHUNK TERRAIN
+//		Tile[][] tiles = State.terrain.tiles;
+//		Terrain chunkTerrain = new Terrain(State.terrain.width, State.terrain.height, 10);
+//		for (int i = 0; i < chunkTerrain.chunks.length; i++) {
+//			Chunk chunk = chunkTerrain.chunks[i];
+//			chunk.tiles = new Tile[chunkTerrain.chunkSize][chunkTerrain.chunkSize];
+//			for (int x = (int)chunk.position.x; x < (int)chunk.position.x + chunk.chunkSize; x++) {
+//				for (int y = (int)chunk.position.y; y < (int)chunk.position.y + chunk.chunkSize; y++) {
+//					chunk.tiles[x-(int)chunk.position.x][y-(int)chunk.position.y] = tiles[x][y];
+//				}
+//			}
+//		}
+//		TerrainUtil.SaveToFile(chunkTerrain);
+//		State.terrain = chunkTerrain;
+		///////////////
+
 
 		renderer.AddView(new PlayerStatsView());
 		renderer.AddView(new TerrainView());

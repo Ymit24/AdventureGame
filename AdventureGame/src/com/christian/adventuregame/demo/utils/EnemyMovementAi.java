@@ -46,8 +46,8 @@ public class EnemyMovementAi {
         ArrayList<Tile> walkableTiles = new ArrayList<>();
         for (int x = Math.max(0,(int)(position.x - range)); x < Math.min ((int)(position.x + range),State.terrain.width); x++) {
             for (int y = Math.max(0,(int)(position.y - range)); y < Math.min((int)(position.y + range),State.terrain.height); y++) {
-                if (State.terrain.tiles[x][y].isWalkable()) {
-                    walkableTiles.add(State.terrain.tiles[x][y]);
+                if (State.terrain.GetTile(x,y).isWalkable()) {
+                    walkableTiles.add(State.terrain.GetTile(x,y));
                 }
             }
         }

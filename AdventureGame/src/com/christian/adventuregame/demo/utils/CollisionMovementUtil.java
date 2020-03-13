@@ -46,7 +46,7 @@ public class CollisionMovementUtil {
         Terrain terrain = State.terrain;
         for (int x = 0; x < terrain.width; x++) {
             for (int y = 0; y < terrain.height; y++) {
-                Tile tile = terrain.tiles[x][y];
+                Tile tile = terrain.GetTile(x,y);
                 if (!tile.isWalkable() && Collision.AABB(new Box(tile.Position, tile.Size), object)) {
                     return false;
                 }

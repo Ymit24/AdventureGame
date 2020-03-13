@@ -39,13 +39,13 @@ public class MetaDataTools implements IButtonCallback {
         if (id.equals("new_button")) {
             String widthText = ((Label)layout.FindElementById("width_inputfield_label")).text;
             String heightText = ((Label)layout.FindElementById("height_inputfield_label")).text;
-            EditorData.terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText));
+            EditorData.terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText), 10);
         } else if (id.equals("update_button")) {
             String widthText = ((Label)layout.FindElementById("width_inputfield_label")).text;
             String heightText = ((Label)layout.FindElementById("height_inputfield_label")).text;
             System.out.println("Dimensions: <" + widthText + ", " + heightText + ">");
 
-            Terrain terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText));
+            Terrain terrain = new Terrain(Integer.parseInt(widthText), Integer.parseInt(heightText), 10);
             terrain.CopyFrom(EditorData.terrain);
             EditorData.terrain = terrain;
         }  else if (id.equals("save_button")) {

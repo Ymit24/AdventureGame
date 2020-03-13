@@ -20,6 +20,7 @@ public class EditorView extends View {
 	private UIView uiView;
 
 	public EditorView() {
+		super(1000); // TODO: ADD PROPER LAYER
 		uiView = new UIView();
 	}
 
@@ -36,23 +37,23 @@ public class EditorView extends View {
 			Terrain terrain = EditorData.terrain;
 			for (int x = 0; x < terrain.width; x++) {
 				for (int y = 0; y < terrain.height; y++) {
-					TileType type = Archetypes.Tiles.Get(terrain.tiles[x][y].type);
-					renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite(type.textureFilename), terrain.tiles[x][y]);
+					TileType type = Archetypes.Tiles.Get(terrain.GetTile(x,y).type);
+					renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite(type.textureFilename), terrain.GetTile(x,y));
 
 					if (EditorData.state.equals(EditorData.EditorState.Region)) {
-						RegionType regionType = Archetypes.Regions.Get(terrain.tiles[x][y].regionId);
+						RegionType regionType = Archetypes.Regions.Get(terrain.GetTile(x,y).regionId);
 						Color regionColor = Color.decode("#" + regionType.editorHexColor);
 						regionColor = new Color(regionColor.getRed(), regionColor.getGreen(), regionColor.getBlue(), 50);
 						renderer.FillBox(
 								new Box(
-										Camera.GetCamera().CalculateWorldToScreen(terrain.tiles[x][y].Position),
+										Camera.GetCamera().CalculateWorldToScreen(terrain.GetTile(x,y).Position),
 										Camera.GetCamera().GetPixelsPerWorldUnit()
 								),
 								regionColor
 						);
-					} else if (EditorData.state.equals(EditorData.EditorState.Features) && !terrain.tiles[x][y].terrainFeatureId.equals("none")) {
-						TerrainFeatureType featureType = Archetypes.TerrianFeatures.Get(terrain.tiles[x][y].terrainFeatureId);
-						renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite(featureType.textureFilename), terrain.tiles[x][y]);
+					} else if (EditorData.state.equals(EditorData.EditorState.Features) && !terrain.GetTile(x,y).terrainFeatureId.equals("none")) {
+						TerrainFeatureType featureType = Archetypes.TerrianFeatures.Get(terrain.GetTile(x,y).terrainFeatureId);
+						renderer.DrawWorldSprite(Sprites.GetSpriteManager().GetSprite(featureType.textureFilename), terrain.GetTile(x,y));
 					}
 				}
 			}

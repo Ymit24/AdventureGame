@@ -17,6 +17,10 @@ import com.christian.adventureengine.ui.elements.*;
 import com.christian.adventuregame.demo.data.archetypes.RegionType;
 
 public class UIView extends View {
+
+	public UIView() {
+		super(10000); // TODO: ADD PROPER LAYER
+	}
 	@Override
 	public void draw(IRenderer renderer) {
 		renderer.FillBox(new Box(0,0,1280,30), new Color(250, 224, 255));
