@@ -5,7 +5,6 @@ import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.logic.Controller;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.ui.VerticalPushLayout;
-import com.sun.org.apache.xalan.internal.xsltc.dom.CachedNodeListIterator;
 
 import java.awt.*;
 

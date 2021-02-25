@@ -293,6 +293,12 @@ public class CoreRenderer implements IRenderer {
 			view.draw(this);
 		}
 		
+		for (VerticalPushLayout layout : uiLayouts) {
+			for (Element el : layout.elements) {
+				el.draw(this);
+			}
+		}
+		
 		canDraw = false;
 		bufferStrategy.show();
 		graphics.dispose();

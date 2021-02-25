@@ -11,16 +11,16 @@ import com.christian.adventuregame.demo.data.State;
 import com.christian.adventuregame.demo.data.archetypes.*;
 import com.christian.adventuregame.demo.data.terrain.Terrain;
 import com.christian.adventuregame.demo.views.TerrainView;
-import com.sun.org.apache.xalan.internal.xsltc.dom.CachedNodeListIterator;
 
 import java.awt.*;
 
 public class EditorView extends View {
 
-	private UIView uiView;
+//	private UIView uiView;
 
 	public EditorView() {
-		uiView = new UIView();
+		super(1000);
+//		uiView = new UIView();
 	}
 
 	public static Color hex2Rgb(String colorStr) {
@@ -57,7 +57,7 @@ public class EditorView extends View {
 				}
 			}
 		}
-		uiView.draw(renderer);
+//		uiView.draw(renderer);
 
 		renderer.SetFontSize(24);
 		renderer.SetColor(Color.black);

@@ -2,7 +2,6 @@ package com.christian.adventureengine.data;
 
 import com.christian.adventureengine.utils.Deserializer;
 import com.christian.adventureengine.utils.Serializer;
-import javafx.geometry.Pos;
 
 public class WorldObject implements ISerializable {
 	public Vector2 Position;

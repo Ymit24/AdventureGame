@@ -1,5 +1,6 @@
 package com.christian.adventuregame.demo.utils;
 
+import com.christian.adventureengine.data.Vector2;
 import com.christian.adventureengine.rendering.sprites.Sprites;
 import com.christian.adventuregame.demo.data.Inventory;
 import com.christian.adventuregame.demo.data.State;
@@ -16,6 +17,7 @@ public class InventoryUtil {
 
         System.out.println("Starting drag");
         State.isDragging = true;
+        State.dragPosition = Vector2.Zero();
         State.slotIdDragging = slotIndex;
         State.iconDragSprite = Sprites.GetSpriteManager().GetSprite(inventory.GetSlot(slotIndex).iconTextureFilename);
     }
