@@ -208,9 +208,14 @@ public class CoreRenderer implements IRenderer {
 	
 	@Override
 	public void DrawWorldSprite(Sprite sprite, WorldObject object) {
-		if (canDraw == false || camera.isInCameraBounds(object.Position, object.Size) == false)
+		DrawWorldSprite(sprite, object.Position, object.Size);
+	}
+	
+	@Override
+	public void DrawWorldSprite(Sprite sprite, Vector2 location, Vector2 size) {
+		if (canDraw == false || camera.isInCameraBounds(location, size) == false)
 			return;
-		Vector2 pixelLocation = camera.CalculateWorldToScreen(object.Position);
+		Vector2 pixelLocation = camera.CalculateWorldToScreen(location);
 		
 		Vector2 cameraEndCorner = camera.CalculateWorldToScreen(camera.GetPosition().Add(camera.GetWorldSpace()));
 		graphics.setClip(0, 0, (int)cameraEndCorner.x, (int)cameraEndCorner.y);

@@ -37,6 +37,7 @@ public interface IRenderer {
 	
 	public void DrawWorldText(String message, Vector2 location);
 	public void DrawWorldSprite(Sprite sprite, WorldObject object);
+	public void DrawWorldSprite(Sprite sprite, Vector2 location, Vector2 size);
 
 	public void DrawScreenText(String message, Vector2 screenLocation);
 	public void DrawScreenSprite(Sprite sprite, Vector2 screenLocation);

@@ -17,7 +17,10 @@ public class KeyboardListener implements IKeyboardListener, KeyListener {
 		keyStates = new HashMap<>();
 		keyListeners = new ArrayList<IKeyListener>();
 	}
-	
+
+	/**
+	 * @param keycode, Use KeyEvent.VK_* key codes. 
+	 */
 	public boolean isKeyDown(int keycode) {
 		if (keyStates.containsKey(keycode) == false)
 			return false;

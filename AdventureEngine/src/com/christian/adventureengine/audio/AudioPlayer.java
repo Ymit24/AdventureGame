@@ -10,10 +10,13 @@ import javax.sound.sampled.Clip;
 public class AudioPlayer {
 	private static HashMap<String, Clip> clips = new HashMap<String, Clip>();
 	
-	private static final String ROOT_PATH = "C:\\Dev\\Git\\AdventureGame\\resources\\audio\\";
+	/**
+	 * Load an audio clip which will be stored by filename.
+	 * @param filename This path is relative to your res folder.
+	 */
 	public static void Load(String filename) {
 		try {
-			AudioInputStream stream = AudioSystem.getAudioInputStream(new File(ROOT_PATH + "/" + filename).getAbsoluteFile());
+			AudioInputStream stream = AudioSystem.getAudioInputStream(new File("./res/" + filename).getAbsoluteFile());
 			Clip clip = AudioSystem.getClip();
 			clip.open(stream);
 
@@ -23,6 +26,10 @@ public class AudioPlayer {
 		}
 	}
 	
+	/**
+	 * Play a loaded audio clip.
+	 * @param filename must be the same as what was used to load the clip.
+	 */
 	public static void Play(String filename) {
 		if (clips.containsKey(filename) == false) {
 			Load(filename);

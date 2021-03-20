@@ -16,39 +16,58 @@ public class EnemySpawner extends Controller {
 		State.enemySpawnTimer -= deltaTime;
 		if (State.enemySpawnTimer <= 0)
 		{
-			State.enemySpawnTimer = State.secondsBetweenEnemySpawn;
+			State.enemySpawnTimer = State.secondsBetweenEnemySpawn; // TODO: Should probably be +=
 			
 			if (State.world.enemies.size() >= State.maxEnemiesToSpawn)
 				return;
 			
-			Camera c = Camera.GetCamera();
-			Box bounds = c.GetCameraBounds();
+			Vector2 tileRingPosition = GetRingTilePosition();	
+			RegionType regionType = GetRegionType(tileRingPosition);
+			String enemyTypeId = GetRandomEnemyTypeId(regionType);
 
-			Vector2 tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(2);
-			tileRingPosition = new Vector2((int)tileRingPosition.x, (int)tileRingPosition.y);
-
-			Terrain terrain = State.terrain;
-			while (true) {
-				while ((int) tileRingPosition.x < 0 || (int) tileRingPosition.x >= terrain.width ||
-						(int) tileRingPosition.y < 0 || (int) tileRingPosition.y >= terrain.height) {
-					tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(2);
-					tileRingPosition = new Vector2((int) tileRingPosition.x, (int) tileRingPosition.y);
-				}
-				if (terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].isWalkable())
-				{
-					break;
-				}
-				else {
-					tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
-					tileRingPosition = new Vector2((int) tileRingPosition.x, (int) tileRingPosition.y);
-				}
-			}
-
-			String regionId = terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].regionId;
-			RegionType type = Archetypes.Regions.Get(regionId);
-
-			System.out.println("region id : " + regionId + " enemies: ");
-			State.world.SpawnEnemy(tileRingPosition, type.enemyIds[Randomizer.random.nextInt(type.enemyIds.length)]);
+			System.out.println("region id : " + regionType.id + " enemies: ");
+			State.world.SpawnEnemy(tileRingPosition, enemyTypeId);
 		}
+	}
+
+	private RegionType GetRegionType(Vector2 location) {
+		int tileX = (int)location.x;
+		int tileY = (int)location.y;
+
+		String regionId = State.terrain.tiles[tileX][tileY].regionId;
+		RegionType type = Archetypes.Regions.Get(regionId);
+
+		return type;
+	}
+
+	private String GetRandomEnemyTypeId(RegionType type) {
+		return type.enemyIds[Randomizer.random.nextInt(type.enemyIds.length)];
+	}
+
+	private Vector2 GetRingTilePosition() {
+		Camera c = Camera.GetCamera();
+		Box bounds = c.GetCameraBounds();
+
+		Vector2 tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(2);
+		tileRingPosition = new Vector2((int)tileRingPosition.x, (int)tileRingPosition.y);
+
+		Terrain terrain = State.terrain;
+		while (true) {
+			while ((int) tileRingPosition.x < 0 || (int) tileRingPosition.x >= terrain.width ||
+					(int) tileRingPosition.y < 0 || (int) tileRingPosition.y >= terrain.height) {
+				tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(2);
+				tileRingPosition = new Vector2((int) tileRingPosition.x, (int) tileRingPosition.y);
+			}
+			if (terrain.tiles[(int)tileRingPosition.x][(int)tileRingPosition.y].isWalkable())
+			{
+				break;
+			}
+			else {
+				tileRingPosition = Camera.GetCamera().GetCameraBounds().RingTile(6);
+				tileRingPosition = new Vector2((int) tileRingPosition.x, (int) tileRingPosition.y);
+			}
+		}
+
+		return null;
 	}
 }

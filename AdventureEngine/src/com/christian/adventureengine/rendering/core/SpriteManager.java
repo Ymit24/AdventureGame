@@ -13,7 +13,7 @@ import com.christian.adventureengine.rendering.sprites.ISpriteType;
 import com.christian.adventureengine.rendering.sprites.Sprite;
 
 public class SpriteManager implements ISpriteManager {
-	private static final String ROOT_SPRITE_PATH = "C:\\Dev\\Git\\AdventureGame\\resources\\sprites\\";
+//	private static final String ROOT_SPRITE_PATH = "C:\\Dev\\Git\\AdventureGame\\resources\\sprites\\";
 	private HashMap<ISpriteType,Sprite> sprites;
 	private HashMap<String, Sprite> fileSprites;
 	
@@ -25,7 +25,7 @@ public class SpriteManager implements ISpriteManager {
 	private Sprite LoadSpriteFromFile(String filename) {
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File(ROOT_SPRITE_PATH + filename));
+			image = ImageIO.read(new File("./res/" + filename));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
