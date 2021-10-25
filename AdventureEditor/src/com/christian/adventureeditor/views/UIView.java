@@ -33,6 +33,6 @@ public class UIView extends View {
 		renderer.DrawScreenText("Mode", modeCenter);
 		renderer.DrawScreenText("File", fileCenter);
 		
-		renderer.FillBox(EditorData.layout.bounds, new Color(65, 34, 68));
+		renderer.FillBox(EditorData.layout.Bounds, new Color(65, 34, 68));
 	}
 }

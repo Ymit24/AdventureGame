@@ -31,7 +31,7 @@ public class InventorySlot extends Element {
 
     public InventorySlot SetPadding(Vector2 padding) {
         this.padding = padding;
-        layout.RecalculateHeights();
+        layout.Recalculate();
         return this;
     }
 

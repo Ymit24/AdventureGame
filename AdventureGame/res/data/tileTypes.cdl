@@ -1,11 +1,11 @@
 [Grass]
 id=grass
-textureFilename=grass_0.png
+textureFilename=sprites/grass_0.png
 
 [Water]
 id=water
-textureFilename=water_0.png
+textureFilename=sprites/water_0.png
 
 [Swamp]
 id=swamp
-textureFilename=blob.png
+textureFilename=sprites/blob.png

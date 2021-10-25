@@ -91,6 +91,6 @@ public class GameUI {
                 }).SetBackgroundColor(new Color(219, 149, 87))
         );
 
-        layout.RecalculateHeights();
+        layout.Recalculate();
     }
 }

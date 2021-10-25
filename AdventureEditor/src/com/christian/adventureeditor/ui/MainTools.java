@@ -58,7 +58,7 @@ public class MainTools implements IButtonCallback {
                 )
         );
 
-        mainLayout.RecalculateHeights();
+        mainLayout.Recalculate();
     }
 
     @Override

@@ -9,6 +9,10 @@ public interface ISpriteManager {
 	public Sprite RegisterSprite(ISpriteType type, String filename, float worldSpace);
 	public Sprite RegisterSprite(ISpriteType type, String filename, Vector2 pixelsToWorld);
 	
+	public void RegisterSpriteSheet(String filename, Vector2 size, float worldSpace);
+	
 	public Sprite GetSprite(ISpriteType type);
 	public Sprite GetSprite(String filename);
+	
+	public Sprite GetSpriteFromSheet(String filename, int indexX, int indexY);
 }

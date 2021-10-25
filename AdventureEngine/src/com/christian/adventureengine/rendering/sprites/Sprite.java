@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.christian.adventureengine.data.Vector2;
 
-// TODO: Consider splitting image into a Texture class for seperating world space and screen space rendering
+// TODO: Consider splitting image into a Texture class for separating world space and screen space rendering
 public class Sprite {
 	private String filename;
 	public BufferedImage image;
