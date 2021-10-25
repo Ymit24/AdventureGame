@@ -58,6 +58,6 @@ public class EditorView extends View {
 		renderer.SetFontSize(24);
 		renderer.SetColor(Color.black);
 		String m = "PPWU: " + Camera.GetCamera().GetPixelsPerWorldUnit();
-		renderer.DrawScreenText(m, new Vector2(renderer.GetDisplayWidth()-renderer.GetFontWidth(m), 0));
+		renderer.DrawScreenText(m, new Vector2(renderer.GetDisplayWidth()-renderer.GetFontWidth(m), 40));
 	}
 }
