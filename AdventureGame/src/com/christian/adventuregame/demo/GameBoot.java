@@ -7,6 +7,8 @@ import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
+import com.christian.adventureengine.ui.LayoutType;
+import com.christian.adventureengine.ui.VerticalPushLayout;
 import com.christian.adventureengine.utils.ResourceManager;
 import com.christian.adventuregame.demo.controllers.BulletEnemyCollisionController;
 import com.christian.adventuregame.demo.controllers.BulletMovementController;
@@ -68,7 +70,7 @@ public class GameBoot {
 		TerrainFeatureLoader.Load();
 		ItemLoader.Load();
 
-		State.mainUILayout = renderer.CreateUILayout(new Box(isFullScreen ? 1920-280 : 1000, 150, 280, 570));
+		State.mainUILayout = (VerticalPushLayout) renderer.CreateFrame("_main_ui_", "_main_", new Box(isFullScreen ? 1920-280 : 1000, 150, 280, 570), LayoutType.VERTICAL_PUSH, false, false, false, 0).Layout;
 		new GameUI().Create();
 
 		State.world.player.inventory.storageItems[0] = Archetypes.Items.Get("purple_wand_item");
