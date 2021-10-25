@@ -7,6 +7,7 @@ import com.christian.adventureengine.logic.ControllerManager;
 import com.christian.adventureengine.logic.GameLoop;
 import com.christian.adventureengine.rendering.IRenderer;
 import com.christian.adventureengine.rendering.core.CoreRenderer;
+import com.christian.adventureengine.utils.ResourceManager;
 import com.christian.adventuregame.demo.controllers.BulletEnemyCollisionController;
 import com.christian.adventuregame.demo.controllers.BulletMovementController;
 import com.christian.adventuregame.demo.controllers.BulletSpawnController;
@@ -50,6 +51,10 @@ public class GameBoot {
 		State.world = new World();
 
 		boolean isFullScreen = false;
+	
+		/*  USE THE DEFAULT RESOURCE MANAGER  */
+		ResourceManager.Initialize(new ResourceManager());
+		
 		IRenderer renderer = new CoreRenderer();
 		renderer.Initialize("Adventure Game", isFullScreen ? 1920 : 1280, isFullScreen ? 1080 : 720, isFullScreen);
 		renderer.CreateInput();

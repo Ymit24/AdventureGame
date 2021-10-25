@@ -71,9 +71,9 @@ public class InventorySlot extends Element {
 
     @Override
     public void draw(IRenderer renderer) {
-        renderer.FillBox(bounds, slotColor);
+        renderer.FillBox(OffsetByLayout(bounds), slotColor);
         if (iconSprite != null) {
-            renderer.DrawScreenSprite(iconSprite, bounds);
+            renderer.DrawScreenSprite(iconSprite, OffsetByLayout(bounds));
         }
     }
 }

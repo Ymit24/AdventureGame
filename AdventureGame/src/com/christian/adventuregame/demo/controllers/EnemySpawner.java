@@ -52,6 +52,8 @@ public class EnemySpawner extends Controller {
 		tileRingPosition = new Vector2((int)tileRingPosition.x, (int)tileRingPosition.y);
 
 		Terrain terrain = State.terrain;
+		
+		// TODO: IMPLEMENT CHECK TO MAKE SURE THIS NEVER CAUSES INFINITE LOOP.
 		while (true) {
 			while ((int) tileRingPosition.x < 0 || (int) tileRingPosition.x >= terrain.width ||
 					(int) tileRingPosition.y < 0 || (int) tileRingPosition.y >= terrain.height) {
@@ -68,6 +70,6 @@ public class EnemySpawner extends Controller {
 			}
 		}
 
-		return null;
+		return tileRingPosition;
 	}
 }

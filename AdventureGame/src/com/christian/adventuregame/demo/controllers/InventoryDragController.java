@@ -12,6 +12,7 @@ public class InventoryDragController extends Controller {
 
             if (Input.GetMouseListener().isMouseButtonDown(0) == false) {
                 State.isDragging = false;
+                // TODO: Implement switching inventory slots.
             }
         }
     }
