@@ -1,11 +1,19 @@
 [Grass]
 id=grass
 textureFilename=grass_0.png
+isWalkable=true
 
 [Water]
 id=water
 textureFilename=water_0.png
+isWalkable=false
+
+[Path]
+id=path
+textureFilename=path_0.png
+isWalkable=true
 
 [Swamp]
 id=swamp
-textureFilename=blob.png
+textureFilename=swamp/swamp_0.png
+isWalkable=true

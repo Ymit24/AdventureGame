@@ -16,11 +16,8 @@ import java.awt.*;
 
 public class EditorView extends View {
 
-//	private UIView uiView;
-
 	public EditorView() {
 		super(1000);
-//		uiView = new UIView();
 	}
 
 	public static Color hex2Rgb(String colorStr) {
@@ -57,7 +54,6 @@ public class EditorView extends View {
 				}
 			}
 		}
-//		uiView.draw(renderer);
 
 		renderer.SetFontSize(24);
 		renderer.SetColor(Color.black);
